@@ -18,7 +18,11 @@ public class Connect {
     public Connection connectSQL() throws SQLException {
         try {
             String userName = "sa";
+<<<<<<< Updated upstream
             String password = "12345";  
+=======
+            String password = "123";  
+>>>>>>> Stashed changes
             String url = "jdbc:sqlserver://localhost:1433; database=EventManagement; encrypt = true; TrustServerCertificate = true";
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
