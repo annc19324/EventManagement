@@ -4,6 +4,11 @@
  */
 package view;
 
+import com.sun.tools.javac.Main;
+import java.awt.Color;
+import java.awt.Dimension;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 /**
  *
  * @author annc1
@@ -15,6 +20,8 @@ public class TitleView extends javax.swing.JFrame {
      */
     public TitleView() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -25,13 +32,16 @@ public class TitleView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel2 = new javax.swing.JPanel();
-        pnlContainer = new javax.swing.JPanel();
-        lblTitle = new javax.swing.JLabel();
-        pnlButton = new javax.swing.JPanel();
-        btnLogIn = new javax.swing.JButton();
-        btnSignUp = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        pnlContainer9 = new javax.swing.JPanel();
+        lblTitle9 = new javax.swing.JLabel();
+        pnlButton9 = new javax.swing.JPanel();
+        btnLogIn9 = new javax.swing.JButton();
+        btnSignUp9 = new javax.swing.JButton();
+        lblGif = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -46,72 +56,105 @@ public class TitleView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblTitle.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        lblTitle.setForeground(new java.awt.Color(51, 102, 255));
-        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Enjoy Joyful Events");
+        jPanel1.setBackground(new java.awt.Color(153, 0, 204));
 
-        btnLogIn.setText("Đăng nhập");
+        pnlContainer9.setBackground(new java.awt.Color(153, 0, 204));
+        pnlContainer9.setForeground(new java.awt.Color(255, 255, 255));
 
-        btnSignUp.setText("Đăng ký");
+        lblTitle9.setBackground(new java.awt.Color(255, 0, 255));
+        lblTitle9.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
+        lblTitle9.setForeground(new java.awt.Color(255, 255, 0));
+        lblTitle9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle9.setText("Enjoy Interesting Events");
 
-        javax.swing.GroupLayout pnlButtonLayout = new javax.swing.GroupLayout(pnlButton);
-        pnlButton.setLayout(pnlButtonLayout);
-        pnlButtonLayout.setHorizontalGroup(
-            pnlButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlButtonLayout.createSequentialGroup()
+        pnlButton9.setBackground(new java.awt.Color(153, 0, 204));
+        pnlButton9.setLayout(new java.awt.GridBagLayout());
+
+        btnLogIn9.setBackground(new java.awt.Color(153, 153, 255));
+        btnLogIn9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnLogIn9.setForeground(new java.awt.Color(255, 255, 0));
+        btnLogIn9.setText("Đăng nhập");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 168;
+        gridBagConstraints.ipady = 36;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(13, 12, 0, 12);
+        pnlButton9.add(btnLogIn9, gridBagConstraints);
+
+        btnSignUp9.setBackground(new java.awt.Color(153, 153, 255));
+        btnSignUp9.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        btnSignUp9.setForeground(new java.awt.Color(255, 255, 0));
+        btnSignUp9.setText("Đăng ký");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 198;
+        gridBagConstraints.ipady = 36;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(7, 12, 13, 12);
+        pnlButton9.add(btnSignUp9, gridBagConstraints);
+
+        lblGif.setBackground(new java.awt.Color(255, 0, 255));
+
+        javax.swing.GroupLayout pnlContainer9Layout = new javax.swing.GroupLayout(pnlContainer9);
+        pnlContainer9.setLayout(pnlContainer9Layout);
+        pnlContainer9Layout.setHorizontalGroup(
+            pnlContainer9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainer9Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlContainer9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTitle9, javax.swing.GroupLayout.DEFAULT_SIZE, 889, Short.MAX_VALUE)
+                    .addGroup(pnlContainer9Layout.createSequentialGroup()
+                        .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblGif, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        pnlButtonLayout.setVerticalGroup(
-            pnlButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnLogIn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnSignUp)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        pnlContainer9Layout.setVerticalGroup(
+            pnlContainer9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlContainer9Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(lblTitle9, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(pnlContainer9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlContainer9Layout.createSequentialGroup()
+                        .addComponent(lblGif, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
-        javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
-        pnlContainer.setLayout(pnlContainerLayout);
-        pnlContainerLayout.setHorizontalGroup(
-            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
-                    .addComponent(pnlButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 942, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(pnlContainer9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(17, 17, 17)))
         );
-        pnlContainerLayout.setVerticalGroup(
-            pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
-                .addComponent(pnlButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 461, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(51, 51, 51)
+                    .addComponent(pnlContainer9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(65, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -153,11 +196,28 @@ public class TitleView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLogIn;
-    private javax.swing.JButton btnSignUp;
+    private javax.swing.JButton btnLogIn6;
+    private javax.swing.JButton btnLogIn7;
+    private javax.swing.JButton btnLogIn8;
+    private javax.swing.JButton btnLogIn9;
+    private javax.swing.JButton btnSignUp6;
+    private javax.swing.JButton btnSignUp7;
+    private javax.swing.JButton btnSignUp8;
+    private javax.swing.JButton btnSignUp9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JLabel lblTitle;
-    private javax.swing.JPanel pnlButton;
-    private javax.swing.JPanel pnlContainer;
+    private javax.swing.JLabel lblGif;
+    private javax.swing.JLabel lblTitle6;
+    private javax.swing.JLabel lblTitle7;
+    private javax.swing.JLabel lblTitle8;
+    private javax.swing.JLabel lblTitle9;
+    private javax.swing.JPanel pnlButton6;
+    private javax.swing.JPanel pnlButton7;
+    private javax.swing.JPanel pnlButton8;
+    private javax.swing.JPanel pnlButton9;
+    private javax.swing.JPanel pnlContainer6;
+    private javax.swing.JPanel pnlContainer7;
+    private javax.swing.JPanel pnlContainer8;
+    private javax.swing.JPanel pnlContainer9;
     // End of variables declaration//GEN-END:variables
 }
