@@ -148,10 +148,8 @@ public class SignUpView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new SignUpView().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new SignUpView().setVisible(true);
         });
     }
 
