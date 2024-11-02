@@ -6,6 +6,9 @@ package view;
 
 import com.sun.tools.javac.Main;
 import java.awt.Color;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -68,11 +71,12 @@ public class TitleView extends javax.swing.JFrame {
         setUndecorated(true);
 
         pnlContainAll.setBackground(new java.awt.Color(153, 0, 204));
+        pnlContainAll.setPreferredSize(new java.awt.Dimension(950, 450));
 
         pnlContainer.setBackground(new java.awt.Color(153, 0, 204));
         pnlContainer.setForeground(new java.awt.Color(255, 255, 255));
 
-        lblMainTitle.setBackground(new java.awt.Color(255, 0, 255));
+        lblMainTitle.setBackground(new java.awt.Color(153, 0, 204));
         lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblMainTitle.setForeground(new java.awt.Color(255, 255, 0));
         lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -127,10 +131,10 @@ public class TitleView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                        .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addContainerGap())
                     .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 48, Short.MAX_VALUE)
                         .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(lblConcert)
@@ -219,22 +223,27 @@ public class TitleView extends javax.swing.JFrame {
         pnlContainAllLayout.setVerticalGroup(
             pnlContainAllLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainAllLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
-                .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(pnlContainer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainAll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlContainAll, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlContainAll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(8, 8, 8)
+                .addComponent(pnlContainAll, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -272,7 +281,11 @@ public class TitleView extends javax.swing.JFrame {
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new SignUpView().setVisible(true);
+        try {
+            new SignUpView().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TitleView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     /**

@@ -4,10 +4,141 @@
  */
 package model;
 
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  *
  * @author annc1
  */
 public class User {
+    private int userId;
+    private String username;
+    private String fullname;
+    private String password;
+    private Date dateOfBirth;
+    private String mail;
+    private String phone;
+    private String role;
+
+    public User() {
+    }
+
+    public User(int userId, String username, String fullname, String password, Date dateOfBirth, String mail, String phone, String role) {
+        this.userId = userId;
+        this.username = username;
+        this.fullname = fullname;
+        this.password = password;
+        this.dateOfBirth = dateOfBirth;
+        this.mail = mail;
+        this.phone = phone;
+        this.role = role;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public String getMail() {
+        return mail;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
+    }
+
+    public void setMail(String mail) {
+        this.mail = mail;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+    
+    public boolean isValid() {
+        return true ;
+    }
+//        public boolean isValid() {
+//        return validateUsername() && validateFullname() && validatePassword() && validateDateOfBirth() && validateMail() && validatePhone();
+//    }
+
+    private boolean validateUsername() {
+        return username != null && username.matches("^[a-zA-Z0-9.]{6,}$") && !username.contains(" ");
+    }
+
+    private boolean validateFullname() {
+        return fullname != null && fullname.matches("^[a-zA-Z ]+$");
+    }
+
+    private boolean validatePassword() {
+        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        return password != null && password.matches(passwordPattern);
+    }
+
+    private boolean validateDateOfBirth() {
+        if (dateOfBirth == null) {
+            return false;
+        }
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -16);
+        Date sixteenYearsAgo = cal.getTime();
+        return dateOfBirth.before(sixteenYearsAgo);
+    }
+
+    private boolean validateMail() {
+        String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
+        return mail != null && mail.matches(emailPattern);
+    }
+
+    private boolean validatePhone() {
+        return phone != null && phone.matches("\\d{10}");
+    }
+    
+    
+    
     
 }

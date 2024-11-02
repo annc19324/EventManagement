@@ -14,16 +14,18 @@ import javax.swing.JOptionPane;
  * @author annc1
  */
 public class Connect {
-        public Connection conn = null;
+
+    public Connection conn = null;
+
     public Connection connectSQL() throws SQLException {
         try {
             String userName = "sa";
-            String password = "12345";  
+            String password = "12345";
 
             String url = "jdbc:sqlserver://localhost:1433; database=EventManagement; encrypt = true; TrustServerCertificate = true";
 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-            
+
             conn = DriverManager.getConnection(url, userName, password);
             System.out.println("Kết nối thành công tới CSDL 'EventManagement'");
             return conn;
