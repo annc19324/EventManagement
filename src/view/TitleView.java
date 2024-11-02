@@ -47,7 +47,6 @@ public class TitleView extends javax.swing.JFrame {
         pnlButton9 = new javax.swing.JPanel();
         btnLogIn = new javax.swing.JButton();
         btnSignUp = new javax.swing.JButton();
-        lblGif = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         pnlHeader = new javax.swing.JPanel();
         lblHeaderTitle = new javax.swing.JLabel();
@@ -118,8 +117,6 @@ public class TitleView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(7, 12, 13, 12);
         pnlButton9.add(btnSignUp, gridBagConstraints);
 
-        lblGif.setBackground(new java.awt.Color(255, 0, 255));
-
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/concert.jpg"))); // NOI18N
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -132,10 +129,9 @@ public class TitleView extends javax.swing.JFrame {
                     .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
                     .addGroup(pnlContainerLayout.createSequentialGroup()
                         .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(98, 98, 98)
+                        .addGap(78, 78, 78)
                         .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblGif, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         pnlContainerLayout.setVerticalGroup(
@@ -143,16 +139,10 @@ public class TitleView extends javax.swing.JFrame {
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(lblMainTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(lblGif, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnlContainerLayout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1)))
+                .addGap(18, 18, 18)
+                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -202,9 +192,9 @@ public class TitleView extends javax.swing.JFrame {
         );
         pnlHeaderLayout.setVerticalGroup(
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                .addComponent(lblHeaderTitle, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblMinimize))
+            .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addComponent(lblMinimize, javax.swing.GroupLayout.Alignment.TRAILING)
+                .addComponent(lblHeaderTitle))
             .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(lblClose))
@@ -321,7 +311,6 @@ public class TitleView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblClose;
-    private javax.swing.JLabel lblGif;
     private javax.swing.JLabel lblHeaderTitle;
     private javax.swing.JLabel lblMainTitle;
     private javax.swing.JLabel lblMinimize;
