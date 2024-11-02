@@ -47,7 +47,7 @@ public class TitleView extends javax.swing.JFrame {
         pnlButton9 = new javax.swing.JPanel();
         btnLogIn = new javax.swing.JButton();
         btnSignUp = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblConcert = new javax.swing.JLabel();
         pnlHeader = new javax.swing.JPanel();
         lblHeaderTitle = new javax.swing.JLabel();
         lblMinimize = new javax.swing.JLabel();
@@ -117,7 +117,7 @@ public class TitleView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(7, 12, 13, 12);
         pnlButton9.add(btnSignUp, gridBagConstraints);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/concert.jpg"))); // NOI18N
+        lblConcert.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\concert.jpg")); // NOI18N
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
@@ -126,24 +126,29 @@ public class TitleView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContainerLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
                     .addGroup(pnlContainerLayout.createSequentialGroup()
+                        .addComponent(lblMainTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 894, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(pnlContainerLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(18, 18, 18)
+                        .addComponent(lblConcert)
+                        .addGap(81, 81, 81))))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(lblMainTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1)
-                    .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnlContainerLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(pnlContainerLayout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(lblConcert, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
@@ -308,9 +313,9 @@ public class TitleView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogIn;
     private javax.swing.JButton btnSignUp;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel lblClose;
+    private javax.swing.JLabel lblConcert;
     private javax.swing.JLabel lblHeaderTitle;
     private javax.swing.JLabel lblMainTitle;
     private javax.swing.JLabel lblMinimize;
