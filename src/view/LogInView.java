@@ -4,26 +4,38 @@
  */
 package view;
 
+import controller.UserController;
+import java.awt.Color;
+import java.awt.Rectangle;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
 
 /**
  *
  * @author annc1
  */
 public class LogInView extends javax.swing.JFrame {
+
+    private UserController userController;
     private int mousePressX, mousePressY;
 
     /**
      * Creates new form LogInView
+     *
+     * @throws java.sql.SQLException
      */
-    public LogInView() {
+    public LogInView() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         txtUsername.setBorder(new EmptyBorder(0, 30, 0, 30));
         txtPassword.setBorder(new EmptyBorder(0, 30, 0, 30));
+        userController = new UserController();
 
-        
     }
 
     /**
@@ -34,7 +46,6 @@ public class LogInView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
@@ -50,10 +61,11 @@ public class LogInView extends javax.swing.JFrame {
         btnLogIn = new javax.swing.JButton();
         btnSignUp = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
+        lblUsername = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(950, 450));
 
         jPanel1.setBackground(new java.awt.Color(153, 0, 204));
         jPanel1.setPreferredSize(new java.awt.Dimension(950, 450));
@@ -113,21 +125,11 @@ public class LogInView extends javax.swing.JFrame {
         );
 
         jPanel2.setOpaque(false);
-        jPanel2.setLayout(new java.awt.GridBagLayout());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Log in and join exciting events right now!");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.ipadx = 408;
-        gridBagConstraints.ipady = 20;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 12, 0, 12);
-        jPanel2.add(jLabel1, gridBagConstraints);
 
         jPanel3.setOpaque(false);
 
@@ -159,21 +161,43 @@ public class LogInView extends javax.swing.JFrame {
         btnLogIn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnLogIn.setForeground(new java.awt.Color(255, 255, 0));
         btnLogIn.setText("Log In");
+        btnLogIn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLogInActionPerformed(evt);
+            }
+        });
 
         btnSignUp.setBackground(new java.awt.Color(153, 153, 255));
         btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         btnSignUp.setForeground(new java.awt.Color(255, 255, 0));
         btnSignUp.setText("Sign Up");
+        btnSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSignUpActionPerformed(evt);
+            }
+        });
 
         txtPassword.setBackground(new java.awt.Color(153, 153, 255));
-        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtPassword.setForeground(new java.awt.Color(204, 204, 204));
         txtPassword.setText("*************");
+        txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                txtPasswordFocusLost(evt);
+            }
+        });
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPasswordActionPerformed(evt);
             }
         });
+
+        lblUsername.setForeground(new java.awt.Color(255, 255, 51));
+
+        lblPassword.setForeground(new java.awt.Color(255, 255, 51));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -191,33 +215,54 @@ public class LogInView extends javax.swing.JFrame {
                         .addGap(18, 18, Short.MAX_VALUE)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 379, Short.MAX_VALUE)
-                            .addComponent(txtUsername))))
+                            .addComponent(txtUsername)
+                            .addComponent(lblUsername, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                    .addComponent(txtUsername))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblUsername)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtPassword))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblPassword)
+                .addGap(20, 20, 20)
                 .addComponent(btnLogIn)
                 .addGap(18, 18, 18)
                 .addComponent(btnSignUp)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 218, 32, 0);
-        jPanel2.add(jPanel3, gridBagConstraints);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 12, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(218, 218, 218)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(13, 13, 13)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -253,7 +298,7 @@ public class LogInView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 431, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -295,12 +340,88 @@ public class LogInView extends javax.swing.JFrame {
 
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
         // TODO add your handling code here:
-        
+        txtUsername.setCaretColor(Color.LIGHT_GRAY);
+
+        if (txtUsername.getText().equals("USERNAME")) {
+            txtUsername.setText("");
+            txtUsername.setForeground(Color.BLACK);
+        }
+
     }//GEN-LAST:event_txtUsernameFocusGained
 
     private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
         // TODO add your handling code here:
+        if (txtUsername.getText().equals("")) {
+            txtUsername.setText("USERNAME");
+            txtUsername.setForeground(Color.LIGHT_GRAY);
+        }
     }//GEN-LAST:event_txtUsernameFocusLost
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+        try {
+            new SignUpView().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(LogInView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnSignUpActionPerformed
+
+    private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
+        // TODO add your handling code here:
+        txtPassword.setCaretColor(Color.LIGHT_GRAY);
+        if (String.valueOf(txtPassword.getPassword()).equals("*************")) {
+            txtPassword.setText("");
+            txtPassword.setForeground(Color.black);
+        }
+    }//GEN-LAST:event_txtPasswordFocusGained
+
+    private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
+        // TODO add your handling code here:
+
+        if (String.valueOf(txtPassword.getPassword()).equals("")) {
+            txtPassword.setText("*************");
+            txtPassword.setForeground(Color.LIGHT_GRAY);
+        }
+    }//GEN-LAST:event_txtPasswordFocusLost
+
+    private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
+        // TODO add your handling code here:
+        String username = txtUsername.getText();
+        String password = new String(txtPassword.getPassword());
+        boolean isUsernameEmpty = username.isEmpty() || username.equals("USERNAME");
+        boolean isPasswordEmpty = password.isEmpty() || password.equals("*************");
+
+        if (isUsernameEmpty || isPasswordEmpty) {
+            if (isUsernameEmpty) {
+                lblUsername.setText("username can't be empty!");
+            } else {
+                lblUsername.setText("");
+            }
+            if (isPasswordEmpty) {
+                lblPassword.setText("password can't be empty!");
+            } else {
+                lblPassword.setText("");
+            }
+            return;
+        } else {
+            lblUsername.setText("");
+            lblPassword.setText("");
+        }
+
+        String role = userController.login(username, password);
+        if (role != null) {
+            this.dispose();
+            if (role.equals("admin")) {
+                new AdminView().setVisible(true);
+            } else if (role.equals("user")) {
+                new UserView().setVisible(true);
+            }
+        } else if(role == null) {
+            JOptionPane.showMessageDialog(this, "Log In failed!");
+        }
+
+    }//GEN-LAST:event_btnLogInActionPerformed
 
     /**
      * @param args the command line arguments
@@ -330,9 +451,11 @@ public class LogInView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
+        java.awt.EventQueue.invokeLater(() -> {
+            try {
                 new LogInView().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(LogInView.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
@@ -349,6 +472,8 @@ public class LogInView extends javax.swing.JFrame {
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblHeaderTitle;
     private javax.swing.JLabel lblMinimize;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;

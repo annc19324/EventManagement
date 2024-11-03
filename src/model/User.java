@@ -99,43 +99,37 @@ public class User {
         this.role = role;
     }
     
-    public boolean isValid() {
-        return true ;
-    }
 //        public boolean isValid() {
 //        return validateUsername() && validateFullname() && validatePassword() && validateDateOfBirth() && validateMail() && validatePhone();
 //    }
 
-    private boolean validateUsername() {
-        return username != null && username.matches("^[a-zA-Z0-9.]{6,}$") && !username.contains(" ");
+    public boolean validateUsername() {
+        return username.matches("^[a-zA-Z0-9.]{6,}$") && !username.contains(" ");
     }
 
-    private boolean validateFullname() {
-        return fullname != null && fullname.matches("^[a-zA-Z ]+$");
+    public boolean validateFullname() {
+        return fullname.matches("^[\\p{L} ]{2,}+$");
     }
 
-    private boolean validatePassword() {
-        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-        return password != null && password.matches(passwordPattern);
+    public boolean validatePassword() {
+//        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
     }
 
-    private boolean validateDateOfBirth() {
-        if (dateOfBirth == null) {
-            return false;
-        }
+    public boolean validateDateOfBirth() {
         Calendar cal = Calendar.getInstance();
         cal.add(Calendar.YEAR, -16);
         Date sixteenYearsAgo = cal.getTime();
         return dateOfBirth.before(sixteenYearsAgo);
     }
 
-    private boolean validateMail() {
-        String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+$";
-        return mail != null && mail.matches(emailPattern);
+    public boolean validateMail() {
+        String emailPattern = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$";
+        return mail.matches(emailPattern);
     }
 
-    private boolean validatePhone() {
-        return phone != null && phone.matches("\\d{10}");
+    public boolean validatePhone() {
+        return phone.matches("\\d{10}");
     }
     
     

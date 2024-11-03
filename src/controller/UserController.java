@@ -72,20 +72,24 @@ public class UserController {
         }
     }
 
-    public boolean login(String username, String password) {
-        String sql = "select password from users where username = ?";
+    public String login(String username, String password) {
+        String sql = "select password, role from users where username = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, username);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 String storedHashedPassword = rs.getString("password");
                 String inputHashedPassword = hashPassword(password);
-                return storedHashedPassword.equals(inputHashedPassword);
+                if( storedHashedPassword.equals(inputHashedPassword)){
+                    return rs.getString("role");
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false;
+        return null;
+        
+        
     }
 
 }
