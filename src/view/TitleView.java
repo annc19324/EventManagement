@@ -275,7 +275,11 @@ public class TitleView extends javax.swing.JFrame {
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        new LogInView().setVisible(true);
+        try {
+            new LogInView().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TitleView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnLogInActionPerformed
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
