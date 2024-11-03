@@ -63,6 +63,7 @@ public class LogInView extends javax.swing.JFrame {
         txtPassword = new javax.swing.JPasswordField();
         lblUsername = new javax.swing.JLabel();
         lblPassword = new javax.swing.JLabel();
+        btnBackTitleView = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -242,6 +243,21 @@ public class LogInView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        btnBackTitleView.setBackground(new java.awt.Color(255, 255, 0));
+        btnBackTitleView.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnBackTitleView.setForeground(new java.awt.Color(204, 0, 204));
+        btnBackTitleView.setText("Back");
+        btnBackTitleView.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnBackTitleViewMouseClicked(evt);
+            }
+        });
+        btnBackTitleView.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBackTitleViewActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -251,7 +267,9 @@ public class LogInView extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 12, Short.MAX_VALUE))
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(218, 218, 218)
+                .addContainerGap()
+                .addComponent(btnBackTitleView)
+                .addGap(145, 145, 145)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -260,8 +278,14 @@ public class LogInView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+                        .addComponent(btnBackTitleView)
+                        .addContainerGap())))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -423,6 +447,16 @@ public class LogInView extends javax.swing.JFrame {
 
     }//GEN-LAST:event_btnLogInActionPerformed
 
+    private void btnBackTitleViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackTitleViewActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnBackTitleViewActionPerformed
+
+    private void btnBackTitleViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackTitleViewMouseClicked
+        // TODO add your handling code here:
+        this.dispose();
+        new TitleView().setVisible(true);
+    }//GEN-LAST:event_btnBackTitleViewMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -461,6 +495,7 @@ public class LogInView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBackTitleView;
     private javax.swing.JButton btnLogIn;
     private javax.swing.JButton btnSignUp;
     private javax.swing.JLabel jLabel1;
