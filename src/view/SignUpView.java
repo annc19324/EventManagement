@@ -26,6 +26,7 @@ public class SignUpView extends javax.swing.JFrame {
 
     /**
      * Creates new form SignUpView
+     * @throws java.sql.SQLException
      */
     public SignUpView() throws SQLException {
         initComponents();
