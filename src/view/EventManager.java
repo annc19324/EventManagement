@@ -6,7 +6,6 @@ package view;
 
 import controller.EventController;
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -78,6 +77,14 @@ public class EventManager extends javax.swing.JFrame {
             }
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi lấy dữ liệu sự kiện từ cơ sở dữ liệu.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void jTableEventManagerMouseClicked(java.awt.event.MouseEvent evt) {
+        int selectedRow = jTableEventManager.getSelectedRow();
+        if (selectedRow != -1) {
+            int eventId = (int) jTableEventManager.getValueAt(selectedRow, 0); // Lấy giá trị EventId từ cột đầu tiên
+            txtMa.setText(String.valueOf(eventId)); // Hiển thị EventId trong txtMa hoặc một thành phần khác nếu cần
         }
     }
 
@@ -342,11 +349,6 @@ public class EventManager extends javax.swing.JFrame {
 
             }
         ));
-        jTableEventManager.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableEventManagerMouseClicked(evt);
-            }
-        });
         jScrollPane1.setViewportView(jTableEventManager);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -553,42 +555,7 @@ public class EventManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng để xóa.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnXoaActionPerformed
-
-    private void jTableEventManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEventManagerMouseClicked
-        // TODO add your handling code here:
-        int selectedRow = jTableEventManager.getSelectedRow();
-        if (selectedRow != -1) {
-            // Lấy dữ liệu từ hàng được chọn trong bảng
-            String eventIdStr = jTableEventManager.getValueAt(selectedRow, 0).toString();
-            int eventId = Integer.parseInt(eventIdStr);  // Chuyển từ String sang int
-            String eventName = jTableEventManager.getValueAt(selectedRow, 1).toString();
-            String startDateStr = jTableEventManager.getValueAt(selectedRow, 2).toString();
-            String endDateStr = jTableEventManager.getValueAt(selectedRow, 3).toString();
-            String location = jTableEventManager.getValueAt(selectedRow, 4).toString();
-            String description = jTableEventManager.getValueAt(selectedRow, 5).toString();
-            String status = jTableEventManager.getValueAt(selectedRow, 6).toString();
-            double price = Double.parseDouble(jTableEventManager.getValueAt(selectedRow, 7).toString());
-
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Thay đổi định dạng ngày
-            Date startDate = null;
-            Date endDate = null;
-            try {
-                startDate = sdf.parse(startDateStr);  // Chuyển chuỗi thành đối tượng Date
-                endDate = sdf.parse(endDateStr);      // Chuyển chuỗi thành đối tượng Date
-            } catch (ParseException e) {
-                e.printStackTrace();  // Ghi lại lỗi nếu không thể phân tích ngày
-            }
-            txtMa.setText(String.valueOf(eventId));
-            txtTen.setText(eventName);
-            txtDiaDiem.setText(location);
-            txtMoTa.setText(description);
-            cmbTrangThai.setSelectedItem(status);
-            txtGia.setText(String.valueOf(price));
-            txtNgayBatDau.setDate(startDate);
-            txtNgayKetThuc.setDate(endDate);
-        }
-    }//GEN-LAST:event_jTableEventManagerMouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
