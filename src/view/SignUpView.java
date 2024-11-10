@@ -20,12 +20,13 @@ import model.User;
 public class SignUpView extends javax.swing.JFrame {
 
     private final UserController userController;
-//    private final StringBuilder errors = new StringBuilder("<html>");
+    // private final StringBuilder errors = new StringBuilder("<html>");
 
     private int mousePressX, mousePressY;
 
     /**
      * Creates new form SignUpView
+     * 
      * @throws java.sql.SQLException
      */
     public SignUpView() throws SQLException {
@@ -81,7 +82,7 @@ public class SignUpView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 204));
+        jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(950, 494));
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
@@ -142,7 +143,7 @@ public class SignUpView extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(926, 450));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setForeground(new java.awt.Color(153, 0, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sign up and join exciting events right now!");
 
@@ -152,15 +153,15 @@ public class SignUpView extends javax.swing.JFrame {
         jPanel4.setOpaque(false);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel3.setForeground(new java.awt.Color(153, 0, 255));
         jLabel3.setText("Password: ");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel4.setForeground(new java.awt.Color(153, 0, 255));
         jLabel4.setText("Confirm: ");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel8.setForeground(new java.awt.Color(153, 0, 255));
         jLabel8.setText("FullName: ");
 
         txtFullName.setBackground(new java.awt.Color(153, 153, 255));
@@ -188,7 +189,7 @@ public class SignUpView extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel2.setForeground(new java.awt.Color(153, 0, 255));
         jLabel2.setText("Username:");
 
         txtConfirmPassword.setBackground(new java.awt.Color(153, 153, 255));
@@ -200,18 +201,18 @@ public class SignUpView extends javax.swing.JFrame {
         });
 
         lblUsernameE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblUsernameE.setForeground(new java.awt.Color(255, 255, 0));
+        lblUsernameE.setForeground(new java.awt.Color(255, 0, 0));
         lblUsernameE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblPasswordE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblPasswordE.setForeground(new java.awt.Color(255, 255, 0));
+        lblPasswordE.setForeground(new java.awt.Color(255, 0, 0));
         lblPasswordE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblConfirmPasswordE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblConfirmPasswordE.setForeground(new java.awt.Color(255, 255, 0));
+        lblConfirmPasswordE.setForeground(new java.awt.Color(255, 0, 0));
 
         lblFullNameE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblFullNameE.setForeground(new java.awt.Color(255, 255, 0));
+        lblFullNameE.setForeground(new java.awt.Color(255, 0, 0));
         lblFullNameE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -281,12 +282,12 @@ public class SignUpView extends javax.swing.JFrame {
         jPanel5.setOpaque(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel5.setForeground(new java.awt.Color(153, 0, 255));
         jLabel5.setText("Mail: ");
 
-        btnSignUp.setBackground(new java.awt.Color(153, 153, 255));
+        btnSignUp.setBackground(new java.awt.Color(255, 255, 0));
         btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSignUp.setForeground(new java.awt.Color(255, 255, 0));
+        btnSignUp.setForeground(new java.awt.Color(153, 0, 255));
         btnSignUp.setText("Sign Up");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -299,9 +300,9 @@ public class SignUpView extends javax.swing.JFrame {
             }
         });
 
-        btnBackToLogIn.setBackground(new java.awt.Color(153, 153, 255));
+        btnBackToLogIn.setBackground(new java.awt.Color(255, 255, 0));
         btnBackToLogIn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBackToLogIn.setForeground(new java.awt.Color(255, 255, 0));
+        btnBackToLogIn.setForeground(new java.awt.Color(153, 0, 255));
         btnBackToLogIn.setText("Back To Login");
         btnBackToLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -336,11 +337,11 @@ public class SignUpView extends javax.swing.JFrame {
         );
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel6.setForeground(new java.awt.Color(153, 0, 255));
         jLabel6.setText("Birth Of Date: ");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel7.setForeground(new java.awt.Color(153, 0, 255));
         jLabel7.setText("Phone: ");
 
         txtMail.setBackground(new java.awt.Color(153, 153, 255));
@@ -359,16 +360,22 @@ public class SignUpView extends javax.swing.JFrame {
             }
         });
 
+
+        txtDateOfBirth.setBackground(new java.awt.Color(153, 153, 255));
+        txtDateOfBirth.setToolTipText("");
+        txtDateOfBirth.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+
+
         lblDateOfBirthE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblDateOfBirthE.setForeground(new java.awt.Color(255, 255, 0));
+        lblDateOfBirthE.setForeground(new java.awt.Color(255, 0, 0));
         lblDateOfBirthE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblMailE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblMailE.setForeground(new java.awt.Color(255, 255, 0));
+        lblMailE.setForeground(new java.awt.Color(255, 0, 0));
         lblMailE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblPhoneE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblPhoneE.setForeground(new java.awt.Color(255, 255, 0));
+        lblPhoneE.setForeground(new java.awt.Color(255, 0, 0));
         lblPhoneE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -514,53 +521,53 @@ public class SignUpView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_lblMinimizeMouseClicked
-
+ 
     private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         System.exit(0);
     }//GEN-LAST:event_lblCloseMouseClicked
-
+ 
     private void pnlHeaderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMouseDragged
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         int ox = evt.getXOnScreen();
         int oy = evt.getYOnScreen();
         setLocation(ox - mousePressX, oy - mousePressY);
     }//GEN-LAST:event_pnlHeaderMouseDragged
-
+ 
     private void pnlHeaderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMousePressed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         mousePressX = evt.getX();
         mousePressY = evt.getY();
     }//GEN-LAST:event_pnlHeaderMousePressed
-
+ 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         txtPassword.requestFocus();
     }//GEN-LAST:event_txtUsernameActionPerformed
-
+ 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         txtConfirmPassword.requestFocus();
 
     }//GEN-LAST:event_txtPasswordActionPerformed
-
+ 
     private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         txtPhone.requestFocus();
     }//GEN-LAST:event_txtMailActionPerformed
-
+ 
     private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         btnSignUp.doClick();
     }//GEN-LAST:event_txtPhoneActionPerformed
-
+ 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
 //        errors.setLength(6);
-
+         
         String username = txtUsername.getText().trim();
         String fullname = txtFullName.getText().trim();
         String password = new String(txtPassword.getPassword()).trim();
@@ -576,8 +583,9 @@ public class SignUpView extends javax.swing.JFrame {
             lblUsernameE.setText("enter username, please");
             return;
         } else if (!user.validateUsername()) {
-//            errors.append("Username needs at least 6 characters: a-z, A-Z, 0-9 and no space.<br>");
-            lblUsernameE.setText("needs at least 6 characters: a-z, A-Z, 0-9 and no space.");
+//            errors.append("Username needs at
+               lUsernameE.setText("needs at least 6 characters: a-z, A-Z, 0-9 and no spa
+            // e.");
             return;
         } else {
             lblUsernameE.setText("");
@@ -597,8 +605,8 @@ public class SignUpView extends javax.swing.JFrame {
             lblConfirmPasswordE.setText("enter confirm password, please");
             return;
         } else if (!password.equals(confirmPassword)) {
-//            errors.append("Confirm password is not correct.<br>");
-            lblConfirmPasswordE.setText("<html>Confirm Password is not similar to Password!</html>");
+//            errors.append("Confirm password is not co
+               lConfirmPasswordE.setText("<html>Confirm Password is not similar to Password!</html>");
             return;
         } else {
             lblConfirmPasswordE.setText("");
@@ -644,13 +652,13 @@ public class SignUpView extends javax.swing.JFrame {
             lblPhoneE.setText("");
         }
 
-//        
-//        if (errors.length() > 6) { // có lỗi nếu độ dài lớn hơn "<html>"
-//            errors.append("</html>");
-//            lblError.setText(errors.toString());
-//            return;
-//        }
-        if (userController.addUser(user)) {
+
+        //
+        //     errors.append("</html>");
+        // lblError.setText(errors.t
+        // return;
+        // 
+            (userController.addUser(user)) {
             JOptionPane.showMessageDialog(this, "Sign Up successful!");
             this.dispose();
 
@@ -662,12 +670,12 @@ public class SignUpView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Sign Up failed. Username already exists.", "Error", JOptionPane.ERROR_MESSAGE);
         }
+                    
 
 
-    }//GEN-LAST:event_btnSignUpActionPerformed
-
+     
     private void btnBackToLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToLogInActionPerformed
-        // TODO add your handling code here:'
+        // TODO add your handling code here:' 
         this.dispose();
         try {
             new LogInView().setVisible(true);
@@ -675,37 +683,41 @@ public class SignUpView extends javax.swing.JFrame {
             Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnBackToLogInActionPerformed
-
+ 
     private void btnSignUpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSignUpKeyPressed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         btnSignUp.doClick();
     }//GEN-LAST:event_btnSignUpKeyPressed
-
+ 
     private void btnBackToLogInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBackToLogInKeyPressed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         btnBackToLogIn.doClick();
     }//GEN-LAST:event_btnBackToLogInKeyPressed
-
+ 
     private void txtConfirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmPasswordActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         txtFullName.requestFocus();
     }//GEN-LAST:event_txtConfirmPasswordActionPerformed
-
+ 
     private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here: 
         txtMail.requestFocus();
     }//GEN-LAST:event_txtFullNameActionPerformed
-
+ 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        /*  If Nimbus (introduced in Java SE 6) is not available, stay with the de
+        // ault look and feel.
+         *
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandf
+         * el/plaf.html 
          */
-        try {
+         * 
+         ry {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -715,14 +727,18 @@ public class SignUpView extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
+                    
             java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
+                    
             java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+                    
             java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+                    
         //</editor-fold>
-
+ 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             try {

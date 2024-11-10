@@ -14,6 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.DefaultCaret;
+import model.User;
 
 /**
  *
@@ -68,7 +69,7 @@ public class LogInView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 204));
+        jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(950, 450));
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
@@ -128,7 +129,7 @@ public class LogInView extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setForeground(new java.awt.Color(153, 0, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Log in and join exciting events right now!");
 
@@ -139,7 +140,6 @@ public class LogInView extends javax.swing.JFrame {
 
         txtUsername.setBackground(new java.awt.Color(153, 153, 255));
         txtUsername.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtUsername.setForeground(new java.awt.Color(204, 204, 204));
         txtUsername.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         txtUsername.setText("USERNAME");
         txtUsername.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -158,9 +158,9 @@ public class LogInView extends javax.swing.JFrame {
 
         jLabel3.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\password-45.png")); // NOI18N
 
-        btnLogIn.setBackground(new java.awt.Color(153, 153, 255));
+        btnLogIn.setBackground(new java.awt.Color(255, 255, 0));
         btnLogIn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnLogIn.setForeground(new java.awt.Color(255, 255, 0));
+        btnLogIn.setForeground(new java.awt.Color(153, 0, 255));
         btnLogIn.setText("Log In");
         btnLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -168,9 +168,9 @@ public class LogInView extends javax.swing.JFrame {
             }
         });
 
-        btnSignUp.setBackground(new java.awt.Color(153, 153, 255));
+        btnSignUp.setBackground(new java.awt.Color(255, 255, 0));
         btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnSignUp.setForeground(new java.awt.Color(255, 255, 0));
+        btnSignUp.setForeground(new java.awt.Color(153, 0, 255));
         btnSignUp.setText("Sign Up");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -180,7 +180,7 @@ public class LogInView extends javax.swing.JFrame {
 
         txtPassword.setBackground(new java.awt.Color(153, 153, 255));
         txtPassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtPassword.setForeground(new java.awt.Color(204, 204, 204));
+        txtPassword.setForeground(new java.awt.Color(51, 51, 51));
         txtPassword.setText("*************");
         txtPassword.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
@@ -196,9 +196,9 @@ public class LogInView extends javax.swing.JFrame {
             }
         });
 
-        lblUsername.setForeground(new java.awt.Color(255, 255, 51));
+        lblUsername.setForeground(new java.awt.Color(255, 0, 0));
 
-        lblPassword.setForeground(new java.awt.Color(255, 255, 51));
+        lblPassword.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -245,7 +245,7 @@ public class LogInView extends javax.swing.JFrame {
 
         btnBackTitleView.setBackground(new java.awt.Color(255, 255, 0));
         btnBackTitleView.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBackTitleView.setForeground(new java.awt.Color(204, 0, 204));
+        btnBackTitleView.setForeground(new java.awt.Color(153, 0, 255));
         btnBackTitleView.setText("Back");
         btnBackTitleView.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -263,27 +263,23 @@ public class LogInView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 878, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 12, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBackTitleView)
                 .addGap(145, 145, 145)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(230, Short.MAX_VALUE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
+                .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(7, 7, 7)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 257, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 276, Short.MAX_VALUE)
                         .addComponent(btnBackTitleView)
                         .addContainerGap())))
         );
@@ -313,17 +309,11 @@ public class LogInView extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 926, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
         );
 
         pack();
@@ -433,17 +423,21 @@ public class LogInView extends javax.swing.JFrame {
             lblPassword.setText("");
         }
 
-        String role = userController.login(username, password);
-        if (role != null) {
+        User loggedInUser = userController.login(username, password);
+        if(loggedInUser != null){
             this.dispose();
-            if (role.equals("admin")) {
+            if(loggedInUser.getRole().equals("admin")){
                 new AdminView().setVisible(true);
-            } else if (role.equals("user")) {
-                new UserView().setVisible(true);
+            }else if(loggedInUser.getRole().equals("user")){
+                new UserView(loggedInUser).setVisible(true);
             }
-        } else if(role == null) {
-            JOptionPane.showMessageDialog(this, "Log In failed!");
+        }else{
+            jLabel1.setForeground(Color.red);
+            jLabel1.setText("đăng nhập thất bại, tài khoản hoặc mật khẩu không đúng");
         }
+        
+        
+        
 
     }//GEN-LAST:event_btnLogInActionPerformed
 
