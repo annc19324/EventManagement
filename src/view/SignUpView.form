@@ -665,7 +665,6 @@
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPhoneActionPerformed"/>
                       </Events>
                     </Component>
-
                     <Component class="com.toedter.calendar.JDateChooser" name="txtDateOfBirth">
                       <Properties>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -710,7 +709,7 @@
                         <Property name="verticalAlignment" type="int" value="1"/>
                       </Properties>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="txtDateOfBirth">
+                    <Component class="com.toedter.calendar.JDateChooser" name="txtDateOfBirth1">
                     </Component>
                   </SubComponents>
                 </Container>

@@ -564,7 +564,7 @@ public class SignUpView extends javax.swing.JFrame {
         btnSignUp.doClick();
     }//GEN-LAST:event_txtPhoneActionPerformed
  
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here: 
 //        errors.setLength(6);
          
@@ -584,8 +584,7 @@ public class SignUpView extends javax.swing.JFrame {
             return;
         } else if (!user.validateUsername()) {
 //            errors.append("Username needs at
-               lUsernameE.setText("needs at least 6 characters: a-z, A-Z, 0-9 and no spa
-            // e.");
+               lblUsernameE.setText("needs at least 6 characters: a-z, A-Z, 0-9 and no space!");
             return;
         } else {
             lblUsernameE.setText("");
@@ -606,7 +605,7 @@ public class SignUpView extends javax.swing.JFrame {
             return;
         } else if (!password.equals(confirmPassword)) {
 //            errors.append("Confirm password is not co
-               lConfirmPasswordE.setText("<html>Confirm Password is not similar to Password!</html>");
+               lblConfirmPasswordE.setText("<html>Confirm Password is not similar to Password!</html>");
             return;
         } else {
             lblConfirmPasswordE.setText("");
@@ -658,19 +657,19 @@ public class SignUpView extends javax.swing.JFrame {
         // lblError.setText(errors.t
         // return;
         // 
-            (userController.addUser(user)) {
+            if(userController.addUser(user)) {
             JOptionPane.showMessageDialog(this, "Sign Up successful!");
             this.dispose();
 
             try {
                 new LogInView().setVisible(true);
             } catch (SQLException ex) {
-                Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex.getMessage());
             }
         } else {
             JOptionPane.showMessageDialog(this, "Sign Up failed. Username already exists.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-                    
+    }
 
 
      
@@ -716,24 +715,15 @@ public class SignUpView extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandf
          * el/plaf.html 
          */
-         * 
-         ry {
+//         * 
+         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-                    
-            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-                    
-            java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-                    
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SignUpView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
                     
