@@ -6,6 +6,7 @@ package view;
 
 import controller.EventController;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -80,13 +81,6 @@ public class EventManager extends javax.swing.JFrame {
         }
     }
 
-    private void jTableEventManagerMouseClicked(java.awt.event.MouseEvent evt) {
-        int selectedRow = jTableEventManager.getSelectedRow();
-        if (selectedRow != -1) {
-            int eventId = (int) jTableEventManager.getValueAt(selectedRow, 0); // Lấy giá trị EventId từ cột đầu tiên
-            txtMa.setText(String.valueOf(eventId)); // Hiển thị EventId trong txtMa hoặc một thành phần khác nếu cần
-        }
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -349,6 +343,11 @@ public class EventManager extends javax.swing.JFrame {
 
             }
         ));
+        jTableEventManager.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTableEventManagerMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTableEventManager);
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
@@ -472,7 +471,7 @@ public class EventManager extends javax.swing.JFrame {
             Event event = new Event(ma, ten, startDate, endDate, diaDiem, moTa, trangThai, gia);
             EventController eventController = new EventController();
             eventController.updateEvent(event);
-            displayAllEvents();
+            btnLamMoiActionPerformed(evt);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập giá trị hợp lệ cho mã và giá vé!");
@@ -483,6 +482,14 @@ public class EventManager extends javax.swing.JFrame {
 
     private void btnLamMoiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLamMoiActionPerformed
         // TODO add your handling code here:
+        txtMa.setText(""); 
+        txtTen.setText(""); 
+        txtDiaDiem.setText(""); 
+        txtGia.setText(""); 
+        txtMoTa.setText(""); 
+        cmbTrangThai.setSelectedIndex(0);  
+        txtNgayBatDau.setDate(null);  
+        txtNgayKetThuc.setDate(null); 
         displayAllEvents();
     }//GEN-LAST:event_btnLamMoiActionPerformed
 
@@ -511,7 +518,7 @@ public class EventManager extends javax.swing.JFrame {
             Event event = new Event(ma, ten, startDate, endDate, diaDiem, moTa, trangThai, gia);
             EventController eventController = new EventController();
             eventController.addEvent(event);
-            displayAllEvents();
+            btnLamMoiActionPerformed(evt);
 
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập giá trị hợp lệ cho giá vé!");
@@ -546,7 +553,7 @@ public class EventManager extends javax.swing.JFrame {
                     eventController.deleteEvent(event);
 
                     // Cập nhật lại bảng sau khi xóa
-                    displayAllEvents();
+                    btnLamMoiActionPerformed(evt);
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi xóa sự kiện: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
@@ -555,6 +562,41 @@ public class EventManager extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn một hàng để xóa.", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void jTableEventManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEventManagerMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = jTableEventManager.getSelectedRow();
+        if (selectedRow != -1) {
+            // Lấy dữ liệu từ hàng được chọn trong bảng
+            String eventIdStr = jTableEventManager.getValueAt(selectedRow, 0).toString();
+            int eventId = Integer.parseInt(eventIdStr);  // Chuyển từ String sang int
+            String eventName = jTableEventManager.getValueAt(selectedRow, 1).toString();
+            String startDateStr = jTableEventManager.getValueAt(selectedRow, 2).toString();
+            String endDateStr = jTableEventManager.getValueAt(selectedRow, 3).toString();
+            String location = jTableEventManager.getValueAt(selectedRow, 4).toString();
+            String description = jTableEventManager.getValueAt(selectedRow, 5).toString();
+            String status = jTableEventManager.getValueAt(selectedRow, 6).toString();
+            double price = Double.parseDouble(jTableEventManager.getValueAt(selectedRow, 7).toString());
+
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Thay đổi định dạng ngày
+            Date startDate = null;
+            Date endDate = null;
+            try {
+                startDate = sdf.parse(startDateStr);  // Chuyển chuỗi thành đối tượng Date
+                endDate = sdf.parse(endDateStr);      // Chuyển chuỗi thành đối tượng Date
+            } catch (ParseException e) {
+                e.printStackTrace();  // Ghi lại lỗi nếu không thể phân tích ngày
+            }
+            txtMa.setText(String.valueOf(eventId));
+            txtTen.setText(eventName);
+            txtDiaDiem.setText(location);
+            txtMoTa.setText(description);
+            cmbTrangThai.setSelectedItem(status);
+            txtGia.setText(String.valueOf(price));
+            txtNgayBatDau.setDate(startDate);
+            txtNgayKetThuc.setDate(endDate);
+        }
+    }//GEN-LAST:event_jTableEventManagerMouseClicked
     
     /**
      * @param args the command line arguments
