@@ -70,24 +70,26 @@ public class TitleView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        pnlContainAll.setBackground(new java.awt.Color(153, 0, 204));
+        pnlContainAll.setBackground(new java.awt.Color(102, 204, 255));
         pnlContainAll.setPreferredSize(new java.awt.Dimension(950, 450));
 
         pnlContainer.setBackground(new java.awt.Color(153, 0, 204));
         pnlContainer.setForeground(new java.awt.Color(255, 255, 255));
+        pnlContainer.setOpaque(false);
 
         lblMainTitle.setBackground(new java.awt.Color(153, 0, 204));
         lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        lblMainTitle.setForeground(new java.awt.Color(255, 255, 0));
+        lblMainTitle.setForeground(new java.awt.Color(153, 0, 255));
         lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitle.setText("Enjoy Exciting Events");
 
         pnlButton9.setBackground(new java.awt.Color(153, 0, 204));
+        pnlButton9.setOpaque(false);
         pnlButton9.setLayout(new java.awt.GridBagLayout());
 
-        btnLogIn.setBackground(new java.awt.Color(153, 153, 255));
+        btnLogIn.setBackground(new java.awt.Color(255, 255, 0));
         btnLogIn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnLogIn.setForeground(new java.awt.Color(255, 255, 0));
+        btnLogIn.setForeground(new java.awt.Color(153, 0, 255));
         btnLogIn.setText("Đăng nhập");
         btnLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -103,9 +105,9 @@ public class TitleView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(13, 12, 0, 12);
         pnlButton9.add(btnLogIn, gridBagConstraints);
 
-        btnSignUp.setBackground(new java.awt.Color(153, 153, 255));
+        btnSignUp.setBackground(new java.awt.Color(255, 255, 0));
         btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnSignUp.setForeground(new java.awt.Color(255, 255, 0));
+        btnSignUp.setForeground(new java.awt.Color(153, 0, 255));
         btnSignUp.setText("Đăng ký");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,9 +138,9 @@ public class TitleView extends javax.swing.JFrame {
                     .addGroup(pnlContainerLayout.createSequentialGroup()
                         .addGap(0, 48, Short.MAX_VALUE)
                         .addComponent(pnlButton9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addGap(39, 39, 39)
                         .addComponent(lblConcert)
-                        .addGap(81, 81, 81))))
+                        .addGap(60, 60, 60))))
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

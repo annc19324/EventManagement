@@ -4,17 +4,39 @@
  */
 package view;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import model.User;
+
 /**
  *
  * @author annc1
  */
 public class UserView extends javax.swing.JFrame {
 
+    private int mousePressX, mousePressY;
+    private final User user;
+
     /**
      * Creates new form UserView
+     *
      */
     public UserView() {
         initComponents();
+        setLocationRelativeTo(null);
+        this.user = new User();
+        lblUsername.setText("tài khoản: " + user.getFullname());
+
+    }
+
+    public UserView(User user) {
+        initComponents();
+        setLocationRelativeTo(null);
+        this.user = new User();
+        lblUsername.setText("tài khoản: " + user.getFullname());
     }
 
     /**
@@ -25,52 +47,395 @@ public class UserView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        pnlMain = new javax.swing.JPanel();
+        pnlSlideMenu = new javax.swing.JPanel();
+        pnlClose = new javax.swing.JPanel();
+        lblClose = new javax.swing.JLabel();
+        pnlPage = new javax.swing.JPanel();
+        lblHome = new javax.swing.JLabel();
+        lblAccount = new javax.swing.JLabel();
+        lblJoinEvents = new javax.swing.JLabel();
+        lblJoinnedEvents = new javax.swing.JLabel();
+        pnlfooter = new javax.swing.JPanel();
+        lblHelp = new javax.swing.JLabel();
+        lblSetting = new javax.swing.JLabel();
+        lblLogOut = new javax.swing.JLabel();
+        pnlContainer = new javax.swing.JPanel();
+        pnlHome = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        pnlAccount = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        pnlHeader5 = new javax.swing.JPanel();
+        lblUsername = new javax.swing.JLabel();
+        lblMinimize5 = new javax.swing.JLabel();
+        lblClose6 = new javax.swing.JLabel();
+        lblMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(950, 450));
-        setSize(new java.awt.Dimension(950, 450));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1150, 550));
+        setSize(new java.awt.Dimension(1100, 550));
 
-        jLabel1.setText("UserView");
+        pnlMain.setBackground(new java.awt.Color(102, 204, 255));
+        pnlMain.setPreferredSize(new java.awt.Dimension(950, 450));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlSlideMenu.setBackground(new java.awt.Color(51, 204, 255));
+        pnlSlideMenu.setMinimumSize(new java.awt.Dimension(200, 0));
+
+        pnlClose.setOpaque(false);
+        pnlClose.setLayout(new java.awt.GridBagLayout());
+
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/close.png"))); // NOI18N
+        lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblCloseMouseClicked(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipady = -2;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 144, 0, 0);
+        pnlClose.add(lblClose, gridBagConstraints);
+
+        pnlPage.setOpaque(false);
+
+        lblHome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblHome.setText("Trang chủ");
+
+        lblAccount.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblAccount.setText("Tài khoản");
+
+        lblJoinEvents.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblJoinEvents.setText("Tham gia sự kiện");
+
+        lblJoinnedEvents.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblJoinnedEvents.setText("Sự kiện đã tham gia");
+
+        javax.swing.GroupLayout pnlPageLayout = new javax.swing.GroupLayout(pnlPage);
+        pnlPage.setLayout(pnlPageLayout);
+        pnlPageLayout.setHorizontalGroup(
+            pnlPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 902, Short.MAX_VALUE)
+                .addGroup(pnlPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHome, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblAccount, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblJoinEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblJoinnedEvents, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlPageLayout.setVerticalGroup(
+            pnlPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPageLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addComponent(lblHome)
+                .addGap(18, 18, 18)
+                .addComponent(lblAccount)
+                .addGap(18, 18, 18)
+                .addComponent(lblJoinEvents)
+                .addGap(18, 18, 18)
+                .addComponent(lblJoinnedEvents)
+                .addContainerGap(104, Short.MAX_VALUE))
+        );
+
+        pnlfooter.setOpaque(false);
+
+        lblHelp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblHelp.setText("Trợ giúp");
+
+        lblSetting.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblSetting.setText("Cài đặt");
+
+        lblLogOut.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblLogOut.setText("Đăng xuất");
+        lblLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblLogOutMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlfooterLayout = new javax.swing.GroupLayout(pnlfooter);
+        pnlfooter.setLayout(pnlfooterLayout);
+        pnlfooterLayout.setHorizontalGroup(
+            pnlfooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlfooterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlfooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        pnlfooterLayout.setVerticalGroup(
+            pnlfooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlfooterLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblHelp)
+                .addGap(18, 18, 18)
+                .addComponent(lblSetting)
+                .addGap(18, 18, 18)
+                .addComponent(lblLogOut)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlSlideMenuLayout = new javax.swing.GroupLayout(pnlSlideMenu);
+        pnlSlideMenu.setLayout(pnlSlideMenuLayout);
+        pnlSlideMenuLayout.setHorizontalGroup(
+            pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSlideMenuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlfooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlPage, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        pnlSlideMenuLayout.setVerticalGroup(
+            pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSlideMenuLayout.createSequentialGroup()
+                .addComponent(pnlClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29)
+                .addComponent(pnlPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(pnlfooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        pnlContainer.setLayout(new java.awt.CardLayout());
+
+        jLabel4.setText("home home home home home home home home home home home home home home home home home home home home home home home home home home home home home home home ");
+
+        javax.swing.GroupLayout pnlHomeLayout = new javax.swing.GroupLayout(pnlHome);
+        pnlHome.setLayout(pnlHomeLayout);
+        pnlHomeLayout.setHorizontalGroup(
+            pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        pnlHomeLayout.setVerticalGroup(
+            pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHomeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel4)
+                .addContainerGap(457, Short.MAX_VALUE))
+        );
+
+        pnlContainer.add(pnlHome, "card2");
+
+        jLabel5.setText("account   account   account   account   account   account   account   account   account   account   account   account   account   account   account   account   account   account   account   account   ");
+
+        javax.swing.GroupLayout pnlAccountLayout = new javax.swing.GroupLayout(pnlAccount);
+        pnlAccount.setLayout(pnlAccountLayout);
+        pnlAccountLayout.setHorizontalGroup(
+            pnlAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlAccountLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlAccountLayout.setVerticalGroup(
+            pnlAccountLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAccountLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel5)
+                .addContainerGap(432, Short.MAX_VALUE))
+        );
+
+        pnlContainer.add(pnlAccount, "card3");
+
+        pnlHeader5.setBackground(new java.awt.Color(255, 255, 0));
+        pnlHeader5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pnlHeader5MouseDragged(evt);
+            }
+        });
+        pnlHeader5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pnlHeader5MousePressed(evt);
+            }
+        });
+
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(153, 0, 255));
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblMinimize5.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\bar.png")); // NOI18N
+        lblMinimize5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimize5MouseClicked(evt);
+            }
+        });
+
+        lblClose6.setForeground(new java.awt.Color(204, 0, 255));
+        lblClose6.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
+        lblClose6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblClose6MouseClicked(evt);
+            }
+        });
+
+        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png"))); // NOI18N
+        lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMenuMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlHeader5Layout = new javax.swing.GroupLayout(pnlHeader5);
+        pnlHeader5.setLayout(pnlHeader5Layout);
+        pnlHeader5Layout.setHorizontalGroup(
+            pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeader5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblMenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(305, 305, 305)
+                .addComponent(lblMinimize5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblClose6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnlHeader5Layout.setVerticalGroup(
+            pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeader5Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblClose6)
+                        .addGroup(pnlHeader5Layout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(lblMinimize5))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
+        pnlMain.setLayout(pnlMainLayout);
+        pnlMainLayout.setHorizontalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addComponent(pnlSlideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlHeader5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
+        pnlMainLayout.setVerticalGroup(
+            pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlMainLayout.createSequentialGroup()
+                .addComponent(pnlHeader5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(26, 26, 26)
+                .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlSlideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnlMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(pnlMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 550, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
+        // TODO add your handling code here:
+        openMenu();
+    }//GEN-LAST:event_lblMenuMouseClicked
+
+    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
+        // TODO add your handling code here:
+        closeMenu();
+    }//GEN-LAST:event_lblCloseMouseClicked
+
+    private void lblLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogOutMouseClicked
+        if ((JOptionPane.showConfirmDialog(this, "bạn có chắc chắn muốn đăng xuất khỏi tài khoản này không?", "xác nhận đăng xuất", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)) == JOptionPane.YES_OPTION) {
+            this.dispose();
+            try {
+                new LogInView().setVisible(true);
+            } catch (SQLException ex) {
+                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+
+    }//GEN-LAST:event_lblLogOutMouseClicked
+
+    private void lblMinimize5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimize5MouseClicked
+        // TODO add your handling code here:
+        setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_lblMinimize5MouseClicked
+
+    private void lblClose6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose6MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_lblClose6MouseClicked
+
+    private void pnlHeader5MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeader5MouseDragged
+        // TODO add your handling code here:
+        int ox = evt.getXOnScreen();
+        int oy = evt.getYOnScreen();
+        setLocation(ox - mousePressX, oy - mousePressY);
+    }//GEN-LAST:event_pnlHeader5MouseDragged
+
+    private void pnlHeader5MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeader5MousePressed
+        // TODO add your handling code here:
+        mousePressX = evt.getX();
+        mousePressY = evt.getY();
+    }//GEN-LAST:event_pnlHeader5MousePressed
+
+    int width = 200;
+
+    public void openMenu() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int height = pnlSlideMenu.getHeight();
+                for (int i = 0; i < width; i++) {
+                    pnlSlideMenu.setSize(i, height);
+                    pnlContainer.setBounds(i, pnlContainer.getY(), pnlMain.getWidth() - i, pnlContainer.getHeight());
+                    try {
+                        Thread.sleep(0, 5);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+
+        }).start();
+    }
+
+    public void closeMenu() {
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                int height = pnlSlideMenu.getHeight();
+
+                for (int i = width; i >= 0; i--) {
+                    pnlSlideMenu.setSize(i, height);
+                    pnlContainer.setBounds(i, pnlContainer.getY(), pnlMain.getWidth() - i, pnlContainer.getHeight());
+                    try {
+                        Thread.sleep(0, 5);
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            }
+
+        }).start();
+    }
 
     /**
      * @param args the command line arguments
@@ -108,7 +473,49 @@ public class UserView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel lblAccount;
+    private javax.swing.JLabel lblClose;
+    private javax.swing.JLabel lblClose1;
+    private javax.swing.JLabel lblClose2;
+    private javax.swing.JLabel lblClose3;
+    private javax.swing.JLabel lblClose4;
+    private javax.swing.JLabel lblClose5;
+    private javax.swing.JLabel lblClose6;
+    private javax.swing.JLabel lblHeaderTitle;
+    private javax.swing.JLabel lblHeaderTitle1;
+    private javax.swing.JLabel lblHeaderTitle2;
+    private javax.swing.JLabel lblHeaderTitle3;
+    private javax.swing.JLabel lblHeaderTitle4;
+    private javax.swing.JLabel lblHelp;
+    private javax.swing.JLabel lblHome;
+    private javax.swing.JLabel lblJoinEvents;
+    private javax.swing.JLabel lblJoinnedEvents;
+    private javax.swing.JLabel lblLogOut;
+    private javax.swing.JLabel lblMenu;
+    private javax.swing.JLabel lblMinimize;
+    private javax.swing.JLabel lblMinimize1;
+    private javax.swing.JLabel lblMinimize2;
+    private javax.swing.JLabel lblMinimize3;
+    private javax.swing.JLabel lblMinimize4;
+    private javax.swing.JLabel lblMinimize5;
+    private javax.swing.JLabel lblSetting;
+    private javax.swing.JLabel lblUsername;
+    private javax.swing.JPanel pnlAccount;
+    private javax.swing.JPanel pnlClose;
+    private javax.swing.JPanel pnlContainer;
+    private javax.swing.JPanel pnlHeader;
+    private javax.swing.JPanel pnlHeader1;
+    private javax.swing.JPanel pnlHeader2;
+    private javax.swing.JPanel pnlHeader3;
+    private javax.swing.JPanel pnlHeader4;
+    private javax.swing.JPanel pnlHeader5;
+    private javax.swing.JPanel pnlHome;
+    private javax.swing.JPanel pnlMain;
+    private javax.swing.JPanel pnlPage;
+    private javax.swing.JPanel pnlSlideMenu;
+    private javax.swing.JPanel pnlfooter;
     // End of variables declaration//GEN-END:variables
+
 }

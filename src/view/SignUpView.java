@@ -80,7 +80,7 @@ public class SignUpView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(153, 0, 204));
+        jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(950, 494));
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
@@ -141,7 +141,7 @@ public class SignUpView extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(926, 450));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 26)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel1.setForeground(new java.awt.Color(153, 0, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Sign up and join exciting events right now!");
 
@@ -151,15 +151,15 @@ public class SignUpView extends javax.swing.JFrame {
         jPanel4.setOpaque(false);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel3.setForeground(new java.awt.Color(153, 0, 255));
         jLabel3.setText("Password: ");
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel4.setForeground(new java.awt.Color(153, 0, 255));
         jLabel4.setText("Confirm: ");
 
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel8.setForeground(new java.awt.Color(153, 0, 255));
         jLabel8.setText("FullName: ");
 
         txtFullName.setBackground(new java.awt.Color(153, 153, 255));
@@ -187,7 +187,7 @@ public class SignUpView extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel2.setForeground(new java.awt.Color(153, 0, 255));
         jLabel2.setText("Username:");
 
         txtConfirmPassword.setBackground(new java.awt.Color(153, 153, 255));
@@ -199,18 +199,18 @@ public class SignUpView extends javax.swing.JFrame {
         });
 
         lblUsernameE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblUsernameE.setForeground(new java.awt.Color(255, 255, 0));
+        lblUsernameE.setForeground(new java.awt.Color(255, 0, 0));
         lblUsernameE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblPasswordE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblPasswordE.setForeground(new java.awt.Color(255, 255, 0));
+        lblPasswordE.setForeground(new java.awt.Color(255, 0, 0));
         lblPasswordE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblConfirmPasswordE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblConfirmPasswordE.setForeground(new java.awt.Color(255, 255, 0));
+        lblConfirmPasswordE.setForeground(new java.awt.Color(255, 0, 0));
 
         lblFullNameE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblFullNameE.setForeground(new java.awt.Color(255, 255, 0));
+        lblFullNameE.setForeground(new java.awt.Color(255, 0, 0));
         lblFullNameE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
@@ -280,12 +280,12 @@ public class SignUpView extends javax.swing.JFrame {
         jPanel5.setOpaque(false);
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel5.setForeground(new java.awt.Color(153, 0, 255));
         jLabel5.setText("Mail: ");
 
-        btnSignUp.setBackground(new java.awt.Color(153, 153, 255));
+        btnSignUp.setBackground(new java.awt.Color(255, 255, 0));
         btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnSignUp.setForeground(new java.awt.Color(255, 255, 0));
+        btnSignUp.setForeground(new java.awt.Color(153, 0, 255));
         btnSignUp.setText("Sign Up");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -298,9 +298,9 @@ public class SignUpView extends javax.swing.JFrame {
             }
         });
 
-        btnBackToLogIn.setBackground(new java.awt.Color(153, 153, 255));
+        btnBackToLogIn.setBackground(new java.awt.Color(255, 255, 0));
         btnBackToLogIn.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBackToLogIn.setForeground(new java.awt.Color(255, 255, 0));
+        btnBackToLogIn.setForeground(new java.awt.Color(153, 0, 255));
         btnBackToLogIn.setText("Back To Login");
         btnBackToLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,11 +335,11 @@ public class SignUpView extends javax.swing.JFrame {
         );
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel6.setForeground(new java.awt.Color(153, 0, 255));
         jLabel6.setText("Birth Of Date: ");
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 0));
+        jLabel7.setForeground(new java.awt.Color(153, 0, 255));
         jLabel7.setText("Phone: ");
 
         txtMail.setBackground(new java.awt.Color(153, 153, 255));
@@ -359,20 +359,19 @@ public class SignUpView extends javax.swing.JFrame {
         });
 
         txtDateOfBirth.setBackground(new java.awt.Color(153, 153, 255));
-        txtDateOfBirth.setForeground(new java.awt.Color(255, 255, 255));
         txtDateOfBirth.setToolTipText("");
         txtDateOfBirth.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         lblDateOfBirthE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblDateOfBirthE.setForeground(new java.awt.Color(255, 255, 0));
+        lblDateOfBirthE.setForeground(new java.awt.Color(255, 0, 0));
         lblDateOfBirthE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblMailE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblMailE.setForeground(new java.awt.Color(255, 255, 0));
+        lblMailE.setForeground(new java.awt.Color(255, 0, 0));
         lblMailE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         lblPhoneE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
-        lblPhoneE.setForeground(new java.awt.Color(255, 255, 0));
+        lblPhoneE.setForeground(new java.awt.Color(255, 0, 0));
         lblPhoneE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
