@@ -159,7 +159,7 @@
                   <Color blue="ff" green="0" red="99" type="rgb"/>
                 </Property>
                 <Property name="horizontalAlignment" type="int" value="0"/>
-                <Property name="text" type="java.lang.String" value="Enjoy Exciting Events"/>
+                <Property name="text" type="java.lang.String" value="Tham gia ngay!"/>
               </Properties>
             </Component>
             <Container class="javax.swing.JPanel" name="pnlButton9">

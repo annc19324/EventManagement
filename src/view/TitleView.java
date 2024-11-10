@@ -81,7 +81,7 @@ public class TitleView extends javax.swing.JFrame {
         lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
         lblMainTitle.setForeground(new java.awt.Color(153, 0, 255));
         lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMainTitle.setText("Enjoy Exciting Events");
+        lblMainTitle.setText("Tham gia ngay!");
 
         pnlButton9.setBackground(new java.awt.Color(153, 0, 204));
         pnlButton9.setOpaque(false);

@@ -50,6 +50,11 @@ public class UserView extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         pnlMain = new javax.swing.JPanel();
+        pnlHeader5 = new javax.swing.JPanel();
+        lblUsername = new javax.swing.JLabel();
+        lblMinimize5 = new javax.swing.JLabel();
+        lblClose6 = new javax.swing.JLabel();
+        lblMenu = new javax.swing.JLabel();
         pnlSlideMenu = new javax.swing.JPanel();
         pnlClose = new javax.swing.JPanel();
         lblClose = new javax.swing.JLabel();
@@ -64,22 +69,85 @@ public class UserView extends javax.swing.JFrame {
         lblLogOut = new javax.swing.JLabel();
         pnlContainer = new javax.swing.JPanel();
         pnlHome = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         pnlAccount = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        pnlHeader5 = new javax.swing.JPanel();
-        lblUsername = new javax.swing.JLabel();
-        lblMinimize5 = new javax.swing.JLabel();
-        lblClose6 = new javax.swing.JLabel();
-        lblMenu = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1150, 550));
         setSize(new java.awt.Dimension(1100, 550));
 
         pnlMain.setBackground(new java.awt.Color(102, 204, 255));
         pnlMain.setPreferredSize(new java.awt.Dimension(950, 450));
+
+        pnlHeader5.setBackground(new java.awt.Color(255, 255, 0));
+        pnlHeader5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                pnlHeader5MouseDragged(evt);
+            }
+        });
+        pnlHeader5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                pnlHeader5MousePressed(evt);
+            }
+        });
+
+        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblUsername.setForeground(new java.awt.Color(153, 0, 255));
+        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        lblMinimize5.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\bar.png")); // NOI18N
+        lblMinimize5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMinimize5MouseClicked(evt);
+            }
+        });
+
+        lblClose6.setForeground(new java.awt.Color(204, 0, 255));
+        lblClose6.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
+        lblClose6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblClose6MouseClicked(evt);
+            }
+        });
+
+        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png"))); // NOI18N
+        lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblMenuMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlHeader5Layout = new javax.swing.GroupLayout(pnlHeader5);
+        pnlHeader5.setLayout(pnlHeader5Layout);
+        pnlHeader5Layout.setHorizontalGroup(
+            pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeader5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblMenu)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(305, 305, 305)
+                .addComponent(lblMinimize5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblClose6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        pnlHeader5Layout.setVerticalGroup(
+            pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHeader5Layout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblClose6)
+                        .addGroup(pnlHeader5Layout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(lblMinimize5))))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
 
         pnlSlideMenu.setBackground(new java.awt.Color(51, 204, 255));
         pnlSlideMenu.setMinimumSize(new java.awt.Dimension(200, 0));
@@ -206,7 +274,22 @@ public class UserView extends javax.swing.JFrame {
 
         pnlContainer.setLayout(new java.awt.CardLayout());
 
-        jLabel4.setText("home home home home home home home home home home home home home home home home home home home home home home home home home home home home home home home ");
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel4.setText("xem sự kiện");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1126, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel4)
+                .addGap(0, 428, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout pnlHomeLayout = new javax.swing.GroupLayout(pnlHome);
         pnlHome.setLayout(pnlHomeLayout);
@@ -214,15 +297,15 @@ public class UserView extends javax.swing.JFrame {
             pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 1118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         pnlHomeLayout.setVerticalGroup(
             pnlHomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHomeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel4)
-                .addContainerGap(457, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pnlContainer.add(pnlHome, "card2");
@@ -247,74 +330,6 @@ public class UserView extends javax.swing.JFrame {
         );
 
         pnlContainer.add(pnlAccount, "card3");
-
-        pnlHeader5.setBackground(new java.awt.Color(255, 255, 0));
-        pnlHeader5.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseDragged(java.awt.event.MouseEvent evt) {
-                pnlHeader5MouseDragged(evt);
-            }
-        });
-        pnlHeader5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                pnlHeader5MousePressed(evt);
-            }
-        });
-
-        lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(153, 0, 255));
-        lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-
-        lblMinimize5.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\bar.png")); // NOI18N
-        lblMinimize5.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMinimize5MouseClicked(evt);
-            }
-        });
-
-        lblClose6.setForeground(new java.awt.Color(204, 0, 255));
-        lblClose6.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
-        lblClose6.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblClose6MouseClicked(evt);
-            }
-        });
-
-        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png"))); // NOI18N
-        lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblMenuMouseClicked(evt);
-            }
-        });
-
-        javax.swing.GroupLayout pnlHeader5Layout = new javax.swing.GroupLayout(pnlHeader5);
-        pnlHeader5.setLayout(pnlHeader5Layout);
-        pnlHeader5Layout.setHorizontalGroup(
-            pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeader5Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblMenu)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 351, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(305, 305, 305)
-                .addComponent(lblMinimize5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblClose6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        pnlHeader5Layout.setVerticalGroup(
-            pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlHeader5Layout.createSequentialGroup()
-                .addGap(0, 0, 0)
-                .addGroup(pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlHeader5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblClose6)
-                        .addGroup(pnlHeader5Layout.createSequentialGroup()
-                            .addGap(3, 3, 3)
-                            .addComponent(lblMinimize5))))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
 
         javax.swing.GroupLayout pnlMainLayout = new javax.swing.GroupLayout(pnlMain);
         pnlMain.setLayout(pnlMainLayout);
@@ -475,41 +490,22 @@ public class UserView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblAccount;
     private javax.swing.JLabel lblClose;
-    private javax.swing.JLabel lblClose1;
-    private javax.swing.JLabel lblClose2;
-    private javax.swing.JLabel lblClose3;
-    private javax.swing.JLabel lblClose4;
-    private javax.swing.JLabel lblClose5;
     private javax.swing.JLabel lblClose6;
-    private javax.swing.JLabel lblHeaderTitle;
-    private javax.swing.JLabel lblHeaderTitle1;
-    private javax.swing.JLabel lblHeaderTitle2;
-    private javax.swing.JLabel lblHeaderTitle3;
-    private javax.swing.JLabel lblHeaderTitle4;
     private javax.swing.JLabel lblHelp;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblJoinEvents;
     private javax.swing.JLabel lblJoinnedEvents;
     private javax.swing.JLabel lblLogOut;
     private javax.swing.JLabel lblMenu;
-    private javax.swing.JLabel lblMinimize;
-    private javax.swing.JLabel lblMinimize1;
-    private javax.swing.JLabel lblMinimize2;
-    private javax.swing.JLabel lblMinimize3;
-    private javax.swing.JLabel lblMinimize4;
     private javax.swing.JLabel lblMinimize5;
     private javax.swing.JLabel lblSetting;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlAccount;
     private javax.swing.JPanel pnlClose;
     private javax.swing.JPanel pnlContainer;
-    private javax.swing.JPanel pnlHeader;
-    private javax.swing.JPanel pnlHeader1;
-    private javax.swing.JPanel pnlHeader2;
-    private javax.swing.JPanel pnlHeader3;
-    private javax.swing.JPanel pnlHeader4;
     private javax.swing.JPanel pnlHeader5;
     private javax.swing.JPanel pnlHome;
     private javax.swing.JPanel pnlMain;

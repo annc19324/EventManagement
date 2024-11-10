@@ -427,7 +427,7 @@ public class LogInView extends javax.swing.JFrame {
         if(loggedInUser != null){
             this.dispose();
             if(loggedInUser.getRole().equals("admin")){
-                new AdminView().setVisible(true);
+                new EventManager().setVisible(true);
             }else if(loggedInUser.getRole().equals("user")){
                 new UserView(loggedInUser).setVisible(true);
             }

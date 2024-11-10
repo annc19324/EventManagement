@@ -74,10 +74,11 @@ public class SignUpView extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         txtMail = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
+        txtDateOfBirth = new com.toedter.calendar.JDateChooser();
         lblDateOfBirthE = new javax.swing.JLabel();
         lblMailE = new javax.swing.JLabel();
         lblPhoneE = new javax.swing.JLabel();
-        txtDateOfBirth = new com.toedter.calendar.JDateChooser();
+        txtDateOfBirth1 = new com.toedter.calendar.JDateChooser();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -360,11 +361,9 @@ public class SignUpView extends javax.swing.JFrame {
             }
         });
 
-
         txtDateOfBirth.setBackground(new java.awt.Color(153, 153, 255));
         txtDateOfBirth.setToolTipText("");
         txtDateOfBirth.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
 
         lblDateOfBirthE.setFont(new java.awt.Font("Segoe UI", 0, 10)); // NOI18N
         lblDateOfBirthE.setForeground(new java.awt.Color(255, 0, 0));
@@ -769,6 +768,7 @@ public class SignUpView extends javax.swing.JFrame {
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPasswordField txtConfirmPassword;
     private com.toedter.calendar.JDateChooser txtDateOfBirth;
+    private com.toedter.calendar.JDateChooser txtDateOfBirth1;
     private javax.swing.JTextField txtFullName;
     private javax.swing.JTextField txtMail;
     private javax.swing.JPasswordField txtPassword;
