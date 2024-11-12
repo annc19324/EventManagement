@@ -108,6 +108,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
 
         pnlMain.setBackground(new java.awt.Color(102, 204, 255));
 

@@ -126,6 +126,7 @@ public class UserView extends javax.swing.JFrame {
         btnCheckDetail = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setUndecorated(true);
         setSize(new java.awt.Dimension(1100, 550));
 
         pnlMain.setBackground(new java.awt.Color(102, 204, 255));
