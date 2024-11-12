@@ -29,7 +29,7 @@ public class EventController {
         String sql = "insert into Events(EventId, EventName, StartDate, EndDate, Location, Description, Status, price) values(?,?,?,?,?,?,?,?)";
         try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
-            stmt.setInt(1, event.getEventId());
+            stmt.setString(1, event.getEventId());
             stmt.setString(2, event.getEventName());
             stmt.setString(3, event.getStartDate());
             stmt.setString(4, event.getEndDate());
@@ -56,7 +56,7 @@ public class EventController {
             stmt.setString(5, event.getDescription());
             stmt.setString(6, event.getStatus());
             stmt.setDouble(7, event.getPrice());
-            stmt.setInt(8, event.getEventId());
+            stmt.setString(8, event.getEventId());
             int rowsUpdate = stmt.executeUpdate();
             if (rowsUpdate > 0) {
                 JOptionPane.showMessageDialog(null, "Thêm sự kiện thành công!");
@@ -70,7 +70,7 @@ public class EventController {
     public void deleteEvent(Event event) throws SQLException {
         String sql = "delete from Events where eventId=?";
         try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, event.getEventId());
+            stmt.setString(1, event.getEventId());
             int rowsDelete = stmt.executeUpdate();
             if (rowsDelete > 0) {
                 JOptionPane.showMessageDialog(null, "Xóa sự kiện thành công!");
@@ -84,45 +84,148 @@ public class EventController {
         List<Event> events = new ArrayList<>();
         String sql = "select*from Events where EventName LIKE ?";
         try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setString(1,  "%"+keyword +"%");
+            stmt.setString(1, "%" + keyword + "%");
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Event event=new Event(
-                    rs.getInt("EventId"),
-                    rs.getString("EventName"),
-                    rs.getString("StartDate"),
-                    rs.getString("EndDate"),
-                    rs.getString("Location"),
-                    rs.getString("Description"),
-                    rs.getString("Status"),
-                    rs.getDouble("price")   
+                Event event = new Event(
+                        rs.getString("EventId"),
+                        rs.getString("EventName"),
+                        rs.getString("StartDate"),
+                        rs.getString("EndDate"),
+                        rs.getString("Location"),
+                        rs.getString("Description"),
+                        rs.getString("Status"),
+                        rs.getDouble("price")
                 );
-                events.add(event);        
+                events.add(event);
             }
-        }catch(SQLException e){
-            JOptionPane.showMessageDialog(null,"Lỗi tìm kiếm sự kiện"+e.getMessage());
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Lỗi tìm kiếm sự kiện" + e.getMessage());
         }
         return events;
     }
-    public List<Event> getAllEvent() throws SQLException{
-        List<Event> list=new ArrayList<>();
-        String sql="select*from Events";
-        try(Connection conn=dbConnect.connectSQL();PreparedStatement stmt=conn.prepareStatement(sql)){
+
+    public List<Event> getAllEvent() throws SQLException {
+        List<Event> list = new ArrayList<>();
+        String sql = "select*from Events";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
-                Event event = new Event(rs.getInt("EventId"),
-                                    rs.getString("EventName"),
-                                    rs.getString("StartDate"),
-                                    rs.getString("EndDate"),
-                                    rs.getString("Location"),
-                                    rs.getString("Description"),
-                                    rs.getString("Status"),
-                                    rs.getDouble("price")
-                                    );
+                Event event = new Event(rs.getString("EventId"),
+                        rs.getString("EventName"),
+                        rs.getString("StartDate"),
+                        rs.getString("EndDate"),
+                        rs.getString("Location"),
+                        rs.getString("Description"),
+                        rs.getString("Status"),
+                        rs.getDouble("price")
+                );
                 list.add(event);
             }
         }
         return list;
-        
+
     }
+
+    //luu thong tin dang ky vao bang attendee
+    public boolean registerEvent(int userId, String eventId) {
+        if (isEventRegistered(userId, eventId)) {
+            return false;
+        }
+
+        String sql = "INSERT INTO Attendees (UserId, EventId, Status) VALUES (?, ?, ?)";
+        try (PreparedStatement stmt = dbConnect.connectSQL().prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.setString(2, eventId);
+            stmt.setString(3, "Đã đăng ký"); // Hoặc trạng thái khác nếu cần
+            stmt.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    //lay danh sach su kien da duoc dang ky
+    public List<Event> getRegisteredEventsByUserId(int userId) {
+        List<Event> events = new ArrayList<>();
+        String sql = "select Events.* from Events join Attendees  ON Events.EventId = Attendees.EventId where Attendees.UserId = ?";
+        try (PreparedStatement stmt = dbConnect.connectSQL().prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Event event = new Event(
+                        rs.getString("EventId"),
+                        rs.getString("EventName"),
+                        rs.getString("StartDate"),
+                        rs.getString("EndDate"),
+                        rs.getString("Location"),
+                        rs.getString("Description"),
+                        rs.getString("Status"),
+                        rs.getDouble("Price")
+                );
+                events.add(event);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return events;
+    }
+
+    public List<Event> getRegisteredEvents(int userId) {
+        List<Event> registeredEvents = new ArrayList<>();
+        String sql = "SELECT e.EventId, e.EventName, e.StartDate, e.EndDate, e.Location, e.Description, e.Status, e.Price "
+                + "FROM Events e JOIN Attendees a ON e.EventId = a.EventId "
+                + "WHERE a.UserId = ?";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                Event event = new Event(
+                        rs.getString("EventId"),
+                        rs.getString("EventName"),
+                        rs.getString("StartDate"),
+                        rs.getString("EndDate"),
+                        rs.getString("Location"),
+                        rs.getString("Description"),
+                        rs.getString("Status"),
+                        rs.getDouble("Price")
+                );
+                registeredEvents.add(event);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return registeredEvents;
+    }
+
+    public boolean isEventRegistered(int userId, String eventId) {
+        String sql = "SELECT COUNT(*) FROM Attendees WHERE UserId = ? AND EventId = ?";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.setString(2, eventId);
+            ResultSet rs = stmt.executeQuery();
+            if (rs.next()) {
+                return rs.getInt(1) > 0; // Trả về true nếu đã đăng ký
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Trả về false nếu chưa đăng ký
+    }
+    
+    // huy dang ky
+    public boolean cancelRegistration(int userId, String eventId) {
+        String sql = "DELETE FROM Attendees WHERE UserId = ? AND EventId = ?";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(1, userId);
+            stmt.setString(2, eventId);
+            int rowsAffected = stmt.executeUpdate();
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
 }

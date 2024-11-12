@@ -87,9 +87,8 @@ public class TitleView extends javax.swing.JFrame {
         pnlButton9.setOpaque(false);
         pnlButton9.setLayout(new java.awt.GridBagLayout());
 
-        btnLogIn.setBackground(new java.awt.Color(255, 255, 0));
+        btnLogIn.setBackground(new java.awt.Color(102, 204, 255));
         btnLogIn.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnLogIn.setForeground(new java.awt.Color(153, 0, 255));
         btnLogIn.setText("Đăng nhập");
         btnLogIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,9 +104,8 @@ public class TitleView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(13, 12, 0, 12);
         pnlButton9.add(btnLogIn, gridBagConstraints);
 
-        btnSignUp.setBackground(new java.awt.Color(255, 255, 0));
+        btnSignUp.setBackground(new java.awt.Color(102, 204, 255));
         btnSignUp.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        btnSignUp.setForeground(new java.awt.Color(153, 0, 255));
         btnSignUp.setText("Đăng ký");
         btnSignUp.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

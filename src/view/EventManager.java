@@ -36,7 +36,7 @@ public class EventManager extends javax.swing.JFrame {
     }
     private EventController eventcontroller = new EventController();
 
-    private void displayEvents(List<Event> events) {
+    public void displayEvents(List<Event> events) {
         DefaultTableModel model = (DefaultTableModel) jTableEventManager.getModel();
 
         // Xóa dữ liệu cũ trước khi hiển thị dữ liệu mới
@@ -58,7 +58,7 @@ public class EventManager extends javax.swing.JFrame {
         }
     }
 
-    private void displayAllEvents() {
+    public void displayAllEvents() {
         try {
             List<Event> list = eventcontroller.getAllEvent();
             DefaultTableModel model = (DefaultTableModel) jTableEventManager.getModel();
@@ -450,7 +450,7 @@ public class EventManager extends javax.swing.JFrame {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
         try {
-            int ma = Integer.parseInt(txtMa.getText());
+            String ma = txtMa.getText();
             String ten = txtTen.getText();
             String diaDiem = txtDiaDiem.getText();
             double gia = Double.parseDouble(txtGia.getText());
@@ -496,7 +496,7 @@ public class EventManager extends javax.swing.JFrame {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // TODO add your handling code here:
         try {
-            int ma = Integer.parseInt(txtMa.getText());
+            String ma = txtMa.getText();
             String ten = txtTen.getText();
             String diaDiem = txtDiaDiem.getText();
             double gia = Double.parseDouble(txtGia.getText());
@@ -543,7 +543,7 @@ public class EventManager extends javax.swing.JFrame {
         // TODO add your handling code here:
         int selectedRow = jTableEventManager.getSelectedRow();
         if (selectedRow != -1) {
-            int eventId = (int) jTableEventManager.getValueAt(selectedRow, 0); // Lấy EventId từ hàng đã chọn
+            String eventId = jTableEventManager.getValueAt(selectedRow, 0).toString(); // Lấy EventId từ hàng đã chọn
 
             int confirm = JOptionPane.showConfirmDialog(this, "Bạn có chắc chắn muốn xóa sự kiện này?", "Xác nhận", JOptionPane.YES_NO_OPTION);
             if (confirm == JOptionPane.YES_OPTION) {

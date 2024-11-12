@@ -10,7 +10,7 @@ package model;
  */
 public class Event {
 
-    private int eventId;              // ID sự kiện
+    private String eventId;              // ID sự kiện
     private String eventName;         // Tên của sự kiện
     private String startDate;         // Ngày bắt đầu (có thể sử dụng LocalDate nếu cần)
     private String endDate;           // Ngày kết thúc (có thể sử dụng LocalDate nếu cần)
@@ -23,11 +23,11 @@ public class Event {
     public Event() {
     }
 
-    public Event(int eventId) {
+    public Event(String eventId) {
         this.eventId = eventId;
     }
 
-    public Event(int eventId, String eventName, String startDate, String endDate, String location, String description, String status, double price) {
+    public Event(String eventId, String eventName, String startDate, String endDate, String location, String description, String status, double price) {
         this.eventId = eventId;
         this.eventName = eventName;
         this.startDate = startDate;
@@ -39,11 +39,11 @@ public class Event {
     }
 
     // Getters and Setters
-    public int getEventId() {
+    public String getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 

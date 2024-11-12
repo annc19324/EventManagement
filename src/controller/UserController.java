@@ -55,7 +55,6 @@ public class UserController {
             System.out.println("username existed");
             return false;
         }
-
         String sql = "insert into users(username, fullname, password, DateOfBirth, Mail, Phone, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
             ps.setString(1, user.getUsername());

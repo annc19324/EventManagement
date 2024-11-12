@@ -8,11 +8,11 @@ import controller.EventController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.System.Logger;
+import java.lang.System.Logger.Level;
+import static java.lang.System.exit;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
@@ -21,61 +21,49 @@ import javax.swing.table.DefaultTableModel;
 import model.Event;
 import model.User;
 import util.Session;
+import view.LogInView;
 
 /**
  *
  * @author annc1
  */
-public class UserView extends javax.swing.JFrame {
+public class RegisteredEventView extends javax.swing.JFrame {
 
+    private User user;
     private int mousePressX, mousePressY;
-    private final User user;
     private EventController eventController;
     private EventManager eventManager;
 
     /**
-     * Creates new form UserView
+     * Creates new form RegisteredEventView
      *
      * @throws java.sql.SQLException
      */
-    public UserView() throws SQLException {
+    public RegisteredEventView() throws SQLException {
+        if (Session.getLoggedInUser() == null) {
+            if ((JOptionPane.showConfirmDialog(null, "bạn cần đăng nhập trước, nhấn OK để đăng nhập", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
+                new LogInView().setVisible(true);
+                return;
+            } else {
+                exit(0);
+            }
+        }
         initComponents();
         setLocationRelativeTo(null);
         txtSearch.setBorder(new EmptyBorder(0, 30, 0, 30));
 
         eventController = new EventController();
         eventManager = new EventManager();
-//        this.user = Session.getLoggedInUser();
-        this.user = new User();
-        lblUsername.setText("tài khoản: " + user.getFullname());
+
+        this.user = Session.getLoggedInUser();
+        lblUsername.setText("Tên người dùng: " + user.getFullname());
+
+        String[] columns = {"Event ID", "Event Name", "Start Date", "End Date", "Location", "Description", "Status", "Price"};
+        DefaultTableModel model = new DefaultTableModel(columns, 0);
+        tblRegisteredEventDetail.setModel(model);
 
         showAllEvents();
-        showRegisteredEvents();
-    }
-
-    public UserView(User user) throws SQLException {
-        initComponents();
-        setLocationRelativeTo(null);
-        txtSearch.setBorder(new EmptyBorder(0, 30, 0, 30));
-
-        eventController = new EventController();
-        eventManager = new EventManager();
-//        this.user = Session.getLoggedInUser();
-        this.user = new User();
-        lblUsername.setText("tài khoản: " + user.getFullname());
-        String[] columnNames = {"Event ID", "Event Name", "Start Date", "End Date", "Location", "Description", "Status", "Price"};
-        DefaultTableModel model = new DefaultTableModel(columnNames, 0);
-        tblEventList.setModel(model);
-
-        String[] registeredEventColumnNames = {"Event Name"};
-        DefaultTableModel registeredEventModel = new DefaultTableModel(registeredEventColumnNames, 0);
-        tblRegisteredEventName.setModel(registeredEventModel);
-
-        showAllEvents();
-        showRegisteredEvents();
-        tblEventList.setRowHeight(40);
-        tblRegisteredEventName.setRowHeight(40);
-
+        tblRegisteredEventDetail.setRowHeight(40);
     }
 
     /**
@@ -107,30 +95,21 @@ public class UserView extends javax.swing.JFrame {
         lblSetting = new javax.swing.JLabel();
         lblLogOut = new javax.swing.JLabel();
         pnlContainer = new javax.swing.JPanel();
-        pnlEventList2 = new javax.swing.JPanel();
-        pnlbtnFunc2 = new javax.swing.JPanel();
-        btnRegisterEvent = new javax.swing.JButton();
-        pnlCurrentEventList = new javax.swing.JPanel();
-        txtSearch = new javax.swing.JTextField();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tblEventList = new javax.swing.JTable();
-        lblEventList = new javax.swing.JLabel();
-        pnlSearch_Refresh = new javax.swing.JPanel();
+        tblRegisteredEventDetail = new javax.swing.JTable();
+        txtSearch = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
         btnSearch = new javax.swing.JButton();
         lblRefresh = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        lblRegisteredEvent = new javax.swing.JLabel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tblRegisteredEventName = new javax.swing.JTable();
-        jPanel3 = new javax.swing.JPanel();
-        btnCheckDetail = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setSize(new java.awt.Dimension(1100, 550));
 
         pnlMain.setBackground(new java.awt.Color(102, 204, 255));
-        pnlMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
-        pnlMain.setPreferredSize(new java.awt.Dimension(950, 450));
 
         pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
         pnlHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
@@ -323,40 +302,28 @@ public class UserView extends javax.swing.JFrame {
         pnlSlideMenuLayout.setVerticalGroup(
             pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSlideMenuLayout.createSequentialGroup()
+                .addGap(11, 11, 11)
                 .addComponent(pnlClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(18, 18, 18)
                 .addComponent(pnlPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlfooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
         pnlContainer.setOpaque(false);
 
-        btnRegisterEvent.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnRegisterEvent.setText("Đăng ký sự kiện");
-        btnRegisterEvent.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnRegisterEventMouseClicked(evt);
-            }
-        });
+        tblRegisteredEventDetail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblRegisteredEventDetail.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout pnlbtnFunc2Layout = new javax.swing.GroupLayout(pnlbtnFunc2);
-        pnlbtnFunc2.setLayout(pnlbtnFunc2Layout);
-        pnlbtnFunc2Layout.setHorizontalGroup(
-            pnlbtnFunc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlbtnFunc2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegisterEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        pnlbtnFunc2Layout.setVerticalGroup(
-            pnlbtnFunc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlbtnFunc2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegisterEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+            },
+            new String [] {
+
+            }
+        ));
+        tblRegisteredEventDetail.setShowGrid(true);
+        jScrollPane1.setViewportView(tblRegisteredEventDetail);
 
         txtSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -373,21 +340,6 @@ public class UserView extends javax.swing.JFrame {
             }
         });
 
-        tblEventList.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tblEventList.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane1.setViewportView(tblEventList);
-
-        lblEventList.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblEventList.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblEventList.setText("Danh sách sự kiện hiện tại");
-
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSearch.setText("Tìm kiếm");
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -403,131 +355,85 @@ public class UserView extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout pnlSearch_RefreshLayout = new javax.swing.GroupLayout(pnlSearch_Refresh);
-        pnlSearch_Refresh.setLayout(pnlSearch_RefreshLayout);
-        pnlSearch_RefreshLayout.setHorizontalGroup(
-            pnlSearch_RefreshLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlSearch_RefreshLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSearch)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        pnlSearch_RefreshLayout.setVerticalGroup(
-            pnlSearch_RefreshLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblRefresh, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout pnlCurrentEventListLayout = new javax.swing.GroupLayout(pnlCurrentEventList);
-        pnlCurrentEventList.setLayout(pnlCurrentEventListLayout);
-        pnlCurrentEventListLayout.setHorizontalGroup(
-            pnlCurrentEventListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblEventList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlCurrentEventListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
-                    .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
-                        .addComponent(txtSearch)
-                        .addGap(18, 18, 18)
-                        .addComponent(pnlSearch_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-        );
-        pnlCurrentEventListLayout.setVerticalGroup(
-            pnlCurrentEventListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
-                .addComponent(lblEventList, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(pnlCurrentEventListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnlSearch_Refresh, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addGap(5, 5, 5))
-        );
-
-        javax.swing.GroupLayout pnlEventList2Layout = new javax.swing.GroupLayout(pnlEventList2);
-        pnlEventList2.setLayout(pnlEventList2Layout);
-        pnlEventList2Layout.setHorizontalGroup(
-            pnlEventList2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEventList2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(pnlEventList2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(pnlbtnFunc2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlCurrentEventList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        pnlEventList2Layout.setVerticalGroup(
-            pnlEventList2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlEventList2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(pnlCurrentEventList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(pnlbtnFunc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        lblRegisteredEvent.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblRegisteredEvent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblRegisteredEvent.setText("Sự kiện đã đăng ký");
-
-        tblRegisteredEventName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tblRegisteredEventName.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-
-            }
-        ));
-        jScrollPane2.setViewportView(tblRegisteredEventName);
-
-        btnCheckDetail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnCheckDetail.setText("Xem chi tiết");
-        btnCheckDetail.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCheckDetailMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCheckDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCheckDetail)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lblRefresh)
         );
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Danh sách chi tiết sự kiện đã đăng ký");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 812, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(txtSearch)
+                        .addGap(18, 18, 18)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtSearch))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jButton1.setText("Thanh toán");
+
+        btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnCancel.setText("Hủy đăng ký");
+        btnCancel.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnCancelMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(lblRegisteredEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 191, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblRegisteredEvent)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnCancel)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -536,9 +442,9 @@ public class UserView extends javax.swing.JFrame {
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlContainerLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnlEventList2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlContainerLayout.setVerticalGroup(
@@ -547,7 +453,7 @@ public class UserView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlEventList2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -559,8 +465,8 @@ public class UserView extends javax.swing.JFrame {
                 .addComponent(pnlSlideMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         pnlMainLayout.setVerticalGroup(
             pnlMainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -568,27 +474,50 @@ public class UserView extends javax.swing.JFrame {
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnlContainer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addComponent(pnlSlideMenu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlSlideMenu, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1150, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnlMain, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+            .addComponent(pnlMain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void lblMinimize5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimize5MouseClicked
+        // TODO add your handling code here:
+        setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_lblMinimize5MouseClicked
+
+    private void lblClose6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose6MouseClicked
+        // TODO add your handling code here:
+        System.exit(0);
+    }//GEN-LAST:event_lblClose6MouseClicked
+
     private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
         // TODO add your handling code here:
         openMenu();
     }//GEN-LAST:event_lblMenuMouseClicked
+
+    private void pnlHeaderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMouseDragged
+        // TODO add your handling code here:
+        int ox = evt.getXOnScreen();
+        int oy = evt.getYOnScreen();
+        setLocation(ox - mousePressX, oy - mousePressY);
+    }//GEN-LAST:event_pnlHeaderMouseDragged
+
+    private void pnlHeaderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMousePressed
+        // TODO add your handling code here:
+        mousePressX = evt.getX();
+        mousePressY = evt.getY();
+    }//GEN-LAST:event_pnlHeaderMousePressed
 
     private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
         // TODO add your handling code here:
@@ -597,123 +526,104 @@ public class UserView extends javax.swing.JFrame {
 
     private void lblLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogOutMouseClicked
         if ((JOptionPane.showConfirmDialog(this, "bạn có chắc chắn muốn đăng xuất khỏi tài khoản này không?", "xác nhận đăng xuất", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)) == JOptionPane.YES_OPTION) {
+            Session.clear();
             this.dispose();
             try {
                 new LogInView().setVisible(true);
             } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
         }
-
 
     }//GEN-LAST:event_lblLogOutMouseClicked
 
-    // icon an app
-
-    private void lblMinimize5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimize5MouseClicked
-        // TODO add your handling code here:
-        setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_lblMinimize5MouseClicked
-
-    //icon dong app
-    private void lblClose6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose6MouseClicked
-        // TODO add your handling code here:
-        System.exit(0);
-    }//GEN-LAST:event_lblClose6MouseClicked
-
-    //di chuyen app
-    private void pnlHeaderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMouseDragged
-        // TODO add your handling code here:
-        int ox = evt.getXOnScreen();
-        int oy = evt.getYOnScreen();
-        setLocation(ox - mousePressX, oy - mousePressY);
-    }//GEN-LAST:event_pnlHeaderMouseDragged
-
-    // nhan vi tri cua app
-    private void pnlHeaderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMousePressed
-        // TODO add your handling code here:
-        mousePressX = evt.getX();
-        mousePressY = evt.getY();
-    }//GEN-LAST:event_pnlHeaderMousePressed
-
-    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
-        btnSearchMouseClicked(null);
-    }//GEN-LAST:event_txtSearchActionPerformed
-
     private void lblRefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRefreshMouseClicked
-        try {
-            // TODO add your handling code here:
-            showAllEvents();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+        showAllEvents();
 
     }//GEN-LAST:event_lblRefreshMouseClicked
-
-    private void btnRegisterEventMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterEventMouseClicked
-        // TODO add your handling code here:
-        if (Session.getLoggedInUser() == null) {
-            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập trước khi đăng ký sự kiện.");
-            try {
-                new LogInView().setVisible(true);
-                this.dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            return;
-        }
-        int selectedRow = tblEventList.getSelectedRow();
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(this, "chọn ít nhất 1 sự kiện muốn tham gia để đăng ký!");
-            return;
-        }
-//lay thong tin dong dc chon
-        String eventId = tblEventList.getValueAt(selectedRow, 0).toString();
-        String eventName = tblEventList.getValueAt(selectedRow, 1).toString();
-        String startDate = tblEventList.getValueAt(selectedRow, 2).toString();
-        String endDate = tblEventList.getValueAt(selectedRow, 3).toString();
-        String location = tblEventList.getValueAt(selectedRow, 4).toString();
-        String description = tblEventList.getValueAt(selectedRow, 5).toString();
-        String status = tblEventList.getValueAt(selectedRow, 6).toString();
-        String price = tblEventList.getValueAt(selectedRow, 7).toString();
-
-        boolean isRegistered = eventController.registerEvent(Session.getLoggedInUser().getUserId(), eventId);
-        if (isRegistered) {
-            JOptionPane.showMessageDialog(this, "đăng ký sự kiện thành công!");
-
-            DefaultTableModel nameModel = (DefaultTableModel) tblRegisteredEventName.getModel();
-            nameModel.addRow(new Object[]{eventName});
-
-            Event eventDetail = new Event(eventId, eventName, startDate, endDate, location, description, status, Double.parseDouble(price));
-            Session.addRegisteredEvent(eventDetail);
-        } else {
-            JOptionPane.showMessageDialog(this, "sự kiện này đã được đăng ký!, vui lòng đăng ký sự kiện khác");
-        }
-    }//GEN-LAST:event_btnRegisterEventMouseClicked
-
-    private void btnCheckDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCheckDetailMouseClicked
-        // TODO add your handling code here:
-        this.dispose();
-        try {
-            new RegisteredEventView().setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnCheckDetailMouseClicked
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
         try {
             // TODO add your handling code here:
             new UserView(Session.getLoggedInUser()).setVisible(true);
-            showRegisteredEvents();
 
             this.dispose();
         } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblHomeMouseClicked
+
+    private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
+        // TODO add your handling code here:
+        int selectedRow = tblRegisteredEventDetail.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một sự kiện để hủy đăng ký!");
+            return;
+        }
+
+        String eventId = tblRegisteredEventDetail.getValueAt(selectedRow, 0).toString();
+        int userId = user.getUserId();
+
+        // Hủy đăng ký sự kiện trong cơ sở dữ liệu
+        boolean isCancelled = eventController.cancelRegistration(userId, eventId);
+        if (isCancelled) {
+            JOptionPane.showMessageDialog(this, "Hủy đăng ký sự kiện thành công!");
+            DefaultTableModel model = (DefaultTableModel) tblRegisteredEventDetail.getModel();
+            model.removeRow(selectedRow);
+            Session.removeRegisteredEventById(eventId);
+        } else {
+            JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi hủy đăng ký sự kiện.");
+        }
+    }//GEN-LAST:event_btnCancelMouseClicked
+
+    private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
+        // TODO add your handling code here:
+        if (!Session.isLoggedIn()) {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập trước khi đăng ký sự kiện.");
+            try {
+                new LogInView().setVisible(true);
+            } catch (SQLException ex) {
+                java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            }
+            this.dispose();
+            return;
+        }
+
+        String key = txtSearch.getText();
+
+        if (key.equals("") || key.equals("nhập mã sự kiện hoặc tên sự kiện cần tìm ở đây")) {
+            JOptionPane.showMessageDialog(this, "hãy nhập mã sự kiện hoặc tên sự kiện cần tìm!", "thông báo", JOptionPane.INFORMATION_MESSAGE);
+            showAllEvents();
+            return;
+        }
+        DefaultTableModel model = (DefaultTableModel) tblRegisteredEventDetail.getModel();
+
+        model.setRowCount(0);
+
+        List<Event> registeredEvents;
+        registeredEvents = eventController.getRegisteredEventsByUserId(Session.getLoggedInUser().getUserId());
+        boolean found = false;
+        for (Event event : registeredEvents) {
+            if (event.getEventId().toLowerCase().contains(key) || event.getEventName().toLowerCase().contains(key)) {
+                model.addRow(new Object[]{
+                    event.getEventId(),
+                    event.getEventName(),
+                    event.getStartDate(),
+                    event.getEndDate(),
+                    event.getLocation(),
+                    event.getDescription(),
+                    event.getStatus(),
+                    event.getPrice()
+                });
+                found = true;
+                txtSearch.setText("");
+            }
+        }
+        if (!found) {
+            JOptionPane.showMessageDialog(this, "không có thông tin về '" + key + "'");
+            txtSearch.requestFocus();
+        }
+    }//GEN-LAST:event_btnSearchMouseClicked
 
     private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
         // TODO add your handling code here:
@@ -721,7 +631,6 @@ public class UserView extends javax.swing.JFrame {
             txtSearch.setText("");
             txtSearch.setForeground(Color.BLACK);
         }
-
     }//GEN-LAST:event_txtSearchFocusGained
 
     private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
@@ -732,68 +641,15 @@ public class UserView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_txtSearchFocusLost
 
-    private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
-        String key = txtSearch.getText().trim().toLowerCase();
-        if (!Session.isLoggedIn()) {
-            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
-                try {
-                    new LogInView().setVisible(true);
-                    this.dispose();
-                    return;
-                } catch (SQLException ex) {
-                    Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                return;
-            }
-        }
+        btnSearchMouseClicked(null);
+    }//GEN-LAST:event_txtSearchActionPerformed
 
-        if (key.equals("") || key.equals("nhập mã sự kiện hoặc tên sự kiện cần tìm ở đây")) {
-            JOptionPane.showMessageDialog(this, "hãy nhập mã sự kiện hoặc tên sự kiện cần tìm!", "thông báo", JOptionPane.INFORMATION_MESSAGE);
-            try {
-                showAllEvents();
-            } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) tblEventList.getModel();
-        model.setRowCount(0);
-
-        try {
-            List<Event> eventList = eventController.getAllEvent();
-            boolean found = false;
-            for (Event event : eventList) {
-                if (event.getEventName().toLowerCase().contains(key) || event.getEventId().toLowerCase().contains(key)) {
-                    model.addRow(new Object[]{
-                        event.getEventId(),
-                        event.getEventName(),
-                        event.getStartDate(),
-                        event.getEndDate(),
-                        event.getLocation(),
-                        event.getDescription(),
-                        event.getStatus(),
-                        event.getPrice(),});
-                    found = true;
-                    txtSearch.setText("");
-                }
-            }
-            if (!found) {
-                JOptionPane.showMessageDialog(this, "không tìm thấy thông tin về '" + key + "'");
-                txtSearch.requestFocus();
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnSearchMouseClicked
-
-    //slide menu
     int width = 270;
 
-    public void openMenu() {
+    private void openMenu() {
+
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -804,51 +660,43 @@ public class UserView extends javax.swing.JFrame {
                     try {
                         Thread.sleep(2);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                        java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                     }
                 }
-            }
 
+            }
         }).start();
     }
 
-    public void closeMenu() {
+    private void closeMenu() {
         new Thread(new Runnable() {
             @Override
             public void run() {
                 int height = pnlSlideMenu.getHeight();
-
                 for (int i = width; i >= 0; i -= 10) {
                     pnlSlideMenu.setSize(i, height);
                     pnlContainer.setBounds(i, pnlContainer.getY(), pnlMain.getWidth() - i, pnlContainer.getHeight());
                     try {
                         Thread.sleep(2);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                        java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                     }
                 }
             }
-
         }).start();
     }
 
-    // hien thi bang
-    public void showAllEvents() throws SQLException {
-        //lay ds su kien trong controller
-        List<Event> eList = eventController.getAllEvent();
-        DefaultTableModel model = (DefaultTableModel) tblEventList.getModel();
-        //reset hang
-        model.setRowCount(0);
-
-        Timer timer = new Timer(100, new ActionListener() {
-            private int index = 0;
-
+    private void showAllEvents() {
+        DefaultTableModel detailModel = (DefaultTableModel) tblRegisteredEventDetail.getModel();
+        List<Event> registeredEvents = eventController.getRegisteredEventsByUserId(user.getUserId());
+        detailModel.setRowCount(0);
+        Timer time = new Timer(100, new ActionListener() {
+            int index = 0;
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (index < eList.size()) {
-                    Event event = eList.get(index);
-//                    for(Event event : eList)
-                    Object[] rowData = {
+                if (index < registeredEvents.size()) {
+                    Event event = registeredEvents.get(index);
+                    Object[] row = {
                         event.getEventId(),
                         event.getEventName(),
                         event.getStartDate(),
@@ -858,29 +706,15 @@ public class UserView extends javax.swing.JFrame {
                         event.getStatus(),
                         event.getPrice()
                     };
-                    model.addRow(rowData);
+                    detailModel.addRow(row);
                     index++;
                 } else {
                     ((Timer) e.getSource()).stop();
                 }
             }
+
         });
-
-        // Bắt đầu Timer
-        timer.start();
-    }
-
-    private void showRegisteredEvents() {
-        DefaultTableModel registeredModel = (DefaultTableModel) tblRegisteredEventName.getModel();
-        registeredModel.setRowCount(0); // Xóa dữ liệu cũ
-        List<Event> UpdateEventName = Session.getRegisteredEvents();
-        if (UpdateEventName != null && !UpdateEventName.isEmpty()) {
-            for (Event event : UpdateEventName) {
-                registeredModel.addRow(new Object[]{
-                    event.getEventName(),});
-            }
-        }
-
+        time.start();
     }
 
     /**
@@ -900,38 +734,38 @@ public class UserView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             try {
-                new UserView().setVisible(true);
+                new RegisteredEventView().setVisible(true);
             } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCheckDetail;
-    private javax.swing.JButton btnRegisterEvent;
+    private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAccount;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblClose6;
-    private javax.swing.JLabel lblEventList;
     private javax.swing.JLabel lblHelp;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblJoinEvents;
@@ -940,23 +774,16 @@ public class UserView extends javax.swing.JFrame {
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblMinimize5;
     private javax.swing.JLabel lblRefresh;
-    private javax.swing.JLabel lblRegisteredEvent;
     private javax.swing.JLabel lblSetting;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlClose;
     private javax.swing.JPanel pnlContainer;
-    private javax.swing.JPanel pnlCurrentEventList;
-    private javax.swing.JPanel pnlEventList2;
     private javax.swing.JPanel pnlHeader;
     private javax.swing.JPanel pnlMain;
     private javax.swing.JPanel pnlPage;
-    private javax.swing.JPanel pnlSearch_Refresh;
     private javax.swing.JPanel pnlSlideMenu;
-    private javax.swing.JPanel pnlbtnFunc2;
     private javax.swing.JPanel pnlfooter;
-    private javax.swing.JTable tblEventList;
-    private javax.swing.JTable tblRegisteredEventName;
+    private javax.swing.JTable tblRegisteredEventDetail;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
-
 }
