@@ -98,22 +98,27 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-    
-//        public boolean isValid() {
-//        return validateUsername() && validateFullname() && validatePassword() && validateDateOfBirth() && validateMail() && validatePhone();
-//    }
 
     public boolean validateUsername() {
-        return username.matches("^[a-zA-Z0-9.]{6,}$") && !username.contains(" ");
+        return username.matches("^[a-zA-Z0-9.]+$") ;
+    }
+    
+    public boolean validateUsernameLength() {
+        return username.length() >= 6;
     }
 
     public boolean validateFullname() {
-        return fullname.matches("^[\\p{L} ]{2,}+$");
+      return fullname.matches("^[\\p{L}\\p{M} .'-]+$");
     }
-
+    public boolean validateFullnameLength() {
+        return fullname.length() >= 2;
+    }
+    
     public boolean validatePassword() {
-//        String passwordPattern = "^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$";
-        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{8,}$");
+        return password.matches("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]+$");
+    }
+    public boolean validatePasswordLength() {
+        return password.length() >=8;
     }
 
     public boolean validateDateOfBirth() {
@@ -131,8 +136,4 @@ public class User {
     public boolean validatePhone() {
         return phone.matches("\\d{10}");
     }
-    
-    
-    
-    
 }

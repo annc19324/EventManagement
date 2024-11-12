@@ -9,7 +9,36 @@
 <!-- in the project's Project Properties dialog box.-->
 <project name="EventManagement" default="default" basedir=".">
     <description>Builds, tests, and runs the project EventManagement.</description>
+    <!-- doan duoc them vao -->
+
+    <!-- Include external libraries in the classpath -->
+  <path id="project.classpath">
+        <pathelement path="lib/jcalendar-1.4.jar"/>
+        <pathelement path="lib/mssql-jdbc-12.8.1.jre11.jar"/>
+        <!--them cac thu vien khac neu co -->
+    </path>
+
+    <target name="-pre-compile">
+        <!-- tao thu muc dau ra cho file class -->
+        <mkdir dir="${build.classes.dir}"/>
+    </target>
+
+    <!-- chay sau khi compile, copy cac file khong phai .java -->
+    <target name="-post-compile">
+        <copy todir="${build.classes.dir}">
+            <fileset dir="src">
+                <exclude name="**/*.java"/>
+            </fileset>
+        </copy>
+    </target>
+
+    <!-- ket thuc doan duoc them -->
+
     <import file="nbproject/build-impl.xml"/>
+
+
+
+
     <!--
 
     There exist several targets which are by default empty and which can be 

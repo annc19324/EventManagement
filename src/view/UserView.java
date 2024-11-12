@@ -60,9 +60,9 @@ public class UserView extends javax.swing.JFrame {
 
         eventController = new EventController();
         eventManager = new EventManager();
-//        this.user = Session.getLoggedInUser();
-        this.user = new User();
-        lblUsername.setText("tài khoản: " + user.getFullname());
+        this.user = Session.getLoggedInUser();
+//        this.user = new User();
+        lblUsername.setText("Tài khoản: " + user.getFullname());
         String[] columnNames = {"Event ID", "Event Name", "Start Date", "End Date", "Location", "Description", "Status", "Price"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
         tblEventList.setModel(model);
@@ -129,7 +129,7 @@ public class UserView extends javax.swing.JFrame {
         setUndecorated(true);
         setSize(new java.awt.Dimension(1100, 550));
 
-        pnlMain.setBackground(new java.awt.Color(102, 204, 255));
+        pnlMain.setBackground(new java.awt.Color(51, 204, 255));
         pnlMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
         pnlMain.setPreferredSize(new java.awt.Dimension(950, 450));
 
@@ -149,7 +149,7 @@ public class UserView extends javax.swing.JFrame {
         lblUsername.setForeground(new java.awt.Color(153, 0, 255));
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
-        lblMinimize5.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\bar.png")); // NOI18N
+        lblMinimize5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bar.png"))); // NOI18N
         lblMinimize5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMinimize5MouseClicked(evt);
@@ -157,7 +157,7 @@ public class UserView extends javax.swing.JFrame {
         });
 
         lblClose6.setForeground(new java.awt.Color(204, 0, 255));
-        lblClose6.setIcon(new javax.swing.ImageIcon("D:\\GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
+        lblClose6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/x.png"))); // NOI18N
         lblClose6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblClose6MouseClicked(evt);
@@ -334,8 +334,14 @@ public class UserView extends javax.swing.JFrame {
 
         pnlContainer.setOpaque(false);
 
+        pnlEventList2.setOpaque(false);
+
+        pnlbtnFunc2.setOpaque(false);
+
+        btnRegisterEvent.setBackground(new java.awt.Color(102, 204, 255));
         btnRegisterEvent.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnRegisterEvent.setText("Đăng ký sự kiện");
+        btnRegisterEvent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRegisterEvent.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnRegisterEventMouseClicked(evt);
@@ -358,6 +364,8 @@ public class UserView extends javax.swing.JFrame {
                 .addComponent(btnRegisterEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
+
+        pnlCurrentEventList.setOpaque(false);
 
         txtSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtSearch.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -385,12 +393,16 @@ public class UserView extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(tblEventList);
 
-        lblEventList.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        lblEventList.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         lblEventList.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblEventList.setText("Danh sách sự kiện hiện tại");
 
+        pnlSearch_Refresh.setOpaque(false);
+
+        btnSearch.setBackground(new java.awt.Color(102, 204, 255));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSearch.setText("Tìm kiếm");
+        btnSearch.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSearchMouseClicked(evt);
@@ -468,7 +480,9 @@ public class UserView extends javax.swing.JFrame {
                 .addComponent(pnlbtnFunc2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        lblRegisteredEvent.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jPanel2.setOpaque(false);
+
+        lblRegisteredEvent.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         lblRegisteredEvent.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblRegisteredEvent.setText("Sự kiện đã đăng ký");
 
@@ -483,8 +497,12 @@ public class UserView extends javax.swing.JFrame {
         ));
         jScrollPane2.setViewportView(tblRegisteredEventName);
 
+        jPanel3.setOpaque(false);
+
+        btnCheckDetail.setBackground(new java.awt.Color(102, 204, 255));
         btnCheckDetail.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnCheckDetail.setText("Xem chi tiết");
+        btnCheckDetail.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnCheckDetail.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnCheckDetailMouseClicked(evt);
@@ -619,7 +637,9 @@ public class UserView extends javax.swing.JFrame {
     //icon dong app
     private void lblClose6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose6MouseClicked
         // TODO add your handling code here:
-        System.exit(0);
+        if ((JOptionPane.showConfirmDialog(this, "bạn có chắc chắn muốn thoát không?", "xác nhận thoát", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
+            System.exit(0);
+        }
     }//GEN-LAST:event_lblClose6MouseClicked
 
     //di chuyen app
@@ -643,6 +663,19 @@ public class UserView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchActionPerformed
 
     private void lblRefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRefreshMouseClicked
+        if (!Session.isLoggedIn()) {
+            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
+                try {
+                    new LogInView().setVisible(true);
+                    this.dispose();
+                    return;
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                return;
+            }
+        }
         try {
             // TODO add your handling code here:
             showAllEvents();
@@ -696,9 +729,9 @@ public class UserView extends javax.swing.JFrame {
 
     private void btnCheckDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCheckDetailMouseClicked
         // TODO add your handling code here:
-        this.dispose();
         try {
             new RegisteredEventView().setVisible(true);
+            this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
         }
