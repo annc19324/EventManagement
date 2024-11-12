@@ -204,7 +204,6 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="cmbTrangThai" min="-2" pref="94" max="-2" attributes="0"/>
                                   <Component id="jScrollPane2" min="-2" max="-2" attributes="0"/>
                                   <Component id="txtDiaDiem" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
                                   <Component id="txtNgayKetThuc" alignment="0" min="-2" pref="161" max="-2" attributes="0"/>
@@ -213,6 +212,7 @@
                                       <Component id="txtMa" alignment="0" pref="164" max="32767" attributes="0"/>
                                       <Component id="txtTen" alignment="0" max="32767" attributes="0"/>
                                   </Group>
+                                  <Component id="cmbTrangThai" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -366,9 +366,9 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="3">
-                    <StringItem index="0" value="Soon"/>
-                    <StringItem index="1" value="Active"/>
-                    <StringItem index="2" value="Expired"/>
+                    <StringItem index="0" value="Ho&#x1ea1;t &#x110;&#x1ed9;ng "/>
+                    <StringItem index="1" value="H&#x1ebf;t H&#x1ea1;n"/>
+                    <StringItem index="2" value=" "/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -381,7 +381,7 @@
                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                   <Font name="Dialog" size="16" style="1"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Gi&#xe1;:"/>
+                <Property name="text" type="java.lang.String" value="Gi&#xe1; V&#xe9;:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="txtGia">

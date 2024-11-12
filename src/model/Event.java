@@ -12,8 +12,8 @@ public class Event {
 
     private String eventId;              // ID sự kiện
     private String eventName;         // Tên của sự kiện
-    private String startDate;         // Ngày bắt đầu (có thể sử dụng LocalDate nếu cần)
-    private String endDate;           // Ngày kết thúc (có thể sử dụng LocalDate nếu cần)
+    private String startDate;         // Ngày bắt đầu 
+    private String endDate;           // Ngày kết thúc 
     private String location;          // Địa điểm tổ chức sự kiện
     private String description;       // Mô tả chi tiết về sự kiện
     private String status;            // Trạng thái của sự kiện
