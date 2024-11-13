@@ -9,16 +9,13 @@ package model;
  * @author annc1
  */
 public class Attendee {
-    private int attendeeId;       // ID đăng ký duy nhất
-    private int userId;           // ID người dùng
-    private String eventId;       // ID sự kiện
-    private String status;        // Trạng thái đăng ký, ví dụ: "Đã đăng ký", "Đã hủy", v.v.
-
-    // Constructor không tham số
+    private int attendeeId;       
+    private int userId;           
+    private String eventId;       
+    private String status;       
     public Attendee() {
     }
 
-    // Constructor với các tham số
     public Attendee(int attendeeId, int userId, String eventId, String status) {
         this.attendeeId = attendeeId;
         this.userId = userId;
@@ -26,7 +23,6 @@ public class Attendee {
         this.status = status;
     }
 
-    // Getters và Setters cho từng thuộc tính
     public int getAttendeeId() {
         return attendeeId;
     }
@@ -59,7 +55,6 @@ public class Attendee {
         this.status = status;
     }
 
-    // Phương thức toString để dễ dàng in thông tin Attendee
     @Override
     public String toString() {
         return "Attendee{" +

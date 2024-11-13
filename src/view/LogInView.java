@@ -7,7 +7,6 @@ package view;
 import controller.EventController;
 import controller.UserController;
 import java.awt.Color;
-import java.awt.Rectangle;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -15,7 +14,6 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.EmptyBorder;
-import javax.swing.text.DefaultCaret;
 import model.Event;
 import model.User;
 import util.Session;
@@ -38,6 +36,7 @@ public class LogInView extends javax.swing.JFrame {
     public LogInView() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
+        
         txtUsername.setBorder(new EmptyBorder(0, 30, 0, 30));
         txtPassword.setBorder(new EmptyBorder(0, 30, 0, 30));
         txtUsername.setForeground(Color.LIGHT_GRAY);
@@ -300,11 +299,6 @@ public class LogInView extends javax.swing.JFrame {
                 btnBackTitleViewMouseClicked(evt);
             }
         });
-        btnBackTitleView.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnBackTitleViewActionPerformed(evt);
-            }
-        });
         jPanel6.add(btnBackTitleView, java.awt.BorderLayout.WEST);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -351,53 +345,42 @@ public class LogInView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void lblMinimizeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimizeMouseClicked
-        
         setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_lblMinimizeMouseClicked
 
     private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
-        
         if ((JOptionPane.showConfirmDialog(this, "bạn có chắc chắn muốn thoát không?", "xác nhận thoát", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
             System.exit(0);
         }
     }//GEN-LAST:event_lblCloseMouseClicked
 
     private void pnlHeaderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMouseDragged
-        
         int ox = evt.getXOnScreen();
         int oy = evt.getYOnScreen();
         setLocation(ox - mousePressX, oy - mousePressY);
     }//GEN-LAST:event_pnlHeaderMouseDragged
 
     private void pnlHeaderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMousePressed
-        
         mousePressX = evt.getX();
         mousePressY = evt.getY();
     }//GEN-LAST:event_pnlHeaderMousePressed
 
     private void txtUsernameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUsernameActionPerformed
-        
         txtPassword.requestFocus();
     }//GEN-LAST:event_txtUsernameActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
-        
         btnLogIn.doClick();
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void txtUsernameFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusGained
-        
-        txtUsername.setCaretColor(Color.LIGHT_GRAY);
-
         if (txtUsername.getText().equals("USERNAME")) {
             txtUsername.setText("");
             txtUsername.setForeground(Color.BLACK);
         }
-
     }//GEN-LAST:event_txtUsernameFocusGained
 
     private void txtUsernameFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtUsernameFocusLost
-        
         if (txtUsername.getText().equals("")) {
             txtUsername.setText("USERNAME");
             txtUsername.setForeground(Color.LIGHT_GRAY);
@@ -405,7 +388,6 @@ public class LogInView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtUsernameFocusLost
 
     private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
-        
         this.dispose();
         try {
             new SignUpView().setVisible(true);
@@ -415,8 +397,6 @@ public class LogInView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void txtPasswordFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusGained
-        
-        txtPassword.setCaretColor(Color.LIGHT_GRAY);
         if (String.valueOf(txtPassword.getPassword()).equals("·············")) {
             txtPassword.setText("");
             txtPassword.setForeground(Color.black);
@@ -424,8 +404,6 @@ public class LogInView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordFocusGained
 
     private void txtPasswordFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtPasswordFocusLost
-        
-
         if (String.valueOf(txtPassword.getPassword()).equals("")) {
             txtPassword.setText("·············");
             txtPassword.setForeground(Color.LIGHT_GRAY);
@@ -433,7 +411,6 @@ public class LogInView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPasswordFocusLost
 
     private void btnLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogInActionPerformed
-        
         String username = txtUsername.getText();
         String password = new String(txtPassword.getPassword());
         boolean isUsernameEmpty = username.isEmpty() || username.equals("USERNAME");
@@ -463,9 +440,7 @@ public class LogInView extends javax.swing.JFrame {
             for (Event event : registeredEvents) {
                 Session.addRegisteredEvent(event);
             }
-
             this.dispose();
-
             if (loggedInUser.getRole().equals("admin")) {
                 new EventManager().setVisible(true);
             } else if (loggedInUser.getRole().equals("user")) {
@@ -475,17 +450,10 @@ public class LogInView extends javax.swing.JFrame {
                     Logger.getLogger(LogInView.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(this, "đăng nhập thất bại, tài khoản hoặc mật khẩu không đúng", "Thông báo",JOptionPane.INFORMATION_MESSAGE);
         }
     }//GEN-LAST:event_btnLogInActionPerformed
 
-    private void btnBackTitleViewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackTitleViewActionPerformed
-        
-    }//GEN-LAST:event_btnBackTitleViewActionPerformed
-
     private void btnBackTitleViewMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnBackTitleViewMouseClicked
-        
         this.dispose();
         new TitleView().setVisible(true);
     }//GEN-LAST:event_btnBackTitleViewMouseClicked

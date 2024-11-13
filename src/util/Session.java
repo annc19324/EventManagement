@@ -14,15 +14,13 @@ import model.User;
  * @author annc1
  */
 public class Session {
-
     private static User loggedInUser;
-    private static List<Event> registeredEvents = new ArrayList<>();
+    private static final List<Event> registeredEvents = new ArrayList<>();
 
     private Session() {
         // Private constructor để ngăn tạo instance
     }
 
-    //luu su kien da dang ky
     //lam moi 
     public static void clear() {
         loggedInUser = null;
@@ -49,7 +47,7 @@ public class Session {
     registeredEvents.removeIf(event -> event.getEventId().equals(eventId));
 }
 
-    //tra ve 1 su kien da dang ky
+    //tra ve danh sachc da dang ky
     public static List<Event> getRegisteredEvents() {
         return registeredEvents;
     }

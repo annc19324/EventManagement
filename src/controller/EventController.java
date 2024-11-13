@@ -128,16 +128,18 @@ public class EventController {
     }
 
     //luu thong tin dang ky vao bang attendee
-    public boolean registerEvent(int userId, String eventId) {
+    public boolean registerEvent(int userId, String fullName,  String eventId, String eventName) {
         if (isEventRegistered(userId, eventId)) {
             return false;
         }
 
-        String sql = "INSERT INTO Attendees (UserId, EventId, Status) VALUES (?, ?, ?)";
+        String sql = "INSERT INTO Attendees (UserId, FullName, EventId, EventName, Status) VALUES (?, ?, ?, ?, ?)";
         try (PreparedStatement stmt = dbConnect.connectSQL().prepareStatement(sql)) {
             stmt.setInt(1, userId);
-            stmt.setString(2, eventId);
-            stmt.setString(3, "Đã đăng ký"); // Hoặc trạng thái khác nếu cần
+            stmt.setString(2, fullName);
+            stmt.setString(3, eventId);
+            stmt.setString(4, eventName);
+            stmt.setString(5, "Đã đăng ký"); // Hoặc trạng thái khác nếu cần
             stmt.executeUpdate();
             return true;
         } catch (SQLException e) {

@@ -7,6 +7,7 @@ package controller;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import javax.swing.JOptionPane;
 import model.User;
 
 /**
@@ -52,7 +53,6 @@ public class UserController {
 
     public boolean addUser(User user) {
         if (isUsernameTaken(user.getUsername())) {
-            System.out.println("username existed");
             return false;
         }
         String sql = "insert into users(username, fullname, password, DateOfBirth, Mail, Phone, role) VALUES (?, ?, ?, ?, ?, ?, ?)";
@@ -81,23 +81,25 @@ public class UserController {
                 String inputHashedPassword = hashPassword(password);
                 if (storedHashedPassword.equals(inputHashedPassword)) {
                     User user = new User(
-                        rs.getInt("UserId"), 
-                        rs.getString("Username"),
-                        rs.getString("FullName"),
-                        rs.getString("Password"),
-                        rs.getDate("DateOfBirth"),
-                        rs.getString("Mail"),
-                        rs.getString("Phone"),
-                        rs.getString("Role")
+                            rs.getInt("UserId"),
+                            rs.getString("Username"),
+                            rs.getString("FullName"),
+                            rs.getString("Password"),
+                            rs.getDate("DateOfBirth"),
+                            rs.getString("Mail"),
+                            rs.getString("Phone"),
+                            rs.getString("Role")
                     );
                     return user;
+                } else {
+                    JOptionPane.showMessageDialog(null, "sai mật khẩu", "lỗi", JOptionPane.ERROR_MESSAGE);
+                    return null;
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        JOptionPane.showMessageDialog(null, "tên người dùng '" + username + "' chưa được đăng ký", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         return null;
-
     }
-
 }

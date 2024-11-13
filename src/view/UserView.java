@@ -6,10 +6,13 @@ package view;
 
 import controller.EventController;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -45,12 +48,8 @@ public class UserView extends javax.swing.JFrame {
 
         eventController = new EventController();
         eventManager = new EventManager();
-//        this.user = Session.getLoggedInUser();
         this.user = new User();
         lblUsername.setText("tài khoản: " + user.getFullname());
-
-        showAllEvents();
-        showRegisteredEvents();
     }
 
     public UserView(User user) throws SQLException {
@@ -61,7 +60,6 @@ public class UserView extends javax.swing.JFrame {
         eventController = new EventController();
         eventManager = new EventManager();
         this.user = Session.getLoggedInUser();
-//        this.user = new User();
         lblUsername.setText("Tài khoản: " + user.getFullname());
         String[] columnNames = {"Event ID", "Event Name", "Start Date", "End Date", "Location", "Description", "Status", "Price"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);
@@ -75,7 +73,8 @@ public class UserView extends javax.swing.JFrame {
         showRegisteredEvents();
         tblEventList.setRowHeight(40);
         tblRegisteredEventName.setRowHeight(40);
-
+        tblRegisteredEventName.setDefaultEditor(Object.class, null);
+        tblEventList.setDefaultEditor(Object.class, null);
     }
 
     /**
@@ -116,8 +115,8 @@ public class UserView extends javax.swing.JFrame {
         tblEventList = new javax.swing.JTable();
         lblEventList = new javax.swing.JLabel();
         pnlSearch_Refresh = new javax.swing.JPanel();
-        btnSearch = new javax.swing.JButton();
         lblRefresh = new javax.swing.JLabel();
+        btnSearch = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         lblRegisteredEvent = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -128,6 +127,11 @@ public class UserView extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
         setSize(new java.awt.Dimension(1100, 550));
+        addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                formMouseClicked(evt);
+            }
+        });
 
         pnlMain.setBackground(new java.awt.Color(51, 204, 255));
         pnlMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
@@ -399,6 +403,13 @@ public class UserView extends javax.swing.JFrame {
 
         pnlSearch_Refresh.setOpaque(false);
 
+        lblRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-refresh-35.png"))); // NOI18N
+        lblRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblRefreshMouseClicked(evt);
+            }
+        });
+
         btnSearch.setBackground(new java.awt.Color(102, 204, 255));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSearch.setText("Tìm kiếm");
@@ -406,13 +417,6 @@ public class UserView extends javax.swing.JFrame {
         btnSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnSearchMouseClicked(evt);
-            }
-        });
-
-        lblRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-refresh-35.png"))); // NOI18N
-        lblRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lblRefreshMouseClicked(evt);
             }
         });
 
@@ -603,14 +607,11 @@ public class UserView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
     private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
-        // TODO add your handling code here:
         openMenu();
     }//GEN-LAST:event_lblMenuMouseClicked
 
     private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
-        // TODO add your handling code here:
         closeMenu();
     }//GEN-LAST:event_lblCloseMouseClicked
 
@@ -623,42 +624,30 @@ public class UserView extends javax.swing.JFrame {
                 Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
-
-
     }//GEN-LAST:event_lblLogOutMouseClicked
 
-    // icon an app
-
     private void lblMinimize5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimize5MouseClicked
-        // TODO add your handling code here:
         setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_lblMinimize5MouseClicked
 
-    //icon dong app
     private void lblClose6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose6MouseClicked
-        // TODO add your handling code here:
         if ((JOptionPane.showConfirmDialog(this, "bạn có chắc chắn muốn thoát không?", "xác nhận thoát", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
             System.exit(0);
         }
     }//GEN-LAST:event_lblClose6MouseClicked
 
-    //di chuyen app
     private void pnlHeaderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMouseDragged
-        // TODO add your handling code here:
         int ox = evt.getXOnScreen();
         int oy = evt.getYOnScreen();
         setLocation(ox - mousePressX, oy - mousePressY);
     }//GEN-LAST:event_pnlHeaderMouseDragged
 
-    // nhan vi tri cua app
     private void pnlHeaderMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMousePressed
-        // TODO add your handling code here:
         mousePressX = evt.getX();
         mousePressY = evt.getY();
     }//GEN-LAST:event_pnlHeaderMousePressed
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
-        // TODO add your handling code here:
         btnSearchMouseClicked(null);
     }//GEN-LAST:event_txtSearchActionPerformed
 
@@ -677,33 +666,32 @@ public class UserView extends javax.swing.JFrame {
             }
         }
         try {
-            // TODO add your handling code here:
             showAllEvents();
         } catch (SQLException ex) {
             Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
     }//GEN-LAST:event_lblRefreshMouseClicked
 
     private void btnRegisterEventMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterEventMouseClicked
-        // TODO add your handling code here:
-        if (Session.getLoggedInUser() == null) {
-            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập trước khi đăng ký sự kiện.");
-            try {
-                new LogInView().setVisible(true);
-                this.dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+        if (!Session.isLoggedIn()) {
+            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
+                try {
+                    new LogInView().setVisible(true);
+                    this.dispose();
+                    return;
+                } catch (SQLException ex) {
+                    java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+            } else {
+                return;
             }
-            return;
         }
         int selectedRow = tblEventList.getSelectedRow();
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(this, "chọn ít nhất 1 sự kiện muốn tham gia để đăng ký!");
             return;
         }
-//lay thong tin dong dc chon
+        //lay thong tin dong dc chon
         String eventId = tblEventList.getValueAt(selectedRow, 0).toString();
         String eventName = tblEventList.getValueAt(selectedRow, 1).toString();
         String startDate = tblEventList.getValueAt(selectedRow, 2).toString();
@@ -713,7 +701,7 @@ public class UserView extends javax.swing.JFrame {
         String status = tblEventList.getValueAt(selectedRow, 6).toString();
         String price = tblEventList.getValueAt(selectedRow, 7).toString();
 
-        boolean isRegistered = eventController.registerEvent(Session.getLoggedInUser().getUserId(), eventId);
+        boolean isRegistered = eventController.registerEvent(Session.getLoggedInUser().getUserId(), Session.getLoggedInUser().getFullname(), eventId, eventName);
         if (isRegistered) {
             JOptionPane.showMessageDialog(this, "đăng ký sự kiện thành công!");
 
@@ -723,23 +711,45 @@ public class UserView extends javax.swing.JFrame {
             Event eventDetail = new Event(eventId, eventName, startDate, endDate, location, description, status, Double.parseDouble(price));
             Session.addRegisteredEvent(eventDetail);
         } else {
-            JOptionPane.showMessageDialog(this, "sự kiện này đã được đăng ký!, vui lòng đăng ký sự kiện khác");
+            JOptionPane.showMessageDialog(this, "sự kiện này đã được đăng ký!");
         }
     }//GEN-LAST:event_btnRegisterEventMouseClicked
 
     private void btnCheckDetailMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCheckDetailMouseClicked
-        // TODO add your handling code here:
-        try {
-            new RegisteredEventView().setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+        if (!Session.isLoggedIn()) {
+            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
+                try {
+                    new LogInView().setVisible(true);
+                    this.dispose();
+                } catch (SQLException ex) {
+                    Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        } else {
+            try {
+                new RegisteredEventView(Session.getLoggedInUser()).setVisible(true);
+                this.dispose();
+            } catch (SQLException ex) {
+                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_btnCheckDetailMouseClicked
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
+        if (!Session.isLoggedIn()) {
+            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
+                try {
+                    new LogInView().setVisible(true);
+                    this.dispose();
+                    return;
+                } catch (SQLException ex) {
+                    java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                }
+            } else {
+                return;
+            }
+        }
         try {
-            // TODO add your handling code here:
             new UserView(Session.getLoggedInUser()).setVisible(true);
             showRegisteredEvents();
 
@@ -750,7 +760,7 @@ public class UserView extends javax.swing.JFrame {
     }//GEN-LAST:event_lblHomeMouseClicked
 
     private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
-        // TODO add your handling code here:
+
         if (txtSearch.getText().equals("nhập mã sự kiện hoặc tên sự kiện cần tìm ở đây")) {
             txtSearch.setText("");
             txtSearch.setForeground(Color.BLACK);
@@ -759,7 +769,7 @@ public class UserView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchFocusGained
 
     private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
-        // TODO add your handling code here:
+
         if (txtSearch.getText().isEmpty()) {
             txtSearch.setForeground(Color.GRAY);
             txtSearch.setText("nhập mã sự kiện hoặc tên sự kiện cần tìm ở đây");
@@ -767,7 +777,7 @@ public class UserView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchFocusLost
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
-        // TODO add your handling code here:
+
         String key = txtSearch.getText().trim().toLowerCase();
         if (!Session.isLoggedIn()) {
             if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
@@ -823,6 +833,10 @@ public class UserView extends javax.swing.JFrame {
             Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSearchMouseClicked
+
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        closeMenu();
+    }//GEN-LAST:event_formMouseClicked
 
     //slide menu
     int width = 270;

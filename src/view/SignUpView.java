@@ -20,8 +20,6 @@ import model.User;
 public class SignUpView extends javax.swing.JFrame {
 
     private final UserController userController;
-    // private final StringBuilder errors = new StringBuilder("<html>");
-
     private int mousePressX, mousePressY;
 
     /**
@@ -489,7 +487,6 @@ public class SignUpView extends javax.swing.JFrame {
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         txtConfirmPassword.requestFocus();
-
     }//GEN-LAST:event_txtPasswordActionPerformed
 
     private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
@@ -500,7 +497,33 @@ public class SignUpView extends javax.swing.JFrame {
         btnSignUp.doClick();
     }//GEN-LAST:event_txtPhoneActionPerformed
 
-    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {
+    private void btnBackToLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToLogInActionPerformed
+        this.dispose();
+        try {
+            new LogInView().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnBackToLogInActionPerformed
+
+    private void btnSignUpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSignUpKeyPressed
+        btnSignUp.doClick();
+    }//GEN-LAST:event_btnSignUpKeyPressed
+
+    private void btnBackToLogInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBackToLogInKeyPressed
+        btnBackToLogIn.doClick();
+    }//GEN-LAST:event_btnBackToLogInKeyPressed
+
+    private void txtConfirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmPasswordActionPerformed
+        txtFullName.requestFocus();
+    }//GEN-LAST:event_txtConfirmPasswordActionPerformed
+
+    private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
+        txtMail.requestFocus();
+    }//GEN-LAST:event_txtFullNameActionPerformed
+
+    private void btnSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSignUpActionPerformed
+        // TODO add your handling code here:
         clearLabelError();
         boolean foundE = false;
         String username = txtUsername.getText().trim();
@@ -594,33 +617,7 @@ public class SignUpView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Đăng ký thất bại, tên người dùng đã tồn tại, vui lòng chọn tên người dùng khác.", "Lỗi đăng ký", JOptionPane.ERROR_MESSAGE);
         }
-    }
-
-
-    private void btnBackToLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToLogInActionPerformed
-        this.dispose();
-        try {
-            new LogInView().setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_btnBackToLogInActionPerformed
-
-    private void btnSignUpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnSignUpKeyPressed
-        btnSignUp.doClick();
-    }//GEN-LAST:event_btnSignUpKeyPressed
-
-    private void btnBackToLogInKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnBackToLogInKeyPressed
-        btnBackToLogIn.doClick();
-    }//GEN-LAST:event_btnBackToLogInKeyPressed
-
-    private void txtConfirmPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtConfirmPasswordActionPerformed
-        txtFullName.requestFocus();
-    }//GEN-LAST:event_txtConfirmPasswordActionPerformed
-
-    private void txtFullNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFullNameActionPerformed
-        txtMail.requestFocus();
-    }//GEN-LAST:event_txtFullNameActionPerformed
+    }//GEN-LAST:event_btnSignUpActionPerformed
 
     private void clearLabelError() {
         lblUsernameE.setText("");
