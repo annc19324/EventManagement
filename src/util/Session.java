@@ -38,7 +38,8 @@ public class Session {
     public static boolean isLoggedIn() {
         return loggedInUser != null;
     }
-
+    
+    //event
     public static void addRegisteredEvent(Event event) {
         registeredEvents.add(event);
     }

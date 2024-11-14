@@ -6,12 +6,8 @@ package view;
 
 import controller.EventController;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.logging.Level;
@@ -31,10 +27,12 @@ import util.Session;
  */
 public class UserView extends javax.swing.JFrame {
 
+    private boolean isOpenMenu = false;
     private int mousePressX, mousePressY;
     private final User user;
     private EventController eventController;
     private EventManager eventManager;
+    private int width = 270;
 
     /**
      * Creates new form UserView
@@ -85,7 +83,6 @@ public class UserView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         pnlMain = new javax.swing.JPanel();
         pnlHeader = new javax.swing.JPanel();
@@ -153,6 +150,7 @@ public class UserView extends javax.swing.JFrame {
         lblUsername.setForeground(new java.awt.Color(153, 0, 255));
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        lblMinimize5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMinimize5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bar.png"))); // NOI18N
         lblMinimize5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -161,6 +159,7 @@ public class UserView extends javax.swing.JFrame {
         });
 
         lblClose6.setForeground(new java.awt.Color(204, 0, 255));
+        lblClose6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblClose6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/x.png"))); // NOI18N
         lblClose6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -181,14 +180,13 @@ public class UserView extends javax.swing.JFrame {
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblMenu)
+                .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblMinimize5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblClose6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(lblMinimize5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(lblClose6, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlHeaderLayout.setVerticalGroup(
             pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -198,39 +196,43 @@ public class UserView extends javax.swing.JFrame {
                     .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(lblClose6)
                         .addGroup(pnlHeaderLayout.createSequentialGroup()
                             .addGap(3, 3, 3)
-                            .addComponent(lblMinimize5))))
+                            .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(lblClose6)
+                                .addComponent(lblMinimize5)))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pnlSlideMenu.setBackground(new java.awt.Color(51, 204, 255));
         pnlSlideMenu.setMinimumSize(new java.awt.Dimension(200, 0));
 
-        pnlClose.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         pnlClose.setOpaque(false);
-        pnlClose.setLayout(new java.awt.GridBagLayout());
 
-        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/close.png"))); // NOI18N
+        lblClose.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/x.png"))); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);
             }
         });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipady = -2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
-        gridBagConstraints.insets = new java.awt.Insets(0, 200, 0, 0);
-        pnlClose.add(lblClose, gridBagConstraints);
 
-        pnlPage.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        javax.swing.GroupLayout pnlCloseLayout = new javax.swing.GroupLayout(pnlClose);
+        pnlClose.setLayout(pnlCloseLayout);
+        pnlCloseLayout.setHorizontalGroup(
+            pnlCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlCloseLayout.setVerticalGroup(
+            pnlCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblClose, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+        );
+
         pnlPage.setOpaque(false);
 
         lblHome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblHome.setText("Trang chủ");
+        lblHome.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
         lblHome.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblHomeMouseClicked(evt);
@@ -239,12 +241,30 @@ public class UserView extends javax.swing.JFrame {
 
         lblAccount.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblAccount.setText("Tài khoản");
+        lblAccount.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
+        lblAccount.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblAccountMouseClicked(evt);
+            }
+        });
 
         lblJoinEvents.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblJoinEvents.setText("Tham gia sự kiện");
+        lblJoinEvents.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
+        lblJoinEvents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblJoinEventsMouseClicked(evt);
+            }
+        });
 
         lblJoinnedEvents.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblJoinnedEvents.setText("Sự kiện đã tham gia");
+        lblJoinnedEvents.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
+        lblJoinnedEvents.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblJoinnedEventsMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlPageLayout = new javax.swing.GroupLayout(pnlPage);
         pnlPage.setLayout(pnlPageLayout);
@@ -262,7 +282,7 @@ public class UserView extends javax.swing.JFrame {
         pnlPageLayout.setVerticalGroup(
             pnlPageLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPageLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addComponent(lblHome)
                 .addGap(18, 18, 18)
                 .addComponent(lblAccount)
@@ -273,17 +293,24 @@ public class UserView extends javax.swing.JFrame {
                 .addContainerGap(104, Short.MAX_VALUE))
         );
 
-        pnlfooter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         pnlfooter.setOpaque(false);
 
         lblHelp.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblHelp.setText("Trợ giúp");
+        lblHelp.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
+        lblHelp.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblHelpMouseClicked(evt);
+            }
+        });
 
         lblSetting.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblSetting.setText("Cài đặt");
+        lblSetting.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
 
         lblLogOut.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLogOut.setText("Đăng xuất");
+        lblLogOut.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
         lblLogOut.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblLogOutMouseClicked(evt);
@@ -311,7 +338,7 @@ public class UserView extends javax.swing.JFrame {
                 .addComponent(lblSetting)
                 .addGap(18, 18, 18)
                 .addComponent(lblLogOut)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout pnlSlideMenuLayout = new javax.swing.GroupLayout(pnlSlideMenu);
@@ -319,7 +346,7 @@ public class UserView extends javax.swing.JFrame {
         pnlSlideMenuLayout.setHorizontalGroup(
             pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSlideMenuLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pnlfooter, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -329,9 +356,9 @@ public class UserView extends javax.swing.JFrame {
             pnlSlideMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSlideMenuLayout.createSequentialGroup()
                 .addComponent(pnlClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29)
+                .addGap(0, 0, 0)
                 .addComponent(pnlPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(pnlfooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -444,7 +471,7 @@ public class UserView extends javax.swing.JFrame {
             .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCurrentEventListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
                     .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
                         .addComponent(txtSearch)
                         .addGap(18, 18, 18)
@@ -760,16 +787,13 @@ public class UserView extends javax.swing.JFrame {
     }//GEN-LAST:event_lblHomeMouseClicked
 
     private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
-
         if (txtSearch.getText().equals("nhập mã sự kiện hoặc tên sự kiện cần tìm ở đây")) {
             txtSearch.setText("");
             txtSearch.setForeground(Color.BLACK);
         }
-
     }//GEN-LAST:event_txtSearchFocusGained
 
     private void txtSearchFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusLost
-
         if (txtSearch.getText().isEmpty()) {
             txtSearch.setForeground(Color.GRAY);
             txtSearch.setText("nhập mã sự kiện hoặc tên sự kiện cần tìm ở đây");
@@ -777,7 +801,6 @@ public class UserView extends javax.swing.JFrame {
     }//GEN-LAST:event_txtSearchFocusLost
 
     private void btnSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSearchMouseClicked
-
         String key = txtSearch.getText().trim().toLowerCase();
         if (!Session.isLoggedIn()) {
             if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
@@ -795,12 +818,6 @@ public class UserView extends javax.swing.JFrame {
 
         if (key.equals("") || key.equals("nhập mã sự kiện hoặc tên sự kiện cần tìm ở đây")) {
             JOptionPane.showMessageDialog(this, "hãy nhập mã sự kiện hoặc tên sự kiện cần tìm!", "thông báo", JOptionPane.INFORMATION_MESSAGE);
-            try {
-                showAllEvents();
-            } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-
             return;
         }
 
@@ -835,13 +852,45 @@ public class UserView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSearchMouseClicked
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        closeMenu();
+        if (isOpenMenu) {
+            closeMenu();
+        }
     }//GEN-LAST:event_formMouseClicked
 
-    //slide menu
-    int width = 270;
+    private void lblHelpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHelpMouseClicked
+        new HelpView(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblHelpMouseClicked
+
+    private void lblJoinEventsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJoinEventsMouseClicked
+        try {
+            new UserView(Session.getLoggedInUser()).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblJoinEventsMouseClicked
+
+    private void lblJoinnedEventsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJoinnedEventsMouseClicked
+        try {
+            new RegisteredEventView(Session.getLoggedInUser()).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblJoinnedEventsMouseClicked
+
+    private void lblAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccountMouseClicked
+        try {
+            new AccountView(Session.getLoggedInUser()).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_lblAccountMouseClicked
 
     public void openMenu() {
+        isOpenMenu = true;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -861,6 +910,7 @@ public class UserView extends javax.swing.JFrame {
     }
 
     public void closeMenu() {
+        isOpenMenu = false;
         new Thread(new Runnable() {
             @Override
             public void run() {
@@ -887,15 +937,12 @@ public class UserView extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) tblEventList.getModel();
         //reset hang
         model.setRowCount(0);
-
         Timer timer = new Timer(100, new ActionListener() {
             private int index = 0;
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (index < eList.size()) {
                     Event event = eList.get(index);
-//                    for(Event event : eList)
                     Object[] rowData = {
                         event.getEventId(),
                         event.getEventName(),
@@ -913,7 +960,6 @@ public class UserView extends javax.swing.JFrame {
                 }
             }
         });
-
         // Bắt đầu Timer
         timer.start();
     }
@@ -928,7 +974,6 @@ public class UserView extends javax.swing.JFrame {
                     event.getEventName(),});
             }
         }
-
     }
 
     /**

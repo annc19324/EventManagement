@@ -102,4 +102,16 @@ public class UserController {
         JOptionPane.showMessageDialog(null, "tên người dùng '" + username + "' chưa được đăng ký", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         return null;
     }
+    
+    public boolean updateUserInf(String username, String fullName, Date dateOfBirth, String mail, String phone) throws SQLException{
+        String query = "update Users set FullName = ?, DateOfBirth = ?, Phone = ?, Mail = ? where Username = ?";
+        try(PreparedStatement ps = conn.prepareStatement(query)){
+            ps.setString(1, fullName);
+            ps.setDate(2, new java.sql.Date(dateOfBirth.getTime()));
+            ps.setString(3, mail);
+            ps.setString(4, phone);
+            ps.setString(5, username);
+            return ps.executeUpdate() > 0;
+        }
+    }
 }
