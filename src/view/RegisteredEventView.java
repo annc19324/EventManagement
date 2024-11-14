@@ -632,7 +632,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
                 return;
             }
         }
-        String key = txtSearch.getText();
+        String key = txtSearch.getText().trim().toLowerCase();
         if (key.equals("") || key.equals("nhập mã sự kiện hoặc tên sự kiện cần tìm ở đây")) {
             JOptionPane.showMessageDialog(this, "hãy nhập mã sự kiện hoặc tên sự kiện cần tìm!", "thông báo", JOptionPane.INFORMATION_MESSAGE);
             showAllEvents();
@@ -644,6 +644,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         List<Event> registeredEvents;
         registeredEvents = eventController.getRegisteredEventsByUserId(Session.getLoggedInUser().getUserId());
         boolean found = false;
+        
         for (Event event : registeredEvents) {
             if (event.getEventId().toLowerCase().contains(key) || event.getEventName().toLowerCase().contains(key)) {
                 model.addRow(new Object[]{
@@ -657,7 +658,6 @@ public class RegisteredEventView extends javax.swing.JFrame {
                     event.getPrice()
                 });
                 found = true;
-                txtSearch.setText("");
             }
         }
         if (!found) {

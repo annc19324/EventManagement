@@ -827,6 +827,7 @@ public class UserView extends javax.swing.JFrame {
         try {
             List<Event> eventList = eventController.getAllEvent();
             boolean found = false;
+            
             for (Event event : eventList) {
                 if (event.getEventName().toLowerCase().contains(key) || event.getEventId().toLowerCase().contains(key)) {
                     model.addRow(new Object[]{
@@ -839,6 +840,7 @@ public class UserView extends javax.swing.JFrame {
                         event.getStatus(),
                         event.getPrice(),});
                     found = true;
+                    Session.addRegisteredEvent(event);
                     txtSearch.setText("");
                 }
             }
