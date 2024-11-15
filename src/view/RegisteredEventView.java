@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Event;
 import model.User;
 import util.Session;
+import util.showTableCell;
 
 /**
  *
@@ -70,6 +71,12 @@ public class RegisteredEventView extends javax.swing.JFrame {
         showAllEvents();
         tblRegisteredEventDetail.setRowHeight(40);
         tblRegisteredEventDetail.setDefaultEditor(Object.class, null);
+
+        //
+        for (int i = 0; i < tblRegisteredEventDetail.getColumnCount(); i++) {
+            tblRegisteredEventDetail.getColumnModel().getColumn(i).setCellRenderer(new showTableCell());
+        }
+
     }
 
     /**
@@ -123,7 +130,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
 
         pnlMain.setBackground(new java.awt.Color(102, 204, 255));
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
+        pnlHeader.setBackground(new java.awt.Color(0, 153, 153));
         pnlHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pnlHeaderMouseDragged(evt);
@@ -136,7 +143,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         });
 
         lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(153, 0, 255));
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblMinimize5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -181,13 +188,12 @@ public class RegisteredEventView extends javax.swing.JFrame {
             .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblClose6)
-                            .addGroup(pnlHeaderLayout.createSequentialGroup()
-                                .addGap(3, 3, 3)
-                                .addComponent(lblMinimize5)))))
+                    .addComponent(lblUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(pnlHeaderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblClose6)
+                        .addGroup(pnlHeaderLayout.createSequentialGroup()
+                            .addGap(3, 3, 3)
+                            .addComponent(lblMinimize5))))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -364,6 +370,11 @@ public class RegisteredEventView extends javax.swing.JFrame {
             }
         ));
         tblRegisteredEventDetail.setShowGrid(true);
+        tblRegisteredEventDetail.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                tblRegisteredEventDetailMouseMoved(evt);
+            }
+        });
         jScrollPane1.setViewportView(tblRegisteredEventDetail);
 
         txtSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -444,7 +455,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtSearch))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -644,7 +655,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         List<Event> registeredEvents;
         registeredEvents = eventController.getRegisteredEventsByUserId(Session.getLoggedInUser().getUserId());
         boolean found = false;
-        
+
         for (Event event : registeredEvents) {
             if (event.getEventId().toLowerCase().contains(key) || event.getEventName().toLowerCase().contains(key)) {
                 model.addRow(new Object[]{
@@ -723,6 +734,10 @@ public class RegisteredEventView extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_lblAccountMouseClicked
+
+    private void tblRegisteredEventDetailMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegisteredEventDetailMouseMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tblRegisteredEventDetailMouseMoved
 
     int width = 270;
 
