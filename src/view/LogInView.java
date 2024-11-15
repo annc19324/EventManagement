@@ -83,7 +83,7 @@ public class LogInView extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(102, 204, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(950, 450));
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
+        pnlHeader.setBackground(new java.awt.Color(0, 153, 153));
         pnlHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pnlHeaderMouseDragged(evt);
@@ -96,7 +96,7 @@ public class LogInView extends javax.swing.JFrame {
         });
 
         lblHeaderTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblHeaderTitle.setForeground(new java.awt.Color(153, 0, 255));
+        lblHeaderTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblHeaderTitle.setText("Let's join us for exciting events");
 
         lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -141,10 +141,11 @@ public class LogInView extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
         jPanel4.setOpaque(false);
 
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(153, 0, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Đăng nhập");
         jPanel4.add(jLabel1);

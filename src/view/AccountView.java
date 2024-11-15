@@ -124,7 +124,7 @@ public class AccountView extends javax.swing.JFrame {
 
         pnlMain.setBackground(new java.awt.Color(102, 204, 255));
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
+        pnlHeader.setBackground(new java.awt.Color(0, 153, 153));
         pnlHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pnlHeaderMouseDragged(evt);
@@ -137,7 +137,7 @@ public class AccountView extends javax.swing.JFrame {
         });
 
         lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(153, 0, 255));
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblMinimize5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -172,7 +172,7 @@ public class AccountView extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 399, Short.MAX_VALUE)
+                .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(0, 0, 0)
                 .addComponent(lblMinimize5, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)

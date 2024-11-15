@@ -4,16 +4,11 @@
  */
 package view;
 
-import com.sun.tools.javac.Main;
-import java.awt.Color;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
@@ -79,7 +74,6 @@ public class TitleView extends javax.swing.JFrame {
 
         lblMainTitle.setBackground(new java.awt.Color(153, 0, 204));
         lblMainTitle.setFont(new java.awt.Font("Segoe UI", 1, 48)); // NOI18N
-        lblMainTitle.setForeground(new java.awt.Color(153, 0, 255));
         lblMainTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblMainTitle.setText("Tham gia ngay!");
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -161,7 +155,7 @@ public class TitleView extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(13, 12, 13, 12);
         pnlContainAll.add(pnlContainer, gridBagConstraints);
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
+        pnlHeader.setBackground(new java.awt.Color(0, 153, 153));
         pnlHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pnlHeaderMouseDragged(evt);
@@ -174,7 +168,7 @@ public class TitleView extends javax.swing.JFrame {
         });
 
         lblHeaderTitle.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblHeaderTitle.setForeground(new java.awt.Color(153, 0, 255));
+        lblHeaderTitle.setForeground(new java.awt.Color(255, 255, 255));
         lblHeaderTitle.setText("Let's join us for exciting events");
 
         lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);

@@ -20,6 +20,7 @@ import javax.swing.table.DefaultTableModel;
 import model.Event;
 import model.User;
 import util.Session;
+import util.showTableCell;
 
 /**
  *
@@ -73,6 +74,10 @@ public class UserView extends javax.swing.JFrame {
         tblRegisteredEventName.setRowHeight(40);
         tblRegisteredEventName.setDefaultEditor(Object.class, null);
         tblEventList.setDefaultEditor(Object.class, null);
+
+        for (int i = 0; i < tblEventList.getColumnCount(); i++) {
+            tblEventList.getColumnModel().getColumn(i).setCellRenderer(new showTableCell());
+        }
     }
 
     /**
@@ -134,7 +139,7 @@ public class UserView extends javax.swing.JFrame {
         pnlMain.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(204, 204, 204), 5, true));
         pnlMain.setPreferredSize(new java.awt.Dimension(950, 450));
 
-        pnlHeader.setBackground(new java.awt.Color(255, 255, 0));
+        pnlHeader.setBackground(new java.awt.Color(0, 153, 153));
         pnlHeader.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseDragged(java.awt.event.MouseEvent evt) {
                 pnlHeaderMouseDragged(evt);
@@ -147,7 +152,7 @@ public class UserView extends javax.swing.JFrame {
         });
 
         lblUsername.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        lblUsername.setForeground(new java.awt.Color(153, 0, 255));
+        lblUsername.setForeground(new java.awt.Color(255, 255, 255));
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblMinimize5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -182,7 +187,7 @@ public class UserView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, 893, Short.MAX_VALUE)
+                .addComponent(lblUsername, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMinimize5, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
@@ -471,7 +476,7 @@ public class UserView extends javax.swing.JFrame {
             .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCurrentEventListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 610, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
                     .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
                         .addComponent(txtSearch)
                         .addGap(18, 18, 18)
@@ -827,7 +832,7 @@ public class UserView extends javax.swing.JFrame {
         try {
             List<Event> eventList = eventController.getAllEvent();
             boolean found = false;
-            
+
             for (Event event : eventList) {
                 if (event.getEventName().toLowerCase().contains(key) || event.getEventId().toLowerCase().contains(key)) {
                     model.addRow(new Object[]{
@@ -941,6 +946,7 @@ public class UserView extends javax.swing.JFrame {
         model.setRowCount(0);
         Timer timer = new Timer(100, new ActionListener() {
             private int index = 0;
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (index < eList.size()) {
