@@ -1,13 +1,149 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package controller;
 
-/**
- *
- * @author pc
- */
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import model.Order;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+
 public class OrderController {
+
+    private Connect dbConnect;
+
+    public OrderController() {
+        dbConnect = new Connect();
+    }
+       public boolean addOrderFromAttendees(int attendeeId) {
+        String query = """
+        INSERT INTO Orders (UserId, EventId, TotalPrice, OrderDate, PaymentStatus)
+        SELECT a.UserId, a.EventId, e.Price, GETDATE(), 'Chờ'
+        FROM Attendees a
+        INNER JOIN Events e ON a.EventId = e.EventId
+        WHERE a.AttendeeId = ?;
+    """;
+        try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, attendeeId); // Lấy thông tin theo AttendeeId
+
+            return stmt.executeUpdate() > 0; // Trả về true nếu thêm thành công
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Trả về false nếu có lỗi
+    }
+    public boolean addOrder(Order order) {
+        String query = "INSERT INTO Orders (UserId, EventId, TotalPrice, OrderDate, PaymentStatus) VALUES (?, ?, ?, ?, ?)";
+        try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, order.getUserId());
+            stmt.setString(2, order.getEventId());
+            stmt.setDouble(3, order.getTotalPrice());
+            stmt.setDate(4, new java.sql.Date(order.getOrderDate().getTime()));
+            stmt.setString(5, order.getPaymentStatus());
+
+            return stmt.executeUpdate() > 0; // Trả về true nếu thêm thành công
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Trả về false nếu có lỗi
+    }
+    public List<Order> searchOrder(String keyword){
+        List<Order> order=new ArrayList<>();
+        String sql="select *from Orders where UserId like?";
+        try(Connection connection =dbConnect.connectSQL();PreparedStatement stmt =connection.prepareStatement(sql)){
+            stmt.setString(1, "%"+keyword+"%");
+            ResultSet rs=stmt.executeQuery();
+            while(rs.next()){
+                order.add(new Order(
+                        rs.getInt("OrderId"),
+                        rs.getInt("UserId"),
+                        rs.getString("EventId"),
+                        rs.getDouble("TotalPrice"),
+                        rs.getDate("OrderDate"),
+                        rs.getString("PaymentStatus")
+                ));
+            }
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+        return order;
+    }
     
+    // Lấy danh sách tất cả đơn hàng
+    public List<Order> getOrders() {
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT * FROM Orders";
+        try (Connection connection = dbConnect.connectSQL(); Statement stmt = connection.createStatement(); ResultSet rs = stmt.executeQuery(query)) {
+            while (rs.next()) {
+                orders.add(new Order(
+                        rs.getInt("OrderId"),
+                        rs.getInt("UserId"),
+                        rs.getString("EventId"),
+                        rs.getDouble("TotalPrice"),
+                        rs.getDate("OrderDate"),
+                        rs.getString("PaymentStatus")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
+
+    // Lấy danh sách đơn hàng theo UserId
+    public List<Order> getOrdersByUserId(int userId) {
+        List<Order> orders = new ArrayList<>();
+        String query = "SELECT * FROM Orders WHERE UserId = ?";
+
+        try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, userId);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                Order order = new Order(
+                        rs.getInt("OrderId"),
+                        rs.getInt("UserId"),
+                        rs.getString("EventId"),
+                        rs.getDouble("TotalPrice"),
+                        rs.getDate("OrderDate"),
+                        rs.getString("PaymentStatus")
+                );
+                orders.add(order);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return orders;
+    }
+    public boolean updateOrder(Order order) {
+    String query = "UPDATE Orders SET UserId = ?, EventId = ?, TotalPrice = ?, OrderDate = ?, PaymentStatus = ? WHERE OrderId = ?";
+    try (Connection conn = dbConnect.connectSQL();
+         PreparedStatement stmt = conn.prepareStatement(query)) {
+        stmt.setInt(1, order.getUserId());
+        stmt.setString(2, order.getEventId());
+        stmt.setDouble(3, order.getTotalPrice());
+        stmt.setDate(4, new java.sql.Date(order.getOrderDate().getTime()));
+        stmt.setString(5, order.getPaymentStatus());
+        stmt.setInt(6, order.getOrderId());
+
+        return stmt.executeUpdate() > 0;
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return false;
+    }
+}
+
+
+    // Xóa đơn hàng theo OrderId
+    public boolean deleteOrder(int orderId) {
+        String query = "DELETE FROM Orders WHERE OrderId = ?";
+        try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, orderId);
+
+            return stmt.executeUpdate() > 0; // Trả về true nếu xóa thành công
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Trả về false nếu có lỗi
+    }
+
 }

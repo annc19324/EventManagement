@@ -12,24 +12,32 @@ import java.util.Date;
  */
 public class Order {
 
-    private int orderId;         // [OrderId]
-    private int attendeeId;      // [AttendeeId]
-    private int eventId;         // [EventId]
-    private double totalPrice;   // [TotalProce]
-    private Date orderDate;      // [OrderDate]
-    private String paymentStatus;
-
     public Order() {
     }
 
-    public Order(int orderId, int attendeeId, int eventId, double totalPrice, Date orderDate, String paymentStatus) {
+    public Order(int orderId, int userId, String eventId, double totalPrice, Date orderDate, String paymentStatus) {
         this.orderId = orderId;
-        this.attendeeId = attendeeId;
+        this.userId = userId;
         this.eventId = eventId;
         this.totalPrice = totalPrice;
         this.orderDate = orderDate;
         this.paymentStatus = paymentStatus;
     }
+
+    private int orderId;
+    private int userId;
+    private String eventId;
+    private double totalPrice;
+
+    public Order(int userId, String eventId, double totalPrice, Date orderDate, String paymentStatus) {
+        this.userId = userId;
+        this.eventId = eventId;
+        this.totalPrice = totalPrice;
+        this.orderDate = orderDate;
+        this.paymentStatus = paymentStatus;
+    }
+    private Date orderDate;
+    private String paymentStatus;
 
     public int getOrderId() {
         return orderId;
@@ -39,19 +47,19 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public int getAttendeeId() {
-        return attendeeId;
+    public int getUserId() {
+        return userId;
     }
 
-    public void setAttendeeId(int attendeeId) {
-        this.attendeeId = attendeeId;
+    public void setUserId(int userId) {
+        this.userId = userId;
     }
 
-    public int getEventId() {
+    public String getEventId() {
         return eventId;
     }
 
-    public void setEventId(int eventId) {
+    public void setEventId(String eventId) {
         this.eventId = eventId;
     }
 
@@ -78,5 +86,6 @@ public class Order {
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
+    
     
 }
