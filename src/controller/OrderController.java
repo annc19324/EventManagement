@@ -14,23 +14,26 @@ public class OrderController {
     public OrderController() {
         dbConnect = new Connect();
     }
-       public boolean addOrderFromAttendees(int attendeeId) {
+
+    public boolean addOrderForAttendee(int userId, String eventId) {
         String query = """
         INSERT INTO Orders (UserId, EventId, TotalPrice, OrderDate, PaymentStatus)
-        SELECT a.UserId, a.EventId, e.Price, GETDATE(), 'Chờ'
+        SELECT a.UserId, e.EventId, e.Price, GETDATE(), 'Pending'
         FROM Attendees a
-        INNER JOIN Events e ON a.EventId = e.EventId
-        WHERE a.AttendeeId = ?;
+        JOIN Events e ON a.EventId = e.EventId
+        WHERE a.UserId = ? AND a.EventId = ?;
     """;
-        try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, attendeeId); // Lấy thông tin theo AttendeeId
 
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId);       // Gán UserId
+            stmt.setString(2, eventId);   // Gán EventId
             return stmt.executeUpdate() > 0; // Trả về true nếu thêm thành công
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return false; // Trả về false nếu có lỗi
     }
+
     public boolean addOrder(Order order) {
         String query = "INSERT INTO Orders (UserId, EventId, TotalPrice, OrderDate, PaymentStatus) VALUES (?, ?, ?, ?, ?)";
         try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
@@ -46,13 +49,27 @@ public class OrderController {
         }
         return false; // Trả về false nếu có lỗi
     }
-    public List<Order> searchOrder(String keyword){
-        List<Order> order=new ArrayList<>();
-        String sql="select *from Orders where UserId like?";
-        try(Connection connection =dbConnect.connectSQL();PreparedStatement stmt =connection.prepareStatement(sql)){
-            stmt.setString(1, "%"+keyword+"%");
-            ResultSet rs=stmt.executeQuery();
-            while(rs.next()){
+
+    public boolean updatePaymentStatus(int orderId, String paymentStatus) {
+        String query = "UPDATE Orders SET PaymentStatus = ? WHERE OrderId = ?";
+        try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setString(1, paymentStatus); // Giá trị PaymentStatus mới
+            stmt.setInt(2, orderId); // ID đơn hàng
+
+            return stmt.executeUpdate() > 0; // Trả về true nếu cập nhật thành công
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Trả về false nếu có lỗi
+    }
+
+    public List<Order> searchOrder(String keyword) {
+        List<Order> order = new ArrayList<>();
+        String sql = "select *from Orders where UserId like?";
+        try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(sql)) {
+            stmt.setString(1, "%" + keyword + "%");
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
                 order.add(new Order(
                         rs.getInt("OrderId"),
                         rs.getInt("UserId"),
@@ -62,12 +79,12 @@ public class OrderController {
                         rs.getString("PaymentStatus")
                 ));
             }
-        }catch(SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return order;
     }
-    
+
     // Lấy danh sách tất cả đơn hàng
     public List<Order> getOrders() {
         List<Order> orders = new ArrayList<>();
@@ -114,24 +131,23 @@ public class OrderController {
         }
         return orders;
     }
+
     public boolean updateOrder(Order order) {
-    String query = "UPDATE Orders SET UserId = ?, EventId = ?, TotalPrice = ?, OrderDate = ?, PaymentStatus = ? WHERE OrderId = ?";
-    try (Connection conn = dbConnect.connectSQL();
-         PreparedStatement stmt = conn.prepareStatement(query)) {
-        stmt.setInt(1, order.getUserId());
-        stmt.setString(2, order.getEventId());
-        stmt.setDouble(3, order.getTotalPrice());
-        stmt.setDate(4, new java.sql.Date(order.getOrderDate().getTime()));
-        stmt.setString(5, order.getPaymentStatus());
-        stmt.setInt(6, order.getOrderId());
+        String query = "UPDATE Orders SET UserId = ?, EventId = ?, TotalPrice = ?, OrderDate = ?, PaymentStatus = ? WHERE OrderId = ?";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, order.getUserId());
+            stmt.setString(2, order.getEventId());
+            stmt.setDouble(3, order.getTotalPrice());
+            stmt.setDate(4, new java.sql.Date(order.getOrderDate().getTime()));
+            stmt.setString(5, order.getPaymentStatus());
+            stmt.setInt(6, order.getOrderId());
 
-        return stmt.executeUpdate() > 0;
-    } catch (SQLException e) {
-        e.printStackTrace();
-        return false;
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
-}
-
 
     // Xóa đơn hàng theo OrderId
     public boolean deleteOrder(int orderId) {

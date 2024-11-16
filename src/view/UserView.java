@@ -4,7 +4,9 @@
  */
 package view;
 
+import controller.AttendeeController;
 import controller.EventController;
+import controller.OrderController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -383,6 +385,11 @@ public class UserView extends javax.swing.JFrame {
                 btnRegisterEventMouseClicked(evt);
             }
         });
+        btnRegisterEvent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegisterEventActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlbtnFunc2Layout = new javax.swing.GroupLayout(pnlbtnFunc2);
         pnlbtnFunc2.setLayout(pnlbtnFunc2Layout);
@@ -551,7 +558,7 @@ public class UserView extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnCheckDetail, javax.swing.GroupLayout.DEFAULT_SIZE, 192, Short.MAX_VALUE)
+                .addComponent(btnCheckDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -895,6 +902,59 @@ public class UserView extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_lblAccountMouseClicked
+    private String getSelectedEventId() {
+        // Kiểm tra xem có hàng nào được chọn không
+        int selectedRow = tblEventList.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một sự kiện!");
+            return null; // Trả về null nếu không có hàng nào được chọn
+        }
+
+        // Lấy EventId từ cột tương ứng (giả sử cột 0 là EventId)
+        DefaultTableModel tableModel = (DefaultTableModel) tblEventList.getModel();
+        return tableModel.getValueAt(selectedRow, 0).toString(); // Trả về EventId dưới dạng String
+    }
+
+    private void btnRegisterEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterEventActionPerformed
+        // TODO add your handling code here:
+        User loggedInUser = Session.getLoggedInUser();
+        if (loggedInUser == null) {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập trước khi đăng ký sự kiện.");
+            return;
+        }
+
+// Lấy UserId từ Session
+        int userId = loggedInUser.getUserId();
+
+// Lấy EventId từ bảng sự kiện
+        String eventId = getSelectedEventId();
+        if (eventId == null) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một sự kiện.");
+            return;
+        }
+
+// Thêm thông tin vào bảng Attendees
+        AttendeeController attendeeController = new AttendeeController();
+        boolean isAttendeeAdded = attendeeController.addAttendee(userId, eventId);
+
+        if (!isAttendeeAdded) {
+            JOptionPane.showMessageDialog(this, "Đăng ký thất bại! Không thể thêm vào danh sách tham gia.");
+            return;
+        }
+// Lấy AttendeeId vừa thêm
+
+
+// Thêm thông tin vào bảng Orders
+        OrderController orderController = new OrderController();
+        boolean isOrderAdded = orderController.addOrderForAttendee(userId, eventId);
+
+        if (isOrderAdded) {
+            JOptionPane.showMessageDialog(this, "Đăng ký và tạo đơn hàng thành công!");
+        } else {
+            JOptionPane.showMessageDialog(this, "Không thể tạo đơn hàng. Vui lòng thử lại.");
+        }
+
+    }//GEN-LAST:event_btnRegisterEventActionPerformed
 
     public void openMenu() {
         isOpenMenu = true;

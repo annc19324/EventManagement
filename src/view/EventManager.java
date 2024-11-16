@@ -123,6 +123,12 @@ public class EventManager extends javax.swing.JFrame {
         btnLamMoi = new javax.swing.JButton();
         txtTimKiem = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -420,6 +426,24 @@ public class EventManager extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jMenu1.setText("Trang Chủ");
+
+        jMenuItem1.setText("jMenuItem1");
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("jMenuItem2");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("jMenuItem3");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Admin");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -562,11 +586,10 @@ public class EventManager extends javax.swing.JFrame {
 
     private void jTableEventManagerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableEventManagerMouseClicked
         // TODO add your handling code here:
-        int selectedRow = jTableEventManager.getSelectedRow();
+        int selectedRow = jTableEventManager.getSelectedRow(); // Lấy chỉ số hàng được chọn
         if (selectedRow != -1) {
-            // Lấy dữ liệu từ hàng được chọn trong bảng
+            // Lấy dữ liệu từ hàng được chọn
             String eventIdStr = jTableEventManager.getValueAt(selectedRow, 0).toString();
-            int eventId = Integer.parseInt(eventIdStr);  // Chuyển từ String sang int
             String eventName = jTableEventManager.getValueAt(selectedRow, 1).toString();
             String startDateStr = jTableEventManager.getValueAt(selectedRow, 2).toString();
             String endDateStr = jTableEventManager.getValueAt(selectedRow, 3).toString();
@@ -575,16 +598,21 @@ public class EventManager extends javax.swing.JFrame {
             String status = jTableEventManager.getValueAt(selectedRow, 6).toString();
             double price = Double.parseDouble(jTableEventManager.getValueAt(selectedRow, 7).toString());
 
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd"); // Thay đổi định dạng ngày
+            // Xử lý ngày tháng
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
             Date startDate = null;
             Date endDate = null;
             try {
-                startDate = sdf.parse(startDateStr);  // Chuyển chuỗi thành đối tượng Date
-                endDate = sdf.parse(endDateStr);      // Chuyển chuỗi thành đối tượng Date
+                startDate = sdf.parse(startDateStr);
+                endDate = sdf.parse(endDateStr);
             } catch (ParseException e) {
-                e.printStackTrace();  // Ghi lại lỗi nếu không thể phân tích ngày
+                e.printStackTrace(); // Ghi lại lỗi nếu không thể phân tích ngày
+                JOptionPane.showMessageDialog(null, "Định dạng ngày không hợp lệ!");
+                return;
             }
-            txtMa.setText(String.valueOf(eventId));
+
+            // Hiển thị dữ liệu lên các ô nhập liệu
+            txtMa.setText(eventIdStr);
             txtTen.setText(eventName);
             txtDiaDiem.setText(location);
             txtMoTa.setText(description);
@@ -649,6 +677,12 @@ public class EventManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
