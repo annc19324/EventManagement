@@ -3,13 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/D:/Netbean/EventManagement/src/view/EventManager.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/view/RegisteredEventView.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/controller/OrderController.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/view/SignUpView.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/view/OrderManager.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/view/AdminView.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/model/Attendee.java</file>
             <file>file:/D:/Netbean/EventManagement/src/controller/AttendeeController.java</file>
             <file>file:/D:/Netbean/EventManagement/src/view/UserView.java</file>
-            <file>file:/D:/Netbean/EventManagement/src/controller/OrderController.java</file>
             <file>file:/D:/Netbean/EventManagement/src/view/AccountView.java</file>
-            <file>file:/D:/Netbean/EventManagement/src/view/OrderManager.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/view/AttendeeManager.java</file>
             <file>file:/D:/Netbean/EventManagement/src/controller/EventController.java</file>
-            <file>file:/D:/Netbean/EventManagement/src/model/Attendee.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/view/LogInView.java</file>
+            <file>file:/D:/Netbean/EventManagement/src/model/Order.java</file>
         </group>
     </open-files>
 </project-private>

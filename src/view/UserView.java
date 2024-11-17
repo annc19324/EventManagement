@@ -923,17 +923,16 @@ public class UserView extends javax.swing.JFrame {
             return;
         }
 
-// Lấy UserId từ Session
+        // Lấy UserId từ Session
         int userId = loggedInUser.getUserId();
 
-// Lấy EventId từ bảng sự kiện
+        // Lấy EventId từ bảng sự kiện
         String eventId = getSelectedEventId();
         if (eventId == null) {
             JOptionPane.showMessageDialog(this, "Vui lòng chọn một sự kiện.");
             return;
         }
-
-// Thêm thông tin vào bảng Attendees
+        // Thêm thông tin vào bảng Attendees
         AttendeeController attendeeController = new AttendeeController();
         boolean isAttendeeAdded = attendeeController.addAttendee(userId, eventId);
 
@@ -941,10 +940,8 @@ public class UserView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Đăng ký thất bại! Không thể thêm vào danh sách tham gia.");
             return;
         }
-// Lấy AttendeeId vừa thêm
 
-
-// Thêm thông tin vào bảng Orders
+        // Thêm thông tin vào bảng Orders
         OrderController orderController = new OrderController();
         boolean isOrderAdded = orderController.addOrderForAttendee(userId, eventId);
 
@@ -953,7 +950,6 @@ public class UserView extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Không thể tạo đơn hàng. Vui lòng thử lại.");
         }
-
     }//GEN-LAST:event_btnRegisterEventActionPerformed
 
     public void openMenu() {
