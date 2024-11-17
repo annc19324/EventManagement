@@ -11,33 +11,29 @@ import java.util.Date;
  * @author pc
  */
 public class Order {
-
-    public Order() {
-    }
-
-    public Order(int orderId, int userId, String eventId, double totalPrice, Date orderDate, String paymentStatus) {
-        this.orderId = orderId;
-        this.userId = userId;
-        this.eventId = eventId;
-        this.totalPrice = totalPrice;
-        this.orderDate = orderDate;
-        this.paymentStatus = paymentStatus;
-    }
-
+     
     private int orderId;
     private int userId;
     private String eventId;
+    private String fullName;
+    private String eventName;
     private double totalPrice;
+    private Date orderDate;
+    private String paymentStatus;
+    
+    public Order() {
+    }
 
-    public Order(int userId, String eventId, double totalPrice, Date orderDate, String paymentStatus) {
+    public Order(int orderId, int userId , String fullName,String eventId, String eventName, double totalPrice, Date orderDate, String paymentStatus) {
+        this.orderId = orderId;
         this.userId = userId;
         this.eventId = eventId;
+        this.fullName = fullName;
+        this.eventName = eventName;
         this.totalPrice = totalPrice;
         this.orderDate = orderDate;
         this.paymentStatus = paymentStatus;
     }
-    private Date orderDate;
-    private String paymentStatus;
 
     public int getOrderId() {
         return orderId;
@@ -63,6 +59,22 @@ public class Order {
         this.eventId = eventId;
     }
 
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
+
     public double getTotalPrice() {
         return totalPrice;
     }
@@ -86,6 +98,7 @@ public class Order {
     public void setPaymentStatus(String paymentStatus) {
         this.paymentStatus = paymentStatus;
     }
+
     
-    
+        
 }

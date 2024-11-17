@@ -21,15 +21,13 @@ public class AttendeeController {
         dbConnect = new Connect();
     }
 
-
-
     public boolean addAttendee(int userId, String eventId) {
         String query = """
-        INSERT INTO Attendees (UserId, EventId, FullName, EventName, [Status])
-        SELECT u.UserId, e.EventId, u.FullName, e.EventName, 'Đã Đăng Ký'
-        FROM Users u
-        JOIN Events e ON e.EventId = ?
-        WHERE u.UserId = ?;
+    INSERT INTO Attendees (UserId, EventId, FullName, EventName, [Status])
+    SELECT u.UserId, e.EventId, u.FullName, e.EventName, 'Đã Đăng Ký'
+    FROM Users u
+    JOIN Events e ON e.EventId = ?
+    WHERE u.UserId = ?;
     """;
 
         try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {

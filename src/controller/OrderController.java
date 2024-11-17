@@ -17,12 +17,20 @@ public class OrderController {
 
     public boolean addOrderForAttendee(int userId, String eventId) {
         String query = """
-        INSERT INTO Orders (UserId, EventId, TotalPrice, OrderDate, PaymentStatus)
-        SELECT a.UserId, e.EventId, e.Price, GETDATE(), 'Pending'
-        FROM Attendees a
-        JOIN Events e ON a.EventId = e.EventId
-        WHERE a.UserId = ? AND a.EventId = ?;
-    """;
+            INSERT INTO Orders (UserId, FullName, EventId, EventName, TotalPrice, OrderDate, PaymentStatus)
+            SELECT 
+                a.UserId, 
+                COALESCE(a.FullName, u.FullName) AS FullName,
+                e.EventId, 
+                e.EventName, 
+                e.Price, 
+                GETDATE(), 
+                'Chờ'
+            FROM Attendees a
+            JOIN Events e ON a.EventId = e.EventId
+            JOIN Users u ON a.UserId = u.UserId
+            WHERE a.UserId = ? AND a.EventId = ?;
+        """;
 
         try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, userId);       // Gán UserId
@@ -31,17 +39,19 @@ public class OrderController {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return false; // Trả về false nếu có lỗi
+        return false;
     }
 
     public boolean addOrder(Order order) {
-        String query = "INSERT INTO Orders (UserId, EventId, TotalPrice, OrderDate, PaymentStatus) VALUES (?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Orders (UserId, FullName, EventId, EventName, TotalPrice, OrderDate, PaymentStatus) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
             stmt.setInt(1, order.getUserId());
-            stmt.setString(2, order.getEventId());
-            stmt.setDouble(3, order.getTotalPrice());
-            stmt.setDate(4, new java.sql.Date(order.getOrderDate().getTime()));
-            stmt.setString(5, order.getPaymentStatus());
+            stmt.setString(2, order.getFullName());
+            stmt.setString(3, order.getEventId());
+            stmt.setString(4, order.getEventName());
+            stmt.setDouble(5, order.getTotalPrice());
+            stmt.setDate(6, new java.sql.Date(order.getOrderDate().getTime())); // Chuyển đổi từ java.util.Date sang java.sql.Date
+            stmt.setString(7, order.getPaymentStatus());
 
             return stmt.executeUpdate() > 0; // Trả về true nếu thêm thành công
         } catch (SQLException e) {
@@ -73,7 +83,9 @@ public class OrderController {
                 order.add(new Order(
                         rs.getInt("OrderId"),
                         rs.getInt("UserId"),
+                        rs.getString("FullName"),
                         rs.getString("EventId"),
+                        rs.getString("EventName"),
                         rs.getDouble("TotalPrice"),
                         rs.getDate("OrderDate"),
                         rs.getString("PaymentStatus")
@@ -94,7 +106,9 @@ public class OrderController {
                 orders.add(new Order(
                         rs.getInt("OrderId"),
                         rs.getInt("UserId"),
+                        rs.getString("FullName"),
                         rs.getString("EventId"),
+                        rs.getString("EventName"),
                         rs.getDouble("TotalPrice"),
                         rs.getDate("OrderDate"),
                         rs.getString("PaymentStatus")
@@ -119,7 +133,9 @@ public class OrderController {
                 Order order = new Order(
                         rs.getInt("OrderId"),
                         rs.getInt("UserId"),
+                        rs.getString("FullName"),
                         rs.getString("EventId"),
+                        rs.getString("EventName"),
                         rs.getDouble("TotalPrice"),
                         rs.getDate("OrderDate"),
                         rs.getString("PaymentStatus")
@@ -133,19 +149,45 @@ public class OrderController {
     }
 
     public boolean updateOrder(Order order) {
-        String query = "UPDATE Orders SET UserId = ?, EventId = ?, TotalPrice = ?, OrderDate = ?, PaymentStatus = ? WHERE OrderId = ?";
+        // Kiểm tra xem EventId có tồn tại không
+        if (!isEventIdExists(order.getEventId())) {
+            System.err.println("EventId không tồn tại trong bảng Events.");
+            return false;
+        }
+
+        String query = """
+        UPDATE Orders 
+        SET UserId = ?, FullName = ?,EventId = ?,  EventName = ?, 
+            TotalPrice = ?, OrderDate = ?, PaymentStatus = ? 
+        WHERE OrderId = ?;
+    """;
+
         try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
             stmt.setInt(1, order.getUserId());
-            stmt.setString(2, order.getEventId());
-            stmt.setDouble(3, order.getTotalPrice());
-            stmt.setDate(4, new java.sql.Date(order.getOrderDate().getTime()));
-            stmt.setString(5, order.getPaymentStatus());
-            stmt.setInt(6, order.getOrderId());
+            stmt.setString(2, order.getFullName());
+            stmt.setString(3, order.getEventId());
+            stmt.setString(4, order.getEventName());
+            stmt.setDouble(5, order.getTotalPrice());
+            stmt.setDate(6, new java.sql.Date(order.getOrderDate().getTime()));
+            stmt.setString(7, order.getPaymentStatus());
+            stmt.setInt(8, order.getOrderId());
 
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+        }
+    }
+
+    public boolean isEventIdExists(String eventId) {
+        String query = "SELECT 1 FROM Events WHERE EventId = ?";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setString(1, eventId);
+            ResultSet rs = stmt.executeQuery();
+            return rs.next(); // Trả về true nếu EventId tồn tại
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Trả về false nếu có lỗi
         }
     }
 

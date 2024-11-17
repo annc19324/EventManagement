@@ -749,6 +749,15 @@ public class UserView extends javax.swing.JFrame {
 
             Event eventDetail = new Event(eventId, eventName, startDate, endDate, location, description, status, Double.parseDouble(price));
             Session.addRegisteredEvent(eventDetail);
+
+            OrderController orderController = new OrderController();
+            boolean isOrderAdded = orderController.addOrderForAttendee(Session.getLoggedInUser().getUserId(), eventId);
+
+            if (isOrderAdded) {
+                JOptionPane.showMessageDialog(this, "Đăng ký và tạo đơn hàng thành công!");
+            } else {
+                JOptionPane.showMessageDialog(this, "Không thể tạo đơn hàng. Vui lòng thử lại.");
+            }
         } else {
             JOptionPane.showMessageDialog(this, "sự kiện này đã được đăng ký!");
         }
@@ -917,43 +926,39 @@ public class UserView extends javax.swing.JFrame {
 
     private void btnRegisterEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterEventActionPerformed
         // TODO add your handling code here:
-        User loggedInUser = Session.getLoggedInUser();
-        if (loggedInUser == null) {
-            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập trước khi đăng ký sự kiện.");
-            return;
-        }
-
-// Lấy UserId từ Session
-        int userId = loggedInUser.getUserId();
-
-// Lấy EventId từ bảng sự kiện
-        String eventId = getSelectedEventId();
-        if (eventId == null) {
-            JOptionPane.showMessageDialog(this, "Vui lòng chọn một sự kiện.");
-            return;
-        }
-
-// Thêm thông tin vào bảng Attendees
-        AttendeeController attendeeController = new AttendeeController();
-        boolean isAttendeeAdded = attendeeController.addAttendee(userId, eventId);
-
-        if (!isAttendeeAdded) {
-            JOptionPane.showMessageDialog(this, "Đăng ký thất bại! Không thể thêm vào danh sách tham gia.");
-            return;
-        }
-// Lấy AttendeeId vừa thêm
-
-
-// Thêm thông tin vào bảng Orders
-        OrderController orderController = new OrderController();
-        boolean isOrderAdded = orderController.addOrderForAttendee(userId, eventId);
-
-        if (isOrderAdded) {
-            JOptionPane.showMessageDialog(this, "Đăng ký và tạo đơn hàng thành công!");
-        } else {
-            JOptionPane.showMessageDialog(this, "Không thể tạo đơn hàng. Vui lòng thử lại.");
-        }
-
+//        User loggedInUser = Session.getLoggedInUser();
+//        if (loggedInUser == null) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập trước khi đăng ký sự kiện.");
+//            return;
+//        }
+//
+//        // Lấy UserId từ Session
+//        int userId = loggedInUser.getUserId();
+//
+//        // Lấy EventId từ bảng sự kiện
+//        String eventId = getSelectedEventId();
+//        if (eventId == null) {
+//            JOptionPane.showMessageDialog(this, "Vui lòng chọn một sự kiện.");
+//            return;
+//        }
+//        // Thêm thông tin vào bảng Attendees
+//        AttendeeController attendeeController = new AttendeeController();
+//        boolean isAttendeeAdded = attendeeController.addAttendee(userId, eventId);
+//
+//        if (!isAttendeeAdded) {
+//            JOptionPane.showMessageDialog(this, "Đăng ký thất bại! Không thể thêm vào danh sách tham gia.");
+//            return;
+//        }
+//
+//        // Thêm thông tin vào bảng Orders
+//        OrderController orderController = new OrderController();
+//        boolean isOrderAdded = orderController.addOrderForAttendee(userId, eventId);
+//
+//        if (isOrderAdded) {
+//            JOptionPane.showMessageDialog(this, "Đăng ký và tạo đơn hàng thành công!");
+//        } else {
+//            JOptionPane.showMessageDialog(this, "Không thể tạo đơn hàng. Vui lòng thử lại.");
+//        }
     }//GEN-LAST:event_btnRegisterEventActionPerformed
 
     public void openMenu() {
