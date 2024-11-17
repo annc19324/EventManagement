@@ -5,6 +5,7 @@
 package view;
 
 import controller.EventController;
+import controller.OrderController;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -33,6 +34,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
     private int mousePressX, mousePressY;
     private EventController eventController;
     private EventManager eventManager;
+    private OrderController orderController = new OrderController();
 
     /**
      * Creates new form RegisteredEventView
@@ -116,7 +118,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         lblRefresh = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        btnThanhToan = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -462,10 +464,10 @@ public class RegisteredEventView extends javax.swing.JFrame {
 
         jPanel2.setOpaque(false);
 
-        jButton1.setBackground(new java.awt.Color(102, 204, 255));
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setText("Thanh toán");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnThanhToan.setBackground(new java.awt.Color(102, 204, 255));
+        btnThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnThanhToan.setText("Thanh toán");
+        btnThanhToan.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         btnCancel.setBackground(new java.awt.Color(102, 204, 255));
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -484,7 +486,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -494,7 +496,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
                 .addContainerGap(404, Short.MAX_VALUE)
                 .addComponent(btnCancel)
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addComponent(btnThanhToan)
                 .addContainerGap())
         );
 
@@ -845,7 +847,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSearch;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnThanhToan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

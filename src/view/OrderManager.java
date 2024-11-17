@@ -114,6 +114,12 @@ public class OrderManager extends javax.swing.JFrame {
         btnThanhToan = new javax.swing.JButton();
         btnCapNhat = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -165,7 +171,7 @@ public class OrderManager extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         jLabel9.setText("Giá:");
 
-        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sẵn Sàng", "Chờ", " " }));
+        cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sẵn Sàng", "Chờ", "" }));
 
         btnThem.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnThem.setForeground(new java.awt.Color(0, 153, 0));
@@ -388,6 +394,29 @@ public class OrderManager extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
+        jMenu1.setText("Trang Chủ ");
+
+        jMenuItem1.setText("Quản Lý Sự Kiện");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem1);
+
+        jMenuItem2.setText("Quản Lý Đơn Hàng");
+        jMenu1.add(jMenuItem2);
+
+        jMenuItem3.setText("Quản Lý Người Dùng");
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar1.add(jMenu1);
+
+        jMenu2.setText("Admin");
+        jMenuBar1.add(jMenu2);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -409,6 +438,30 @@ public class OrderManager extends javax.swing.JFrame {
 
     private void btnThanhToanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThanhToanActionPerformed
         // TODO add your handling code here:
+        int selectedRow = jTableOderMannager.getSelectedRow();
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(this, "Vui lòng chọn một đơn hàng để thanh toán!");
+            return;
+        }
+
+        // Lấy Order ID từ hàng được chọn
+        DefaultTableModel tableModel = (DefaultTableModel) jTableOderMannager.getModel();
+        int orderId = (int) tableModel.getValueAt(selectedRow, 0); // Lấy cột Order ID (giả sử cột này là cột đầu tiên)
+
+        // Cập nhật trạng thái thanh toán
+        String newPaymentStatus = "Đã Thanh toán"; // Giá trị PaymentStatus mới
+        boolean isUpdated = orderController.updatePaymentStatus(orderId, newPaymentStatus);
+
+        if (isUpdated) {
+            // Hiển thị thông báo thành công
+            JOptionPane.showMessageDialog(this, "Thanh toán thành công!");
+
+            // Làm mới bảng sau khi cập nhật
+            displayOrdersInTable(); // Gọi lại phương thức hiển thị đơn hàng
+        } else {
+            // Hiển thị thông báo lỗi
+            JOptionPane.showMessageDialog(this, "Thanh toán thất bại. Vui lòng thử lại!");
+        }
     }//GEN-LAST:event_btnThanhToanActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -544,6 +597,10 @@ public class OrderManager extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -596,6 +653,12 @@ public class OrderManager extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
