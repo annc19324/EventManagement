@@ -19,6 +19,7 @@ import javax.swing.Timer;
 import javax.swing.border.EmptyBorder;
 import javax.swing.table.DefaultTableModel;
 import model.Event;
+import model.Order;
 import model.User;
 import util.Session;
 import util.showTableCell;
@@ -31,10 +32,11 @@ public class RegisteredEventView extends javax.swing.JFrame {
 
     private boolean isOpenMenu = false;
     private User user;
+    private Order order;
     private int mousePressX, mousePressY;
     private EventController eventController;
     private EventManager eventManager;
-    private OrderController orderController = new OrderController();
+    private OrderController orderController;
 
     /**
      * Creates new form RegisteredEventView
@@ -62,7 +64,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
 
         eventController = new EventController();
         eventManager = new EventManager();
-
+        orderController = new OrderController();
         this.user = Session.getLoggedInUser();
         lblUsername.setText("Tài khoản: " + user.getFullname());
 
@@ -372,11 +374,6 @@ public class RegisteredEventView extends javax.swing.JFrame {
             }
         ));
         tblRegisteredEventDetail.setShowGrid(true);
-        tblRegisteredEventDetail.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                tblRegisteredEventDetailMouseMoved(evt);
-            }
-        });
         jScrollPane1.setViewportView(tblRegisteredEventDetail);
 
         txtSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -468,6 +465,11 @@ public class RegisteredEventView extends javax.swing.JFrame {
         btnThanhToan.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnThanhToan.setText("Thanh toán");
         btnThanhToan.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnThanhToan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnThanhToanMouseClicked(evt);
+            }
+        });
 
         btnCancel.setBackground(new java.awt.Color(102, 204, 255));
         btnCancel.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -622,10 +624,11 @@ public class RegisteredEventView extends javax.swing.JFrame {
         // Hủy đăng ký sự kiện trong cơ sở dữ liệu
         boolean isCancelled = eventController.cancelRegistration(userId, eventId);
         if (isCancelled) {
-            JOptionPane.showMessageDialog(this, "Hủy đăng ký sự kiện thành công!");
-            DefaultTableModel model = (DefaultTableModel) tblRegisteredEventDetail.getModel();
-            model.removeRow(selectedRow);
-            Session.removeRegisteredEventById(eventId);
+            if (JOptionPane.showConfirmDialog(this, "bạn có chắc muốn hủy đăng ký sự kiện này?", "xác nhận hủy đăng ký sự kiện", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE) == (JOptionPane.OK_OPTION)) {
+                DefaultTableModel model = (DefaultTableModel) tblRegisteredEventDetail.getModel();
+                model.removeRow(selectedRow);
+                Session.removeRegisteredEventById(eventId);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Có lỗi xảy ra khi hủy đăng ký sự kiện.");
         }
@@ -737,9 +740,33 @@ public class RegisteredEventView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblAccountMouseClicked
 
-    private void tblRegisteredEventDetailMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblRegisteredEventDetailMouseMoved
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tblRegisteredEventDetailMouseMoved
+    private void btnThanhToanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnThanhToanMouseClicked
+        int selectedRow = tblRegisteredEventDetail.getSelectedRow(); // Lấy dòng được chọn trong bảng
+        if (selectedRow == -1) {
+            javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng chọn một sự kiện!");
+            return;
+        }
+
+        // Lấy UserId từ Session
+        int userId = Session.getLoggedInUser().getUserId();
+
+        // Lấy EventId từ cột trong bảng
+        String eventId = tblRegisteredEventDetail.getValueAt(selectedRow, 0).toString();
+
+        // Tìm đơn hàng trong cơ sở dữ liệu
+        orderController = new OrderController();
+        order = orderController.getOrderByUserIdAndEventId(userId, eventId);
+
+        if (order != null) {
+            if ("đã thanh toán".equalsIgnoreCase(order.getPaymentStatus())) {
+                JOptionPane.showMessageDialog(this, "sự kiện này đã được thanh toán!");
+            } else {
+                new BillView(order).setVisible(true);
+            }
+        } else {
+            javax.swing.JOptionPane.showMessageDialog(this, "Không tìm thấy đơn hàng cho sự kiện đã chọn!");
+        }
+    }//GEN-LAST:event_btnThanhToanMouseClicked
 
     int width = 270;
 

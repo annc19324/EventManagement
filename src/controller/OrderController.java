@@ -204,4 +204,38 @@ public class OrderController {
         return false; // Trả về false nếu có lỗi
     }
 
+    // an them moi phan thanh toan ngay 'hoa don' o user
+    public boolean payBill(int orderId) throws SQLException {
+        String queery = "update orders set paymentStatus = ? where orderId = ?";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement ps = conn.prepareStatement(queery)) {
+            ps.setString(1, "đã thanh toán");
+            ps.setInt(2, orderId);
+            return ps.executeUpdate() > 0;
+        }
+    }
+
+    public Order getOrderByUserIdAndEventId(int userId, String eventId) {
+        String query = "SELECT * FROM Orders WHERE UserId = ? AND EventId = ?";
+        try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
+            stmt.setInt(1, userId); 
+            stmt.setString(2, eventId); 
+            ResultSet rs = stmt.executeQuery();
+
+            if (rs.next()) {
+                return new Order(
+                        rs.getInt("OrderId"),
+                        rs.getInt("UserId"),
+                        rs.getString("FullName"),
+                        rs.getString("EventId"),
+                        rs.getString("EventName"),
+                        rs.getDouble("TotalPrice"),
+                        rs.getTimestamp("OrderDate"),
+                        rs.getString("PaymentStatus")
+                );
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null; // Trả về null nếu không tìm thấy
+    }
 }

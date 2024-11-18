@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Event;
 import model.User;
+import model.Order;
 
 /**
  *
@@ -16,7 +17,7 @@ import model.User;
 public class Session {
     private static User loggedInUser;
     private static final List<Event> registeredEvents = new ArrayList<>();
-
+    private static Order order;
     private Session() {
         // Private constructor để ngăn tạo instance
     }
@@ -52,4 +53,6 @@ public class Session {
     public static List<Event> getRegisteredEvents() {
         return registeredEvents;
     }
+    
+    
 }

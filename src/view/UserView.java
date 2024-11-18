@@ -742,8 +742,7 @@ public class UserView extends javax.swing.JFrame {
 
         boolean isRegistered = eventController.registerEvent(Session.getLoggedInUser().getUserId(), Session.getLoggedInUser().getFullname(), eventId, eventName);
         if (isRegistered) {
-            JOptionPane.showMessageDialog(this, "đăng ký sự kiện thành công!");
-
+//            JOptionPane.showMessageDialog(this, "đăng ký sự kiện thành công!");
             DefaultTableModel nameModel = (DefaultTableModel) tblRegisteredEventName.getModel();
             nameModel.addRow(new Object[]{eventName});
 
@@ -755,11 +754,12 @@ public class UserView extends javax.swing.JFrame {
 
             if (isOrderAdded) {
                 JOptionPane.showMessageDialog(this, "Đăng ký và tạo đơn hàng thành công!");
-            } else {
-                JOptionPane.showMessageDialog(this, "Không thể tạo đơn hàng. Vui lòng thử lại.");
             }
+//            else {
+//                JOptionPane.showMessageDialog(this, "Không thể tạo đơn hàng. Vui lòng thử lại.");
+//            }
         } else {
-            JOptionPane.showMessageDialog(this, "sự kiện này đã được đăng ký!");
+            JOptionPane.showMessageDialog(this, "sự kiện này có thể đã được đăng ký và không thể tạo đơn hàng!");
         }
     }//GEN-LAST:event_btnRegisterEventMouseClicked
 
