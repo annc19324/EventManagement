@@ -15,6 +15,21 @@ public class OrderController {
         dbConnect = new Connect();
     }
 
+    public boolean cancelOrder(int userId, String eventId) {
+        String query = "DELETE FROM Orders WHERE UserId = ? AND EventId = ?";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
+            stmt.setInt(1, userId); // Gán UserId
+            stmt.setString(2, eventId); // Gán EventId
+
+            int rowsAffected = stmt.executeUpdate();
+            System.out.println("Rows affected: " + rowsAffected);
+            return rowsAffected > 0; // Trả về true nếu xóa thành công
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false; // Trả về false nếu có lỗi
+    }
+
     public boolean addOrderForAttendee(int userId, String eventId) {
         String query = """
             INSERT INTO Orders (UserId, FullName, EventId, EventName, TotalPrice, OrderDate, PaymentStatus)

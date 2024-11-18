@@ -69,7 +69,7 @@ public class UserView extends javax.swing.JFrame {
         String[] registeredEventColumnNames = {"Event Name"};
         DefaultTableModel registeredEventModel = new DefaultTableModel(registeredEventColumnNames, 0);
         tblRegisteredEventName.setModel(registeredEventModel);
-
+        
         showAllEvents();
         showRegisteredEvents();
         tblEventList.setRowHeight(40);
@@ -1003,7 +1003,7 @@ public class UserView extends javax.swing.JFrame {
     }
 
     // hien thi bang
-    public void showAllEvents() throws SQLException {
+    private void showAllEvents() throws SQLException {
         //lay ds su kien trong controller
         List<Event> eList = eventController.getAllEvent();
         DefaultTableModel model = (DefaultTableModel) tblEventList.getModel();
