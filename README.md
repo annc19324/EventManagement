@@ -1,6 +1,8 @@
 Lê Thiên An
 22810310030
+
 Mô tả chức năng của Modules.
+
 I.	Đăng ký tài khoản
 1.	Mô tả tổng quan.
 -	Chức năng đăng ký tài khoản cho phép người dùng thêm tài khoản để sử dụng tham gia đăng ký sự kiện.
@@ -35,6 +37,7 @@ I.	Đăng ký tài khoản
 -	Đăng ký khi chưa điền thông tin.
 -	Đăng ký khi thiếu từng thông tin một.
 -	Nhập thông tin không hợp lệ như: họ tên có số, họ tên có kí tự đặc biệt, tên người dùng có phím cách, tên người dùng dưới 6 kí tự, tên người dùng có kí tự đặc biệt,  mật khẩu không đủ 8 kí tự, xác nhận mật khẩu không khớp với mật khẩu đã nhập, số điện thoại không đúng định dạng, số điện thoại có chữ cái, mail không có @, … sẽ hiện thị thông báo nếu đầu vào không hợp lệ.
+
 II.	Đăng nhập tài khoản
 1.	Mô tả tổng quan.
 -	Chức năng đăng nhập tài khoản cho phép người dùng tham gia sử dụng các chức năng chính của phần mềm nếu đã đăng ký thành công.
@@ -57,6 +60,7 @@ II.	Đăng nhập tài khoản
 6.	Kiểm thử.
 -	Đăng nhập để trống tài khoản và mật khẩu.
 -	Đăng nhập sai tài khoản hoặc sai mật khẩu.
+
 III.	Đăng ký sự kiện.
 1.	Mô tả tổng quan.
 Chức năng đăng ký sự kiện cho phép người dùng đăng ký sự kiện và tìm kiếm sự kiện trong danh sách.
@@ -94,6 +98,7 @@ Chức năng đăng ký sự kiện cho phép người dùng đăng ký 
 -	Chọn sự kiện chưa đăng ký để đăng ký.
 -	Chọn sự kiện đã đăng ký để đăng ký.
 -	Không chọn sự kiện rồi nhấn đăng ký.
+
 IV.	Xem danh sách chi tiết sự kiện đã đăng ký.
 1.	Mô tả tổng quan.
 -	Chức năng xem sự kiện đã đăng ký cho phép người dùng xem chi tiết về những sự kiện đã đăng ký, người dùng cũng có thể hủy đăng ký ở đây, hoặc là thanh toán trực tuyến ngay tại trang này.
