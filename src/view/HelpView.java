@@ -520,7 +520,7 @@ public class HelpView extends javax.swing.JFrame {
             }
         }
         try {
-            new UserView(Session.getLoggedInUser()).setVisible(true);
+            new EventList(Session.getLoggedInUser()).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(HelpView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -579,7 +579,7 @@ public class HelpView extends javax.swing.JFrame {
 
     private void lblJoinEventsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJoinEventsMouseClicked
         try {
-            new UserView(Session.getLoggedInUser()).setVisible(true);
+            new EventList(Session.getLoggedInUser()).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(HelpView.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -15,8 +15,10 @@ public class AdminView extends javax.swing.JFrame {
      */
     public AdminView() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -183,21 +185,21 @@ public class AdminView extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        EventManager frmEventManager=new EventManager();
+        EventManager frmEventManager = new EventManager();
         frmEventManager.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        OrderManager frmOrderManager=new OrderManager();
+        OrderManager frmOrderManager = new OrderManager();
         frmOrderManager.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here: 
-        EventManager frmEventManager=new EventManager();
+        EventManager frmEventManager = new EventManager();
         frmEventManager.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed

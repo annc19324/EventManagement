@@ -23,7 +23,9 @@ public class AttendeeManager extends javax.swing.JFrame {
 
     public AttendeeManager() {
         initComponents();
+        setLocationRelativeTo(null);
         displayAllEvent();
+
     }
 
     private void clearFields() {
@@ -392,7 +394,7 @@ public class AttendeeManager extends javax.swing.JFrame {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
-        int selectedrow=jTableAttendee.getSelectedRow();
+        int selectedrow = jTableAttendee.getSelectedRow();
         if (selectedrow == -1) {
             javax.swing.JOptionPane.showMessageDialog(this, "Vui lòng chọn một bản ghi để sửa!");
         }
@@ -404,8 +406,8 @@ public class AttendeeManager extends javax.swing.JFrame {
         String fullName = txtUserName.getText();                                        // Dữ liệu nhập từ txtUserName
         String eventId = txtEventId.getText();                                          // Dữ liệu nhập từ txtEventId
         String eventName = txtEventName.getText();                                      // Dữ liệu nhập từ txtEventName
-        String status = cmbStatus.getSelectedItem().toString(); 
-                Attendee attendee = new Attendee(attendeeId, userId, fullName, eventId, eventName, status);
+        String status = cmbStatus.getSelectedItem().toString();
+        Attendee attendee = new Attendee(attendeeId, userId, fullName, eventId, eventName, status);
 
         // Gọi phương thức cập nhật trong AttendeeController
         boolean isUpdated = attendeeController.deleteAttendee(attendee);
@@ -420,7 +422,7 @@ public class AttendeeManager extends javax.swing.JFrame {
         // Hiển thị lại bảng và xóa các trường nhập liệu
         displayAllEvent();
         clearFields();
-        
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void jTableAttendeeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableAttendeeMouseClicked

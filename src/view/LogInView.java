@@ -295,7 +295,7 @@ public class LogInView extends javax.swing.JFrame {
 
         btnBackTitleView.setBackground(new java.awt.Color(102, 204, 255));
         btnBackTitleView.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        btnBackTitleView.setText("Back");
+        btnBackTitleView.setText("Trở lại");
         btnBackTitleView.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnBackTitleViewMouseClicked(evt);
@@ -452,13 +452,9 @@ public class LogInView extends javax.swing.JFrame {
             }
             this.dispose();
             if (loggedInUser.getRole().equals("admin")) {
-                new EventManager().setVisible(true);
+                new AdminView().setVisible(true);
             } else if (loggedInUser.getRole().equals("user")) {
-                try {
-                    new UserView(loggedInUser).setVisible(true);
-                } catch (SQLException ex) {
-                    Logger.getLogger(LogInView.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                new UserHome(loggedInUser).setVisible(true);
             }
         }
     }//GEN-LAST:event_btnLogInActionPerformed

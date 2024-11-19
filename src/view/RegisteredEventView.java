@@ -603,12 +603,8 @@ public class RegisteredEventView extends javax.swing.JFrame {
     }//GEN-LAST:event_lblRefreshMouseClicked
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
-        try {
-            new UserView(Session.getLoggedInUser()).setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        new UserHome(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
     private void btnCancelMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCancelMouseClicked
@@ -642,7 +638,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
                     this.dispose();
                     return;
                 } catch (SQLException ex) {
-                    java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    java.util.logging.Logger.getLogger(EventList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
             } else {
                 return;
@@ -715,7 +711,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
 
     private void lblJoinEventsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJoinEventsMouseClicked
         try {
-            new UserView(Session.getLoggedInUser()).setVisible(true);
+            new EventList(Session.getLoggedInUser()).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(RegisteredEventView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -764,7 +760,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
                 new BillView(order).setVisible(true);
             }
         } else {
-            javax.swing.JOptionPane.showMessageDialog(this, "Không tìm thấy đơn hàng cho sự kiện đã chọn!");
+            javax.swing.JOptionPane.showMessageDialog(this, "Không tìm thấy đơn hàng cho sự kiện đã chọn! Có thể bạn đã bị admin xóa đơn hàng, vui lòng hủy sự kiện và đăng ký lại!");
         }
     }//GEN-LAST:event_btnThanhToanMouseClicked
 
