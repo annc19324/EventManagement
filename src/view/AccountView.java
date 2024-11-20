@@ -6,6 +6,8 @@ package view;
 
 import controller.UserController;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -99,7 +101,6 @@ public class AccountView extends javax.swing.JFrame {
         btnSaveInf = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        txtPhone = new javax.swing.JTextField();
         txtDateOfBirth = new com.toedter.calendar.JDateChooser();
         txtUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -109,6 +110,7 @@ public class AccountView extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtMail = new javax.swing.JTextField();
         txtFullName = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -412,8 +414,6 @@ public class AccountView extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txtPhone.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-
         txtDateOfBirth.setBackground(new java.awt.Color(255, 255, 255));
         txtDateOfBirth.setToolTipText("");
         txtDateOfBirth.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -455,6 +455,8 @@ public class AccountView extends javax.swing.JFrame {
                 txtFullNameActionPerformed(evt);
             }
         });
+
+        txtPhone.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -597,23 +599,31 @@ public class AccountView extends javax.swing.JFrame {
         if (fullName.isEmpty()) {
             JOptionPane.showMessageDialog(this, "tên đầy đủ không được để trống.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
             foundE = true;
-        } else if (!user.validateFullnameLength()) {
+        } else if (fullName.length() < 2) {
             JOptionPane.showMessageDialog(this, "độ dài phải có ít nhất 2 kí tự.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
             foundE = true;
-        } else if (!user.validateFullname()) {
+        } else if (!fullName.matches("^[\\p{L}\\p{M} .'-]+$")) {
             JOptionPane.showMessageDialog(this, "họ tên chỉ bao gồm a-Z A-Z.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
             foundE = true;
         }
 
-        if (!user.validateDateOfBirth()) {
-            JOptionPane.showMessageDialog(this, "bạn chưa đủ tuổi để tạo tài khoản.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+        if (utilDate == null) {
+            JOptionPane.showMessageDialog(this, "Ngày sinh không được để trống.", "Cảnh báo", JOptionPane.INFORMATION_MESSAGE);
             foundE = true;
+        } else {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.YEAR, -16); 
+            Date sixteenYearsAgo = cal.getTime();
+            if (!utilDate.before(sixteenYearsAgo)) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa đủ 16 tuổi để tạo tài khoản.", "Cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+                foundE = true;
+            }
         }
 
         if (mail.isEmpty()) {
             JOptionPane.showMessageDialog(this, "mail không được để trống.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
             foundE = true;
-        } else if (!user.validateMail()) {
+        } else if (!mail.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
             JOptionPane.showMessageDialog(this, "Mail không hợp lệ!.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
             foundE = true;
         }
@@ -621,7 +631,7 @@ public class AccountView extends javax.swing.JFrame {
         if (phone.isEmpty()) {
             JOptionPane.showMessageDialog(this, "số điện thoại không được để trống!.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
             foundE = true;
-        } else if (!user.validatePhone()) {
+        } else if (!phone.matches("\\d{10}")) {
             JOptionPane.showMessageDialog(this, "số điện thoại không hợp lệ!", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
             foundE = true;
         }
@@ -697,8 +707,8 @@ public class AccountView extends javax.swing.JFrame {
     }// GEN-LAST:event_lblCloseMouseClicked
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblHomeMouseClicked
-            new UserHome(Session.getLoggedInUser()).setVisible(true);
-            this.dispose();
+        new UserHome(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
     }// GEN-LAST:event_lblHomeMouseClicked
 
     private void lblJoinEventsMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblJoinEventsMouseClicked
