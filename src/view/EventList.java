@@ -28,7 +28,7 @@ import util.showTableCell;
  *
  * @author annc1
  */
-public class UserView extends javax.swing.JFrame {
+public class EventList extends javax.swing.JFrame {
 
     private boolean isOpenMenu = false;
     private int mousePressX, mousePressY;
@@ -42,7 +42,7 @@ public class UserView extends javax.swing.JFrame {
      *
      * @throws java.sql.SQLException
      */
-    public UserView() throws SQLException {
+    public EventList() throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         txtSearch.setBorder(new EmptyBorder(0, 30, 0, 30));
@@ -53,7 +53,7 @@ public class UserView extends javax.swing.JFrame {
         lblUsername.setText("tài khoản: " + user.getFullname());
     }
 
-    public UserView(User user) throws SQLException {
+    public EventList(User user) throws SQLException {
         initComponents();
         setLocationRelativeTo(null);
         txtSearch.setBorder(new EmptyBorder(0, 30, 0, 30));
@@ -660,7 +660,7 @@ public class UserView extends javax.swing.JFrame {
             try {
                 new LogInView().setVisible(true);
             } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_lblLogOutMouseClicked
@@ -698,7 +698,7 @@ public class UserView extends javax.swing.JFrame {
                     this.dispose();
                     return;
                 } catch (SQLException ex) {
-                    Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 return;
@@ -707,7 +707,7 @@ public class UserView extends javax.swing.JFrame {
         try {
             showAllEvents();
         } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_lblRefreshMouseClicked
 
@@ -719,7 +719,7 @@ public class UserView extends javax.swing.JFrame {
                     this.dispose();
                     return;
                 } catch (SQLException ex) {
-                    java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    java.util.logging.Logger.getLogger(EventList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
             } else {
                 return;
@@ -770,7 +770,7 @@ public class UserView extends javax.swing.JFrame {
                     new LogInView().setVisible(true);
                     this.dispose();
                 } catch (SQLException ex) {
-                    Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         } else {
@@ -778,7 +778,7 @@ public class UserView extends javax.swing.JFrame {
                 new RegisteredEventView(Session.getLoggedInUser()).setVisible(true);
                 this.dispose();
             } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }//GEN-LAST:event_btnCheckDetailMouseClicked
@@ -791,20 +791,14 @@ public class UserView extends javax.swing.JFrame {
                     this.dispose();
                     return;
                 } catch (SQLException ex) {
-                    java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    java.util.logging.Logger.getLogger(EventList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
                 }
             } else {
                 return;
             }
         }
-        try {
-            new UserView(Session.getLoggedInUser()).setVisible(true);
-            showRegisteredEvents();
-
-            this.dispose();
-        } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        new UserHome(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
 
     private void txtSearchFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_txtSearchFocusGained
@@ -830,7 +824,7 @@ public class UserView extends javax.swing.JFrame {
                     this.dispose();
                     return;
                 } catch (SQLException ex) {
-                    Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
                 return;
@@ -870,7 +864,7 @@ public class UserView extends javax.swing.JFrame {
                 txtSearch.requestFocus();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnSearchMouseClicked
 
@@ -887,9 +881,9 @@ public class UserView extends javax.swing.JFrame {
 
     private void lblJoinEventsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblJoinEventsMouseClicked
         try {
-            new UserView(Session.getLoggedInUser()).setVisible(true);
+            new EventList(Session.getLoggedInUser()).setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_lblJoinEventsMouseClicked
@@ -898,7 +892,7 @@ public class UserView extends javax.swing.JFrame {
         try {
             new RegisteredEventView(Session.getLoggedInUser()).setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_lblJoinnedEventsMouseClicked
@@ -907,7 +901,7 @@ public class UserView extends javax.swing.JFrame {
         try {
             new AccountView(Session.getLoggedInUser()).setVisible(true);
         } catch (SQLException ex) {
-            Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
     }//GEN-LAST:event_lblAccountMouseClicked
@@ -973,7 +967,7 @@ public class UserView extends javax.swing.JFrame {
                     try {
                         Thread.sleep(2);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -994,7 +988,7 @@ public class UserView extends javax.swing.JFrame {
                     try {
                         Thread.sleep(2);
                     } catch (InterruptedException ex) {
-                        Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                        Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
             }
@@ -1003,7 +997,7 @@ public class UserView extends javax.swing.JFrame {
     }
 
     // hien thi bang
-    public void showAllEvents() throws SQLException {
+    private void showAllEvents() throws SQLException {
         //lay ds su kien trong controller
         List<Event> eList = eventController.getAllEvent();
         DefaultTableModel model = (DefaultTableModel) tblEventList.getModel();
@@ -1066,22 +1060,23 @@ public class UserView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EventList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EventList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EventList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(UserView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EventList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
             try {
-                new UserView().setVisible(true);
+                new EventList().setVisible(true);
             } catch (SQLException ex) {
-                Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }

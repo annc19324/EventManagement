@@ -10,18 +10,40 @@ package model;
  */
 public class Attendee {
     private int attendeeId;       
-    private int userId;           
-    private String eventId;       
+    private int userId;
+    private String fullName;
+    private String eventId;   
+    private String eventName;
     private String status;       
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
+    }
+
+    public String getEventName() {
+        return eventName;
+    }
+
+    public void setEventName(String eventName) {
+        this.eventName = eventName;
+    }
     public Attendee() {
     }
 
-    public Attendee(int attendeeId, int userId, String eventId, String status) {
+    public Attendee(int attendeeId, int userId, String fullName, String eventId, String eventName, String status) {
         this.attendeeId = attendeeId;
         this.userId = userId;
+        this.fullName = fullName;
         this.eventId = eventId;
+        this.eventName = eventName;
         this.status = status;
     }
+
+    
 
     public int getAttendeeId() {
         return attendeeId;

@@ -6,6 +6,8 @@ package view;
 
 import controller.UserController;
 import java.sql.SQLException;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -99,21 +101,16 @@ public class AccountView extends javax.swing.JFrame {
         btnSaveInf = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        txtPhone = new javax.swing.JTextField();
-        lblPhoneE = new javax.swing.JLabel();
         txtDateOfBirth = new com.toedter.calendar.JDateChooser();
         txtUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        lblDateOfBirthE = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        lblFullNameE = new javax.swing.JLabel();
-        lblMailE = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtMail = new javax.swing.JTextField();
-        lblUsernameE = new javax.swing.JLabel();
         txtFullName = new javax.swing.JTextField();
+        txtPhone = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addMouseListener(new java.awt.event.MouseAdapter() {
@@ -417,16 +414,6 @@ public class AccountView extends javax.swing.JFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        txtPhone.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtPhone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneActionPerformed(evt);
-            }
-        });
-
-        lblPhoneE.setForeground(new java.awt.Color(255, 0, 0));
-        lblPhoneE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
         txtDateOfBirth.setBackground(new java.awt.Color(255, 255, 255));
         txtDateOfBirth.setToolTipText("");
         txtDateOfBirth.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -449,17 +436,8 @@ public class AccountView extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel5.setText("Mail: ");
 
-        lblDateOfBirthE.setForeground(new java.awt.Color(255, 0, 0));
-        lblDateOfBirthE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel7.setText("Phone: ");
-
-        lblFullNameE.setForeground(new java.awt.Color(255, 0, 0));
-        lblFullNameE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
-        lblMailE.setForeground(new java.awt.Color(255, 0, 0));
-        lblMailE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel6.setText("Date Of Birth: ");
@@ -471,15 +449,14 @@ public class AccountView extends javax.swing.JFrame {
             }
         });
 
-        lblUsernameE.setForeground(new java.awt.Color(255, 0, 0));
-        lblUsernameE.setVerticalAlignment(javax.swing.SwingConstants.TOP);
-
         txtFullName.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         txtFullName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtFullNameActionPerformed(evt);
             }
         });
+
+        txtPhone.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -488,11 +465,6 @@ public class AccountView extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFullNameE)
-                    .addComponent(lblMailE)
-                    .addComponent(lblDateOfBirthE)
-                    .addComponent(lblUsernameE)
-                    .addComponent(lblPhoneE)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(12, 12, 12)
@@ -518,14 +490,7 @@ public class AccountView extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblFullNameE)
-                    .addComponent(lblMailE)
-                    .addComponent(lblDateOfBirthE)
-                    .addComponent(lblUsernameE)
-                    .addComponent(lblPhoneE))
-                .addGap(0, 0, 0)
+                .addGap(13, 13, 13)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -624,12 +589,56 @@ public class AccountView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSaveInfMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSaveInfMouseClicked
+        boolean foundE = false;
         String username = txtUsername.getText();
         String fullName = txtFullName.getText();
         java.util.Date utilDate = txtDateOfBirth.getDate();
         java.sql.Date sqlDate = new java.sql.Date(utilDate.getTime());
         String mail = txtMail.getText();
         String phone = txtPhone.getText();
+        if (fullName.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "tên đầy đủ không được để trống.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+            foundE = true;
+        } else if (fullName.length() < 2) {
+            JOptionPane.showMessageDialog(this, "độ dài phải có ít nhất 2 kí tự.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+            foundE = true;
+        } else if (!fullName.matches("^[\\p{L}\\p{M} .'-]+$")) {
+            JOptionPane.showMessageDialog(this, "họ tên chỉ bao gồm a-Z A-Z.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+            foundE = true;
+        }
+
+        if (utilDate == null) {
+            JOptionPane.showMessageDialog(this, "Ngày sinh không được để trống.", "Cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+            foundE = true;
+        } else {
+            Calendar cal = Calendar.getInstance();
+            cal.add(Calendar.YEAR, -16); 
+            Date sixteenYearsAgo = cal.getTime();
+            if (!utilDate.before(sixteenYearsAgo)) {
+                JOptionPane.showMessageDialog(this, "Bạn chưa đủ 16 tuổi để tạo tài khoản.", "Cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+                foundE = true;
+            }
+        }
+
+        if (mail.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "mail không được để trống.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+            foundE = true;
+        } else if (!mail.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,6}$")) {
+            JOptionPane.showMessageDialog(this, "Mail không hợp lệ!.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+            foundE = true;
+        }
+
+        if (phone.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "số điện thoại không được để trống!.", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+            foundE = true;
+        } else if (!phone.matches("\\d{10}")) {
+            JOptionPane.showMessageDialog(this, "số điện thoại không hợp lệ!", "cảnh báo", JOptionPane.INFORMATION_MESSAGE);
+            foundE = true;
+        }
+        //tìm thấy lỗi thì dừng.
+        if (foundE) {
+            return;
+        }
         if ((JOptionPane.showConfirmDialog(this, "xác nhận cập nhật thông tin vừa thay đổi", "thông báo xác nhận", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
             try {
                 if (userController.updateUserInf(username, fullName, sqlDate, mail, phone)) {
@@ -662,7 +671,7 @@ public class AccountView extends javax.swing.JFrame {
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-        if(isOpenMenu){
+        if (isOpenMenu) {
             closeMenu();
         }
     }//GEN-LAST:event_formMouseClicked
@@ -698,33 +707,13 @@ public class AccountView extends javax.swing.JFrame {
     }// GEN-LAST:event_lblCloseMouseClicked
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblHomeMouseClicked
-        if (!Session.isLoggedIn()) {
-            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!",
-                    "thông báo", JOptionPane.OK_CANCEL_OPTION,
-                    JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
-                try {
-                    new LogInView().setVisible(true);
-                    this.dispose();
-                    return;
-                } catch (SQLException ex) {
-                    Logger.getLogger(UserView.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                return;
-            }
-        }
-        try {
-            new UserView(Session.getLoggedInUser()).setVisible(true);
-            this.dispose();
-        } catch (SQLException ex) {
-            java.util.logging.Logger.getLogger(RegisteredEventView.class.getName()).log(java.util.logging.Level.SEVERE,
-                    null, ex);
-        }
+        new UserHome(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
     }// GEN-LAST:event_lblHomeMouseClicked
 
     private void lblJoinEventsMouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_lblJoinEventsMouseClicked
         try {
-            new UserView(Session.getLoggedInUser()).setVisible(true);
+            new EventList(Session.getLoggedInUser()).setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(RegisteredEventView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -883,20 +872,15 @@ public class AccountView extends javax.swing.JFrame {
     private javax.swing.JLabel lblAccount;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblClose6;
-    private javax.swing.JLabel lblDateOfBirthE;
-    private javax.swing.JLabel lblFullNameE;
     private javax.swing.JLabel lblHelp;
     private javax.swing.JLabel lblHome;
     private javax.swing.JLabel lblJoinEvents;
     private javax.swing.JLabel lblJoinnedEvents;
     private javax.swing.JLabel lblLogOut;
-    private javax.swing.JLabel lblMailE;
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblMinimize5;
-    private javax.swing.JLabel lblPhoneE;
     private javax.swing.JLabel lblSetting;
     private javax.swing.JLabel lblUsername;
-    private javax.swing.JLabel lblUsernameE;
     private javax.swing.JPanel pnlClose;
     private javax.swing.JPanel pnlContainer;
     private javax.swing.JPanel pnlHeader;

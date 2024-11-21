@@ -104,7 +104,7 @@ public class UserController {
     }
     
     public boolean updateUserInf(String username, String fullName, Date dateOfBirth, String mail, String phone) throws SQLException{
-        String query = "update Users set FullName = ?, DateOfBirth = ?, Phone = ?, Mail = ? where Username = ?";
+        String query = "update Users set FullName = ?, DateOfBirth = ?, Mail = ?, Phone = ? where Username = ?";
         try(PreparedStatement ps = conn.prepareStatement(query)){
             ps.setString(1, fullName);
             ps.setDate(2, new java.sql.Date(dateOfBirth.getTime()));
