@@ -5,12 +5,15 @@
 package view;
 
 import controller.OrderController;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import model.Order;
 import model.User;
-import util.Session;
 
 /**
  *
@@ -28,7 +31,6 @@ public class BillView extends javax.swing.JFrame {
     public BillView() {
         initComponents();
         setLocationRelativeTo(null);
-
 
     }
 
@@ -294,14 +296,47 @@ public class BillView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPayNowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPayNowMouseClicked
-        int orderId = Integer.parseInt(lblOrderId.getText()); // Lấy OrderId từ label
+        int orderId = Integer.parseInt(lblOrderId.getText());
+        String fullName = lblFullname.getText();
+        String username = order.getUsername(); 
+        String eventId = lblEventId.getText();
+
+        // Tạo đường dẫn file
+        String fileName = orderId + "_" + username + "_" + eventId + ".txt";
+        String directoryPath = "D:\\A_GroupProject\\EventManagement\\src\\paidBillList";
+
+        // Kiểm tra và tạo thư mục nếu chưa tồn tại
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();  // Tạo thư mục nếu chưa tồn tại
+        }
+
+        File file = new File(directoryPath, fileName); // Tạo file tại đường dẫn
+
         try {
-            if (orderController.payBill(orderId)) {
-                javax.swing.JOptionPane.showMessageDialog(this, "Thanh toán thành công!");
-                this.dispose(); // Đóng BillView sau khi thanh toán
-            } else {
-                javax.swing.JOptionPane.showMessageDialog(this, "Thanh toán thất bại!");
+            // Ghi vào file
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write("Hóa đơn thanh toán\n");
+                writer.write("Mã hóa đơn: " + orderId + "\n");
+                writer.write("Người dùng: " + username + "\n");
+                writer.write("Họ tên: " + fullName + "\n");
+                writer.write("ID sự kiện: " + eventId + "\n");
+                writer.write("Tên sự kiện: " + lblEventName.getText() + "\n");
+                writer.write("Ngày đặt: " + lblDateOrder.getText() + "\n");
+                writer.write("Giá vé: " + lblPrice.getText() + " VNĐ\n");
+                writer.write("Thanh toán: Đã thanh toán\n");
             }
+            JOptionPane.showMessageDialog(this, "File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
+
+            // Kiểm tra thanh toán
+            if (orderController.payBill(orderId)) {
+                JOptionPane.showMessageDialog(this, "Thanh toán thành công!");
+                this.dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Thanh toán thất bại!");
+            }
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
         } catch (SQLException ex) {
             Logger.getLogger(BillView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -341,10 +376,8 @@ public class BillView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new BillView().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new BillView().setVisible(true);
         });
     }
 

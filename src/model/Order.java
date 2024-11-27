@@ -11,22 +11,35 @@ import java.util.Date;
  * @author pc
  */
 public class Order {
-     
+
     private int orderId;
     private int userId;
     private String eventId;
+    private String username;
     private String fullName;
     private String eventName;
     private double totalPrice;
     private Date orderDate;
     private String paymentStatus;
-    
+
     public Order() {
     }
 
-    public Order(int orderId, int userId , String fullName,String eventId, String eventName, double totalPrice, Date orderDate, String paymentStatus) {
+    public Order(int orderId, int userId, String fullName, String eventId, String eventName, double totalPrice, Date orderDate, String paymentStatus) {
         this.orderId = orderId;
         this.userId = userId;
+        this.eventId = eventId;
+        this.fullName = fullName;
+        this.eventName = eventName;
+        this.totalPrice = totalPrice;
+        this.orderDate = orderDate;
+        this.paymentStatus = paymentStatus;
+    }
+
+    public Order(int orderId, int userId, String username, String fullName, String eventId, String eventName, double totalPrice, Date orderDate, String paymentStatus) {
+        this.orderId = orderId;
+        this.userId = userId;
+        this.username = username;
         this.eventId = eventId;
         this.fullName = fullName;
         this.eventName = eventName;
@@ -49,6 +62,14 @@ public class Order {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getEventId() {
@@ -99,6 +120,4 @@ public class Order {
         this.paymentStatus = paymentStatus;
     }
 
-    
-        
 }

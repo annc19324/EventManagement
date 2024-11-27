@@ -16,6 +16,11 @@
         <pathelement path="lib/jcalendar-1.4.jar"/>
         <pathelement path="lib/mssql-jdbc-12.8.1.jre11.jar"/>
         <!--them cac thu vien khac neu co -->
+        <pathelement path="lib/poi-5.2.3.jar"/>
+    <pathelement path="lib/poi-ooxml-5.2.3.jar"/>
+    <pathelement path="lib/poi-ooxml-lite-5.2.3.jar"/>
+    <pathelement path="lib/poi-ooxml-full-5.2.3.jar"/>
+    <pathelement path="lib/poi-scratchpad-5.2.3.jar"/>
     </path>
 
     <target name="-pre-compile">

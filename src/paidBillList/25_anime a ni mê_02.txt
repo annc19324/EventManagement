@@ -1,0 +1,8 @@
+Hóa đơn thanh toán
+Mã hóa đơn: 25
+Người dùng: anime a ni mê
+ID sự kiện: 02
+Tên sự kiện: 02
+Ngày đặt: 2024-11-27 20:48:08.58
+Giá vé: 2.0 VNĐ
+Thanh toán: Đã thanh toán
