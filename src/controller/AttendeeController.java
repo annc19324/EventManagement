@@ -81,13 +81,53 @@ public class AttendeeController {
         return false; // Trả về false nếu có lỗi
     }
 
-    public boolean deleteAttendee(Attendee attendee) {
-        String sql = "Delete from Attendees where AttendeeId=?";
-        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, attendee.getAttendeeId());
-            return stmt.executeUpdate()>0;
+    public boolean deleteAttendeeAndOrders(Attendee attendee, int userId) {
+        String deleteOrdersSql = """
+        DELETE FROM Orders 
+        WHERE EventName = (
+            SELECT EventName 
+            FROM Attendees 
+            WHERE AttendeeId = ? AND UserId = ?
+        )
+    """;
+        String deleteAttendeeSql = "DELETE FROM Attendees WHERE AttendeeId = ? AND UserId = ?";
+
+        try (Connection conn = dbConnect.connectSQL()) {
+            if (conn == null) {
+                System.err.println("Kết nối cơ sở dữ liệu không thành công.");
+                return false;
+            }
+
+            // Bắt đầu giao dịch
+            conn.setAutoCommit(false);
+
+            // Xóa dữ liệu trong bảng Orders
+            try (PreparedStatement deleteOrdersStmt = conn.prepareStatement(deleteOrdersSql)) {
+                deleteOrdersStmt.setInt(1, attendee.getAttendeeId());
+                deleteOrdersStmt.setInt(2, userId);
+                deleteOrdersStmt.executeUpdate();
+            }
+
+            // Xóa dữ liệu trong bảng Attendees
+            try (PreparedStatement deleteAttendeeStmt = conn.prepareStatement(deleteAttendeeSql)) {
+                deleteAttendeeStmt.setInt(1, attendee.getAttendeeId());
+                deleteAttendeeStmt.setInt(2, userId);
+                deleteAttendeeStmt.executeUpdate();
+            }
+
+            // Hoàn tất giao dịch
+            conn.commit();
+            return true;
+
         } catch (SQLException e) {
             e.printStackTrace();
+            try (Connection conn = dbConnect.connectSQL()) {
+                if (conn != null) {
+                    conn.rollback(); // Hoàn tác nếu có lỗi
+                }
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
         }
         return false;
     }

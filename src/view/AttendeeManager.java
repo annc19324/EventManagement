@@ -455,7 +455,7 @@ public class AttendeeManager extends javax.swing.JFrame {
         Attendee attendee = new Attendee(attendeeId, userId, fullName, eventId, eventName, status);
 
         // Gọi phương thức cập nhật trong AttendeeController
-        boolean isUpdated = attendeeController.deleteAttendee(attendee);
+        boolean isUpdated = attendeeController.deleteAttendeeAndOrders(attendee,userId);
 
         // Kiểm tra kết quả
         if (isUpdated) {
