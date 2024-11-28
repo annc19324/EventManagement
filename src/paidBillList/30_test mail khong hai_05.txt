@@ -1,0 +1,8 @@
+Hóa đơn thanh toán
+Mã hóa đơn: 30
+Họ tên: test mail khong hai
+ID sự kiện: 05
+Tên sự kiện: 05
+Ngày đặt: 2024-11-28 18:20:51.27
+Giá vé: 5.0 VNĐ
+Thanh toán: Đã thanh toán

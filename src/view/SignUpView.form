@@ -29,7 +29,7 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="668" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="680" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
@@ -211,9 +211,9 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -248,33 +248,29 @@
                                           <Component id="txtConfirmPassword" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Component id="jPanel3" alignment="0" max="32767" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel5" min="-2" pref="123" max="-2" attributes="0"/>
-                                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="jLabel5" min="-2" pref="123" max="-2" attributes="0"/>
                                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="lblPhoneE" alignment="1" max="32767" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace min="-2" pref="103" max="-2" attributes="0"/>
-                                              <Component id="lblMailE" max="32767" attributes="0"/>
-                                              <EmptySpace min="-2" pref="207" max="-2" attributes="0"/>
-                                          </Group>
                                           <Group type="102" alignment="1" attributes="0">
                                               <Group type="103" groupAlignment="1" attributes="0">
-                                                  <Component id="txtEnterCode" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="lblDateOfBirthE" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="txtMail" alignment="0" max="32767" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="btnSendCode" max="32767" attributes="0"/>
-                                                  <Component id="btnOK" max="32767" attributes="0"/>
-                                              </Group>
+                                              <Component id="btnSendCode" min="-2" max="-2" attributes="0"/>
                                           </Group>
+                                          <Component id="txtEnterCode" alignment="1" max="32767" attributes="0"/>
+                                          <Component id="lblMailE" max="32767" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Component id="jPanel3" alignment="1" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtPhone" max="32767" attributes="0"/>
+                                          <Component id="lblPhoneE" max="32767" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
@@ -284,7 +280,7 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" alignment="1" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -298,7 +294,7 @@
                                   <Component id="txtPassword" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblPasswordE" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPasswordE" min="-2" pref="0" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtConfirmPassword" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -328,23 +324,20 @@
                                   </Group>
                                   <Component id="btnSendCode" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="txtEnterCode" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                                  <Component id="btnOK" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="lblMailE" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtEnterCode" min="-2" pref="35" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="txtPhone" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="lblPhoneE" min="-2" max="-2" attributes="0"/>
+                              <Component id="lblPhoneE" pref="17" max="32767" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="255" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="231" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -511,9 +504,6 @@
                           <Font name="Segoe UI" size="18" style="1"/>
                         </Property>
                       </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPhoneActionPerformed"/>
-                      </Events>
                     </Component>
                     <Component class="com.toedter.calendar.JDateChooser" name="txtDateOfBirth">
                       <Properties>
@@ -549,7 +539,7 @@
                         <DimensionLayout dim="1">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
                                       <Component id="btnSignUp" pref="42" max="32767" attributes="0"/>
                                       <Component id="btnBackToLogIn" max="32767" attributes="0"/>
@@ -634,14 +624,6 @@
                       </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtEnterCode">
-                    </Component>
-                    <Component class="javax.swing.JButton" name="btnOK">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="OK"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnOKMouseClicked"/>
-                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

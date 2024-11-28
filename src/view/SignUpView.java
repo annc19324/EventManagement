@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package view;
+
 import javax.mail.*;
 import javax.mail.internet.*;
 import java.util.Properties;
@@ -14,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 import model.User;
 
 /**
@@ -82,7 +84,6 @@ public class SignUpView extends javax.swing.JFrame {
         lblPhoneE = new javax.swing.JLabel();
         btnSendCode = new javax.swing.JButton();
         txtEnterCode = new javax.swing.JTextField();
-        btnOK = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -232,11 +233,6 @@ public class SignUpView extends javax.swing.JFrame {
         });
 
         txtPhone.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        txtPhone.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtPhoneActionPerformed(evt);
-            }
-        });
 
         txtDateOfBirth.setBackground(new java.awt.Color(255, 255, 255));
         txtDateOfBirth.setToolTipText("");
@@ -289,7 +285,7 @@ public class SignUpView extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(0, 0, 0)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSignUp, javax.swing.GroupLayout.DEFAULT_SIZE, 42, Short.MAX_VALUE)
                     .addComponent(btnBackToLogIn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
@@ -311,21 +307,14 @@ public class SignUpView extends javax.swing.JFrame {
             }
         });
 
-        btnOK.setText("OK");
-        btnOK.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnOKMouseClicked(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -334,50 +323,47 @@ public class SignUpView extends javax.swing.JFrame {
                             .addComponent(txtUsername)
                             .addComponent(lblUsernameE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtPassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(txtDateOfBirth, javax.swing.GroupLayout.DEFAULT_SIZE, 402, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblFullNameE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtFullName)
                             .addComponent(lblConfirmPasswordE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblPasswordE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtConfirmPassword)))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblPhoneE, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(jPanel4Layout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(lblMailE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(207, 207, 207))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtEnterCode, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblDateOfBirthE, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtMail, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnSendCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnOK, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addComponent(txtPhone))))
+                                .addComponent(btnSendCode))
+                            .addComponent(txtEnterCode, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(lblMailE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(71, 71, 71)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtPhone)
+                            .addComponent(lblPhoneE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -389,7 +375,7 @@ public class SignUpView extends javax.swing.JFrame {
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPasswordE)
+                .addComponent(lblPasswordE, javax.swing.GroupLayout.PREFERRED_SIZE, 0, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtConfirmPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -414,21 +400,19 @@ public class SignUpView extends javax.swing.JFrame {
                         .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSendCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEnterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOK, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMailE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(txtEnterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblPhoneE)
+                .addComponent(lblPhoneE, javax.swing.GroupLayout.DEFAULT_SIZE, 17, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(255, 255, 255))
+                .addGap(231, 231, 231))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -488,7 +472,7 @@ public class SignUpView extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 668, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 680, Short.MAX_VALUE)
         );
 
         pack();
@@ -529,10 +513,6 @@ public class SignUpView extends javax.swing.JFrame {
     private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
         txtPhone.requestFocus();
     }//GEN-LAST:event_txtMailActionPerformed
-
-    private void txtPhoneActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPhoneActionPerformed
-        btnSignUp.doClick();
-    }//GEN-LAST:event_txtPhoneActionPerformed
 
     private void btnBackToLogInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackToLogInActionPerformed
         this.dispose();
@@ -643,25 +623,15 @@ public class SignUpView extends javax.swing.JFrame {
             return;
         }
 
-//        if (userController.addUser(user)) {
-//            JOptionPane.showMessageDialog(this, "Đăng ký thành công tài khoản " + username);
-//            this.dispose();
-//            try {
-//                new LogInView().setVisible(true);
-//            } catch (SQLException ex) {
-//                Logger.getLogger(SignUpView.class.getName()).log(Level.SEVERE, null, ex.getMessage());
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(this, "Đăng ký thất bại, tên người dùng đã tồn tại, vui lòng chọn tên người dùng khác.", "Lỗi đăng ký", JOptionPane.ERROR_MESSAGE);
-//        }
-        // Kiểm tra mã xác thực khi nhấn btnSignUp
         String enteredCode = txtEnterCode.getText().trim();
         if (!enteredCode.equals(verificationCode)) {
-            JOptionPane.showMessageDialog(this, "ma xac thuc khong chinh xac", "loi nhap ma xac thuc", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "mã xác thực không chính xác", "Lỗi nhập mã xác thực", JOptionPane.ERROR_MESSAGE);
+            return;
+        }else if(enteredCode.isEmpty()){
+            JOptionPane.showMessageDialog(this, "vui lòng nhập mã xác thực mail");
             return;
         }
 
-        // Nếu mã đúng, đăng ký thành công
         if (userController.addUser(user)) {
             JOptionPane.showMessageDialog(this, "Đăng ký thành công tài khoản " + username);
             this.dispose();
@@ -675,18 +645,20 @@ public class SignUpView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnSignUpActionPerformed
 //fooy jfik cnpj iuuc
-//    nguyenle4temp@gmail.com
-    //texg tmru qqah qwcm
-    // Phương thức tạo mã xác thực ngẫu nhiên
+//nguyenle4temp@gmail.com
+    //bo cai tren
+    //xxrd ktme iori fwty
+    //javaeventmanagement
+// Phương thức tạo mã xác thực ngẫu nhiên
+
     private String generateVerificationCode() {
         return String.valueOf((int) (Math.random() * 1000000));  // Tạo mã 6 chữ số ngẫu nhiên
     }
 
-// Phương thức gửi mã xác thực qua email
     private boolean sendVerificationEmail(String email, String code) {
         // Thực hiện gửi email (tương tự như trong phần trước)
-        String fromEmail = "nguyenle4temp@gmail.com";
-        String password = "fooy jfik cnpj iuuc";
+        String fromEmail = "javaeventmanagement@gmail.com";
+        String password = "xxrd ktme iori fwty";
         String subject = "Mã xác thực đăng ký";
         String body = "Mã xác thực của bạn là: " + code;
 
@@ -719,9 +691,7 @@ public class SignUpView extends javax.swing.JFrame {
     }
 
     private void btnSendCodeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSendCodeMouseClicked
-        // Lấy email người dùng nhập vào
         String mail = txtMail.getText().trim();
-
         if (mail.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Vui lòng nhập email!", "Lỗi", JOptionPane.ERROR_MESSAGE);
             return;
@@ -730,19 +700,39 @@ public class SignUpView extends javax.swing.JFrame {
         // Tạo mã xác thực ngẫu nhiên
         verificationCode = generateVerificationCode();
 
-        // Gửi mã xác thực qua email
-        boolean emailSent = sendVerificationEmail(mail, verificationCode);
+        // Hiển thị thông báo ngay lập tức là mã đang được gửi
+        JOptionPane.showMessageDialog(this, "Mã đang gửi đến email của bạn, vui lòng chờ...", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
 
-        if (emailSent) {
-            JOptionPane.showMessageDialog(this, "Mã xác thực đã được gửi đến email của bạn.");
-        } else {
-            JOptionPane.showMessageDialog(this, "Gửi mã xác thực thất bại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
-        }
+        // Tạo một luồng nền để gửi email
+        SwingWorker<Boolean, Void> sendEmailTask = new SwingWorker<Boolean, Void>() {
+            @Override
+            protected Boolean doInBackground() throws Exception {
+                // Gửi mã xác thực qua email trong nền
+                return sendVerificationEmail(mail, verificationCode);
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    // Kiểm tra kết quả sau khi email được gửi
+                    if (get()) {
+                        // Nếu gửi email thành công, bạn có thể làm gì đó ở đây nếu cần (ví dụ: lưu thông tin, hiển thị thông báo thành công)
+                        // Không cần làm gì nếu không cần phản hồi sau khi gửi thành công
+                    } else {
+                        // Nếu gửi email thất bại, bạn có thể thông báo lỗi ở đây
+                        JOptionPane.showMessageDialog(null, "Gửi mã xác thực thất bại. Vui lòng thử lại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception e) {
+                    // Xử lý lỗi trong trường hợp không lấy được kết quả từ `get()`
+                    e.printStackTrace();
+                    JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi gửi email.", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        };
+
+        // Bắt đầu luồng nền
+        sendEmailTask.execute();
     }//GEN-LAST:event_btnSendCodeMouseClicked
-
-    private void btnOKMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnOKMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnOKMouseClicked
     private String generateRandomCode() {
         Random rand = new Random();
         return String.format("%06d", rand.nextInt(999999));
@@ -802,7 +792,6 @@ public class SignUpView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackToLogIn;
-    private javax.swing.JButton btnOK;
     private javax.swing.JButton btnSendCode;
     private javax.swing.JButton btnSignUp;
     private javax.swing.JLabel jLabel1;
