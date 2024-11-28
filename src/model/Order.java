@@ -15,7 +15,7 @@ public class Order {
     private int orderId;
     private int userId;
     private String eventId;
-    private String username;
+//    private String username;
     private String fullName;
     private String eventName;
     private double totalPrice;
@@ -36,17 +36,7 @@ public class Order {
         this.paymentStatus = paymentStatus;
     }
 
-    public Order(int orderId, int userId, String username, String fullName, String eventId, String eventName, double totalPrice, Date orderDate, String paymentStatus) {
-        this.orderId = orderId;
-        this.userId = userId;
-        this.username = username;
-        this.eventId = eventId;
-        this.fullName = fullName;
-        this.eventName = eventName;
-        this.totalPrice = totalPrice;
-        this.orderDate = orderDate;
-        this.paymentStatus = paymentStatus;
-    }
+
 
     public int getOrderId() {
         return orderId;
@@ -64,13 +54,13 @@ public class Order {
         this.userId = userId;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
+//    public String getUsername() {
+//        return username;
+//    }
+//
+//    public void setUsername(String username) {
+//        this.username = username;
+//    }
 
     public String getEventId() {
         return eventId;

@@ -298,11 +298,11 @@ public class BillView extends javax.swing.JFrame {
     private void btnPayNowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPayNowMouseClicked
         int orderId = Integer.parseInt(lblOrderId.getText());
         String fullName = lblFullname.getText();
-        String username = order.getUsername(); 
+//        String username = order.getUsername(); 
         String eventId = lblEventId.getText();
 
         // Tạo đường dẫn file
-        String fileName = orderId + "_" + username + "_" + eventId + ".txt";
+        String fileName = orderId + "_" + fullName + "_" + eventId + ".txt";
         String directoryPath = "D:\\A_GroupProject\\EventManagement\\src\\paidBillList";
 
         // Kiểm tra và tạo thư mục nếu chưa tồn tại
@@ -318,7 +318,7 @@ public class BillView extends javax.swing.JFrame {
             try (FileWriter writer = new FileWriter(file)) {
                 writer.write("Hóa đơn thanh toán\n");
                 writer.write("Mã hóa đơn: " + orderId + "\n");
-                writer.write("Người dùng: " + username + "\n");
+//                writer.write("Người dùng: " + username + "\n");
                 writer.write("Họ tên: " + fullName + "\n");
                 writer.write("ID sự kiện: " + eventId + "\n");
                 writer.write("Tên sự kiện: " + lblEventName.getText() + "\n");
