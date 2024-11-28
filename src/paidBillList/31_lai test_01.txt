@@ -1,0 +1,8 @@
+Hóa đơn thanh toán
+Mã hóa đơn: 31
+Họ tên: lai test
+ID sự kiện: 01
+Tên sự kiện: 01
+Ngày đặt: 2024-11-28 19:21:49.427
+Giá vé: 1.0 VNĐ
+Thanh toán: Đã thanh toán

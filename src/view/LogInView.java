@@ -76,6 +76,7 @@ public class LogInView extends javax.swing.JFrame {
         lblPassword = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         btnBackTitleView = new javax.swing.JButton();
+        btnFotgetPassword = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -157,7 +158,7 @@ public class LogInView extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.ipadx = 551;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 22, 0, 12);
+        gridBagConstraints.insets = new java.awt.Insets(30, 22, 0, 12);
         jPanel2.add(jPanel4, gridBagConstraints);
 
         jPanel5.setOpaque(false);
@@ -281,14 +282,14 @@ public class LogInView extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(13, 108, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(13, 12, 0, 12);
         jPanel5.add(jPanel3, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 12, 17, 0);
+        gridBagConstraints.insets = new java.awt.Insets(18, 108, 23, 0);
         jPanel2.add(jPanel5, gridBagConstraints);
 
         jPanel6.setOpaque(false);
@@ -302,6 +303,14 @@ public class LogInView extends javax.swing.JFrame {
             }
         });
 
+        btnFotgetPassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnFotgetPassword.setText("Quên mật khẩu?");
+        btnFotgetPassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnFotgetPasswordMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -309,11 +318,15 @@ public class LogInView extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBackTitleView, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnFotgetPassword)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnBackTitleView, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnBackTitleView)
+                .addComponent(btnFotgetPassword))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -334,7 +347,7 @@ public class LogInView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -464,6 +477,16 @@ public class LogInView extends javax.swing.JFrame {
         new TitleView().setVisible(true);
     }//GEN-LAST:event_btnBackTitleViewMouseClicked
 
+    private void btnFotgetPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnFotgetPasswordMouseClicked
+        try {
+            // TODO add your handling code here:
+            new ForgetPassword().setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(LogInView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnFotgetPasswordMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -503,6 +526,7 @@ public class LogInView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBackTitleView;
+    private javax.swing.JButton btnFotgetPassword;
     private javax.swing.JButton btnLogIn;
     private javax.swing.JButton btnSignUp;
     private javax.swing.JLabel jLabel1;

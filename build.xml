@@ -10,22 +10,17 @@
 <project name="EventManagement" default="default" basedir=".">
     <description>Builds, tests, and runs the project EventManagement.</description>
 
-    <!-- Include external libraries in the classpath -->
     <path id="project.classpath">
-        <!-- Thêm các thư viện JavaMail và Activation -->
         <pathelement path="lib/jcalendar-1.4.jar"/>
         <pathelement path="lib/mssql-jdbc-12.8.1.jre11.jar"/>
-        <pathelement path="lib/javax.mail.jar"/> <!-- JavaMail API -->
-        <pathelement path="lib/activation.jar"/>  <!-- JavaBeans Activation Framework -->
-        <!-- Thêm các thư viện khác nếu có -->
+        <pathelement path="lib/javax.mail.jar"/>
+        <pathelement path="lib/activation.jar"/> 
     </path>
 
     <target name="-pre-compile">
-        <!-- Tạo thư mục đầu ra cho file class -->
         <mkdir dir="${build.classes.dir}"/>
     </target>
 
-    <!-- Chạy sau khi compile, copy các file không phải .java -->
     <target name="-post-compile">
         <copy todir="${build.classes.dir}">
             <fileset dir="src">
@@ -35,21 +30,17 @@
     </target>
 
     <target name="compile" depends="-pre-compile">
-        <!-- Biên dịch mã nguồn -->
         <javac srcdir="src" destdir="${build.classes.dir}" classpathref="project.classpath"/>
     </target>
 
-    <!-- Mục để chạy ứng dụng -->
     <target name="run" depends="compile">
-        <java classname="view.LogInView" classpathref="project.classpath" fork="true"/>
+        <java classname="view.TitleView" classpathref="project.classpath" fork="true"/>
     </target>
 
-    <!-- Clean để xóa các file build -->
     <target name="clean">
         <delete dir="${build.dir}"/>
     </target>
 
-    <!-- Thêm các target khác nếu cần -->
     <import file="nbproject/build-impl.xml"/>
 
 

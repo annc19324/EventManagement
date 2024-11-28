@@ -15,13 +15,13 @@ import model.User;
  * @author annc1
  */
 public class UserController {
-
+    
     private final Connection conn;
-
+    
     public UserController() throws SQLException {
         this.conn = new Connect().connectSQL();
     }
-
+    
     public String hashPassword(String password) {
         try {
             MessageDigest md;
@@ -36,7 +36,7 @@ public class UserController {
             throw new RuntimeException("thuật toán SHA-512 không tìm thấy", e);
         }
     }
-
+    
     public boolean isUsernameTaken(String username) {
         String sql = "select count(*) from users where username = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -50,7 +50,7 @@ public class UserController {
         }
         return false;
     }
-
+    
     public boolean addUser(User user) {
         if (isUsernameTaken(user.getUsername())) {
             return false;
@@ -70,7 +70,7 @@ public class UserController {
             return false;
         }
     }
-
+    
     public User login(String username, String password) {
         String sql = "select * from users where username = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -103,15 +103,38 @@ public class UserController {
         return null;
     }
     
-    public boolean updateUserInf(String username, String fullName, Date dateOfBirth, String mail, String phone) throws SQLException{
+    public boolean updateUserInf(String username, String fullName, Date dateOfBirth, String mail, String phone) throws SQLException {
         String query = "update Users set FullName = ?, DateOfBirth = ?, Mail = ?, Phone = ? where Username = ?";
-        try(PreparedStatement ps = conn.prepareStatement(query)){
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
             ps.setString(1, fullName);
             ps.setDate(2, new java.sql.Date(dateOfBirth.getTime()));
             ps.setString(3, mail);
             ps.setString(4, phone);
             ps.setString(5, username);
             return ps.executeUpdate() > 0;
+        }
+    }
+    
+    public boolean checkInformationForForgetPassword(String username, String password, String mail) throws SQLException {
+        String query = "update Users set Password = ? where Username = ? and Mail = ?";
+        String hashedPassword = hashPassword(password);
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, hashedPassword);
+            ps.setString(2, username);
+            ps.setString(3, mail);
+            return ps.executeUpdate() > 0;
+        }
+    }
+    
+    public boolean changePassword(String username, String password, String newPassword) throws SQLException {
+        String query = "update Users set Password = ? where Username = ? and Password = ?";
+        String hashedPassword = hashPassword(password);
+        String newHashedPassword = hashPassword(newPassword);
+        try (PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setString(1, newHashedPassword);
+            ps.setString(2, username);
+            ps.setString(3, hashedPassword);
+            return ps.executeUpdate()>0;
         }
     }
 }

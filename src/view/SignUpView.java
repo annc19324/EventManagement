@@ -84,6 +84,7 @@ public class SignUpView extends javax.swing.JFrame {
         lblPhoneE = new javax.swing.JLabel();
         btnSendCode = new javax.swing.JButton();
         txtEnterCode = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -307,6 +308,9 @@ public class SignUpView extends javax.swing.JFrame {
             }
         });
 
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setText("Nhập mã: ");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -341,7 +345,9 @@ public class SignUpView extends javax.swing.JFrame {
                             .addComponent(lblPasswordE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtConfirmPassword)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
@@ -403,7 +409,9 @@ public class SignUpView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblMailE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtEnterCode, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtEnterCode, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtPhone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -656,7 +664,6 @@ public class SignUpView extends javax.swing.JFrame {
     }
 
     private boolean sendVerificationEmail(String email, String code) {
-        // Thực hiện gửi email (tương tự như trong phần trước)
         String fromEmail = "javaeventmanagement@gmail.com";
         String password = "xxrd ktme iori fwty";
         String subject = "Mã xác thực đăng ký";
@@ -665,24 +672,24 @@ public class SignUpView extends javax.swing.JFrame {
         try {
             // Thiết lập cấu hình cho JavaMail và gửi email
             Properties properties = new Properties();
-            properties.put("mail.smtp.auth", "true");
-            properties.put("mail.smtp.starttls.enable", "true");
-            properties.put("mail.smtp.host", "smtp.gmail.com");
-            properties.put("mail.smtp.port", "587");
+            properties.put("mail.smtp.auth", "true"); // kich hoat xac thuc khi gui mail - can phai dung thong tin dang nhap
+            properties.put("mail.smtp.starttls.enable", "true"); // bat ma hoa transport layer security, giup bao mat ket noi
+            properties.put("mail.smtp.host", "smtp.gmail.com"); //dia chi may chu SMTP cua mail
+            properties.put("mail.smtp.port", "587"); // cong ket noi cho giao thuc SMTP 587
 
-            Session session = Session.getInstance(properties, new Authenticator() {
+            Session session = Session.getInstance(properties, new Authenticator() { // khoi tao phien lam viec vs javamail vs cac thuoc tinh cau hinh SMTP server, port, authentication 
                 protected PasswordAuthentication getPasswordAuthentication() {
-                    return new PasswordAuthentication(fromEmail, password);
+                    return new PasswordAuthentication(fromEmail, password); // cung cap thong tin dang nhap
                 }
             });
 
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(fromEmail));
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-            message.setSubject(subject);
-            message.setText(body);
+            MimeMessage message = new MimeMessage(session); //tao mot doi tuong mail moi
+            message.setFrom(new InternetAddress(fromEmail)); // dat dia chi mail nguoi gui
+            message.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); //dat nguoi nhan mail
+            message.setSubject(subject); // dat tieu de mail
+            message.setText(body); // dat noi dung
 
-            Transport.send(message);
+            Transport.send(message); // gui mail da tao di qua smtp server 
             return true;
         } catch (MessagingException e) {
             e.printStackTrace();
@@ -716,34 +723,21 @@ public class SignUpView extends javax.swing.JFrame {
                 try {
                     // Kiểm tra kết quả sau khi email được gửi
                     if (get()) {
-                        // Nếu gửi email thành công, bạn có thể làm gì đó ở đây nếu cần (ví dụ: lưu thông tin, hiển thị thông báo thành công)
-                        // Không cần làm gì nếu không cần phản hồi sau khi gửi thành công
+                    // hien thi thong bao dang gui thanh cong
                     } else {
-                        // Nếu gửi email thất bại, bạn có thể thông báo lỗi ở đây
+                        // thong bao gui that bai
                         JOptionPane.showMessageDialog(null, "Gửi mã xác thực thất bại. Vui lòng thử lại.", "Lỗi", JOptionPane.ERROR_MESSAGE);
                     }
                 } catch (Exception e) {
-                    // Xử lý lỗi trong trường hợp không lấy được kết quả từ `get()`
                     e.printStackTrace();
                     JOptionPane.showMessageDialog(null, "Đã xảy ra lỗi khi gửi email.", "Lỗi", JOptionPane.ERROR_MESSAGE);
                 }
             }
         };
-
         // Bắt đầu luồng nền
         sendEmailTask.execute();
     }//GEN-LAST:event_btnSendCodeMouseClicked
-    private String generateRandomCode() {
-        Random rand = new Random();
-        return String.format("%06d", rand.nextInt(999999));
-    }
-
-    private boolean sendCodeToEmail(String email, String code) {
-        // Cần tích hợp thư viện email ở đây (JavaMail API hoặc các thư viện khác)
-        // Ví dụ sử dụng JavaMail API hoặc dịch vụ gửi email của bạn.
-        // Giả sử việc gửi mã code thành công:
-        return true;
-    }
+ 
 
     private void clearLabelError() {
         lblUsernameE.setText("");
@@ -802,6 +796,7 @@ public class SignUpView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

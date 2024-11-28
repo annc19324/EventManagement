@@ -107,7 +107,7 @@ public class EventList extends javax.swing.JFrame {
         lblJoinnedEvents = new javax.swing.JLabel();
         pnlfooter = new javax.swing.JPanel();
         lblHelp = new javax.swing.JLabel();
-        lblSetting = new javax.swing.JLabel();
+        lblChangePassword = new javax.swing.JLabel();
         lblLogOut = new javax.swing.JLabel();
         pnlContainer = new javax.swing.JPanel();
         pnlEventList2 = new javax.swing.JPanel();
@@ -311,9 +311,14 @@ public class EventList extends javax.swing.JFrame {
             }
         });
 
-        lblSetting.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSetting.setText("Cài đặt");
-        lblSetting.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
+        lblChangePassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblChangePassword.setText("Đổi mật khẩu");
+        lblChangePassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
+        lblChangePassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblChangePasswordMouseClicked(evt);
+            }
+        });
 
         lblLogOut.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLogOut.setText("Đăng xuất");
@@ -332,7 +337,7 @@ public class EventList extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlfooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -342,7 +347,7 @@ public class EventList extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblHelp)
                 .addGap(18, 18, 18)
-                .addComponent(lblSetting)
+                .addComponent(lblChangePassword)
                 .addGap(18, 18, 18)
                 .addComponent(lblLogOut)
                 .addContainerGap(22, Short.MAX_VALUE))
@@ -784,19 +789,6 @@ public class EventList extends javax.swing.JFrame {
     }//GEN-LAST:event_btnCheckDetailMouseClicked
 
     private void lblHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblHomeMouseClicked
-        if (!Session.isLoggedIn()) {
-            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
-                try {
-                    new LogInView().setVisible(true);
-                    this.dispose();
-                    return;
-                } catch (SQLException ex) {
-                    java.util.logging.Logger.getLogger(EventList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-                }
-            } else {
-                return;
-            }
-        }
         new UserHome(Session.getLoggedInUser()).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblHomeMouseClicked
@@ -955,6 +947,12 @@ public class EventList extends javax.swing.JFrame {
 //        }
     }//GEN-LAST:event_btnRegisterEventActionPerformed
 
+    private void lblChangePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblChangePasswordMouseClicked
+        // TODO add your handling code here:
+        new ChangePassword(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblChangePasswordMouseClicked
+
     public void openMenu() {
         isOpenMenu = true;
         new Thread(new Runnable() {
@@ -1090,6 +1088,7 @@ public class EventList extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAccount;
+    private javax.swing.JLabel lblChangePassword;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblClose6;
     private javax.swing.JLabel lblEventList;
@@ -1102,7 +1101,6 @@ public class EventList extends javax.swing.JFrame {
     private javax.swing.JLabel lblMinimize5;
     private javax.swing.JLabel lblRefresh;
     private javax.swing.JLabel lblRegisteredEvent;
-    private javax.swing.JLabel lblSetting;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlClose;
     private javax.swing.JPanel pnlContainer;

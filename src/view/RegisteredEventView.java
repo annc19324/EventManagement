@@ -108,7 +108,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         lblJoinnedEvents = new javax.swing.JLabel();
         pnlfooter = new javax.swing.JPanel();
         lblHelp = new javax.swing.JLabel();
-        lblSetting = new javax.swing.JLabel();
+        lblChangePassword = new javax.swing.JLabel();
         lblLogOut = new javax.swing.JLabel();
         pnlContainer = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -301,9 +301,14 @@ public class RegisteredEventView extends javax.swing.JFrame {
             }
         });
 
-        lblSetting.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        lblSetting.setText("Cài đặt");
-        lblSetting.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
+        lblChangePassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        lblChangePassword.setText("Đổi mật khẩu");
+        lblChangePassword.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 30, 1, 30));
+        lblChangePassword.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblChangePasswordMouseClicked(evt);
+            }
+        });
 
         lblLogOut.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         lblLogOut.setText("Đăng xuất");
@@ -322,7 +327,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(pnlfooterLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblHelp, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblSetting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(lblChangePassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(lblLogOut, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -332,7 +337,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblHelp)
                 .addGap(18, 18, 18)
-                .addComponent(lblSetting)
+                .addComponent(lblChangePassword)
                 .addGap(18, 18, 18)
                 .addComponent(lblLogOut)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -764,6 +769,12 @@ public class RegisteredEventView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnThanhToanMouseClicked
 
+    private void lblChangePasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblChangePasswordMouseClicked
+        // TODO add your handling code here:
+        new ChangePassword(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lblChangePasswordMouseClicked
+
     int width = 270;
 
     private void openMenu() {
@@ -877,6 +888,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblAccount;
+    private javax.swing.JLabel lblChangePassword;
     private javax.swing.JLabel lblClose;
     private javax.swing.JLabel lblClose6;
     private javax.swing.JLabel lblHelp;
@@ -887,7 +899,6 @@ public class RegisteredEventView extends javax.swing.JFrame {
     private javax.swing.JLabel lblMenu;
     private javax.swing.JLabel lblMinimize5;
     private javax.swing.JLabel lblRefresh;
-    private javax.swing.JLabel lblSetting;
     private javax.swing.JLabel lblUsername;
     private javax.swing.JPanel pnlClose;
     private javax.swing.JPanel pnlContainer;
