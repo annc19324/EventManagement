@@ -29,7 +29,7 @@ public class OrderManager extends javax.swing.JFrame {
         initComponents();
         displayOrdersInTable();
         setLocationRelativeTo(null);
-
+        jTableOderMannager.setDefaultEditor(Object.class, null);
     }
 
     private void clearFields() {

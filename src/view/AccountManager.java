@@ -28,6 +28,8 @@ public class AccountManager extends javax.swing.JFrame {
         initComponents();
         userController = new UserController();
         DisPlayAccount();
+        jTableUerAccount.setDefaultEditor(Object.class, null);
+
     }
 
     private void DisPlayAccount() {
@@ -326,12 +328,12 @@ public class AccountManager extends javax.swing.JFrame {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // TODO add your handling code here:
-         int selectedRow = jTableUerAccount.getSelectedRow();
-        if (selectedRow == -1){
+        int selectedRow = jTableUerAccount.getSelectedRow();
+        if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Chọn 1 tài khoản để Sửa !!");
         }
         DefaultTableModel tableModel = (DefaultTableModel) jTableUerAccount.getModel();
-        int userId=(int ) tableModel.getValueAt(selectedRow, 0);
+        int userId = (int) tableModel.getValueAt(selectedRow, 0);
         String TaiKhoan = txtNameAccount.getText();
         String MatKhau = new String(txtPassword.getPassword());
         String Ten = txtUserName.getText();
@@ -340,7 +342,7 @@ public class AccountManager extends javax.swing.JFrame {
         if (userController.updateUserAccount(user)) {
             JOptionPane.showMessageDialog(null, "Sửa thành công!!");
         }
-        
+
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -362,12 +364,12 @@ public class AccountManager extends javax.swing.JFrame {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // TODO add your handling code here:
         int selectedRow = jTableUerAccount.getSelectedRow();
-        if (selectedRow == -1){
+        if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Chọn 1 tài khoản để xóa!!");
         }
         DefaultTableModel tableModel = (DefaultTableModel) jTableUerAccount.getModel();
-        int userId=(int ) tableModel.getValueAt(selectedRow, 0);
-        boolean isDelete =userController.deleteUser(userId);
+        int userId = (int) tableModel.getValueAt(selectedRow, 0);
+        boolean isDelete = userController.deleteUser(userId);
         if (isDelete) {
             javax.swing.JOptionPane.showMessageDialog(this, "Xóa đơn hàng thành công!");
         } else {
@@ -376,7 +378,7 @@ public class AccountManager extends javax.swing.JFrame {
 
         DisPlayAccount();
         clearFields();
-        
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void jTableUerAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableUerAccountMouseClicked

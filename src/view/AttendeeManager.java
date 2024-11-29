@@ -28,6 +28,7 @@ public class AttendeeManager extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         displayAllEvent();
+        jTableAttendee.setDefaultEditor(Object.class, null);
 
     }
 

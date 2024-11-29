@@ -31,7 +31,7 @@ public class EventManager extends javax.swing.JFrame {
         String[] columnNames = {"Event ID", "Event Name", "Start Date", "End Date", "Location", "Description", "Status", "Price"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);  // Số 0 là số dòng ban đầu
         jTableEventManager.setModel(model);
-
+        jTableEventManager.setDefaultEditor(Object.class, null);
         displayAllEvents();
     }
     private EventController eventcontroller = new EventController();
