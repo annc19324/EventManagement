@@ -7,6 +7,8 @@ package controller;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.User;
 
@@ -15,13 +17,13 @@ import model.User;
  * @author annc1
  */
 public class UserController {
-    
+
     private final Connection conn;
-    
+
     public UserController() throws SQLException {
         this.conn = new Connect().connectSQL();
     }
-    
+
     public String hashPassword(String password) {
         try {
             MessageDigest md;
@@ -36,7 +38,7 @@ public class UserController {
             throw new RuntimeException("thuật toán SHA-512 không tìm thấy", e);
         }
     }
-    
+
     public boolean isUsernameTaken(String username) {
         String sql = "select count(*) from users where username = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -50,7 +52,37 @@ public class UserController {
         }
         return false;
     }
-    
+
+    public boolean addUserAccount(User user) {
+        if (isUsernameTaken(user.getUsername())) {
+            return false;
+        }
+        String sql = "insert into users(username,fullname,password,role) values(?,?,?,?)";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setString(1, user.getUsername());
+            stmt.setString(2, user.getFullname());
+            stmt.setString(3, hashPassword(user.getPassword()));
+            stmt.setString(4, user.getRole());
+            return stmt.executeUpdate() > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateUserAccount(User user) {
+        String sql = "UPDATE Users SET role = ? WHERE userid = ?";
+        try (PreparedStatement stmt = conn.prepareStatement(sql)) {
+            stmt.setInt(2, user.getUserId());
+            stmt.setString(1, user.getRole());
+
+            return stmt.executeUpdate() > 0; // Trả về true nếu cập nhật thành công
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Trả về false nếu có lỗi
+        }
+    }
+
     public boolean addUser(User user) {
         if (isUsernameTaken(user.getUsername())) {
             return false;
@@ -70,7 +102,7 @@ public class UserController {
             return false;
         }
     }
-    
+
     public User login(String username, String password) {
         String sql = "select * from users where username = ?";
         try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -102,7 +134,7 @@ public class UserController {
         JOptionPane.showMessageDialog(null, "tên người dùng '" + username + "' chưa được đăng ký", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
         return null;
     }
-    
+
     public boolean updateUserInf(String username, String fullName, Date dateOfBirth, String mail, String phone) throws SQLException {
         String query = "update Users set FullName = ?, DateOfBirth = ?, Mail = ?, Phone = ? where Username = ?";
         try (PreparedStatement ps = conn.prepareStatement(query)) {
@@ -114,7 +146,7 @@ public class UserController {
             return ps.executeUpdate() > 0;
         }
     }
-    
+
     public boolean checkInformationForForgetPassword(String username, String password, String mail) throws SQLException {
         String query = "update Users set Password = ? where Username = ? and Mail = ?";
         String hashedPassword = hashPassword(password);
@@ -125,7 +157,7 @@ public class UserController {
             return ps.executeUpdate() > 0;
         }
     }
-    
+
     public boolean changePassword(String username, String password, String newPassword) throws SQLException {
         String query = "update Users set Password = ? where Username = ? and Password = ?";
         String hashedPassword = hashPassword(password);
@@ -134,7 +166,65 @@ public class UserController {
             ps.setString(1, newHashedPassword);
             ps.setString(2, username);
             ps.setString(3, hashedPassword);
-            return ps.executeUpdate()>0;
+            return ps.executeUpdate() > 0;
         }
     }
+
+    public List<User> getAllUser() {
+        List<User> user = new ArrayList<>();
+        String sql = "select *from Users";
+        try (PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
+            while (rs.next()) {
+                user.add(new User(
+                        rs.getInt("UserId"),
+                        rs.getString("UserName"),
+                        rs.getString("FullName"),
+                        rs.getString("Password"),
+                        rs.getDate("DateOfBirth"),
+                        rs.getString("Mail"),
+                        rs.getString("Phone"),
+                        rs.getString("Role")
+                ));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public boolean deleteUser(int userId) {
+
+        String deleteAttendeesQuery = "DELETE FROM Attendees WHERE UserId = ?";
+        String deleteUserQuery = "DELETE FROM Users WHERE UserId = ?";
+
+        try (
+                PreparedStatement stmtAttendees = conn.prepareStatement(deleteAttendeesQuery); PreparedStatement stmtUser = conn.prepareStatement(deleteUserQuery)) {
+
+            // Bắt đầu giao dịch
+            conn.setAutoCommit(false);
+
+            // Xóa từ bảng Attendees
+            stmtAttendees.setInt(1, userId);
+            stmtAttendees.executeUpdate();
+
+            // Xóa từ bảng Users
+            stmtUser.setInt(1, userId);
+            stmtUser.executeUpdate();
+
+            // Xác nhận giao dịch
+            conn.commit();
+            return true;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            try {
+                // Rollback nếu có lỗi
+                conn.rollback();
+            } catch (SQLException rollbackEx) {
+                rollbackEx.printStackTrace();
+            }
+        }
+        return false;
+    }
+
 }
