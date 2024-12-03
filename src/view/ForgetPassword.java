@@ -5,6 +5,7 @@
 package view;
 
 import controller.UserController;
+import java.io.UnsupportedEncodingException;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
@@ -251,10 +252,11 @@ public class ForgetPassword extends javax.swing.JFrame {
                     .addComponent(jLabel2)
                     .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(txtEnterCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSendCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSendCode, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtEnterCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -394,11 +396,11 @@ public class ForgetPassword extends javax.swing.JFrame {
         
         try {
             if(userController.checkInformationForForgetPassword(username, password, mail)){
-                JOptionPane.showMessageDialog(this, "đổi mật khẩu thành công", "thông báo", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "đổi mật khẩu thành công", "thành công", JOptionPane.INFORMATION_MESSAGE);
                 new LogInView().setVisible(true);
                 this.dispose();
             }else{
-                JOptionPane.showMessageDialog(this, "đổi mật khẩu thất bại!", "lỗi", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "đổi mật khẩu thất bại! Có thể trong " + username + " không có mail: " + mail, "đổi mật khẩu thất bại", JOptionPane.ERROR_MESSAGE);
                 
             }
         } catch (SQLException ex) {
@@ -449,7 +451,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         sendEmailTask.execute();
     }//GEN-LAST:event_btnSendCodeMouseClicked
 
-    private boolean sendVerificationEmail(String email, String code) {
+    private boolean sendVerificationEmail(String email, String code) throws UnsupportedEncodingException {
         String fromEmail = "javaeventmanagement@gmail.com";
         String password = "xxrd ktme iori fwty";
         String subject = "Mã xác thực đăng ký";
@@ -470,7 +472,7 @@ public class ForgetPassword extends javax.swing.JFrame {
             });
 
             MimeMessage message = new MimeMessage(session); //tao mot doi tuong mail moi
-            message.setFrom(new InternetAddress(fromEmail)); // dat dia chi mail nguoi gui
+            message.setFrom(new InternetAddress(fromEmail, "Event Management ")); // dat dia chi mail nguoi gui
             message.addRecipient(Message.RecipientType.TO, new InternetAddress(email)); //dat nguoi nhan mail
             message.setSubject(subject); // dat tieu de mail
             message.setText(body); // dat noi dung

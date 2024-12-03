@@ -303,6 +303,7 @@ public class LogInView extends javax.swing.JFrame {
             }
         });
 
+        btnFotgetPassword.setBackground(new java.awt.Color(102, 204, 255));
         btnFotgetPassword.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnFotgetPassword.setText("Quên mật khẩu?");
         btnFotgetPassword.addMouseListener(new java.awt.event.MouseAdapter() {
