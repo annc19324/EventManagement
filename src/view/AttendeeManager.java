@@ -307,7 +307,7 @@ public class AttendeeManager extends javax.swing.JFrame {
 
         jMenu1.setText("Trang chủ");
 
-        jMenuItem4.setText("Quản lý đơn hàng");
+        jMenuItem4.setText("Quản Lý Đơn Hàng");
         jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem4ActionPerformed(evt);
@@ -343,7 +343,7 @@ public class AttendeeManager extends javax.swing.JFrame {
 
         jMenu2.setText("Admin");
 
-        jMenuItem5.setText("Admin");
+        jMenuItem5.setText("Trang Chủ");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -495,6 +495,14 @@ public class AttendeeManager extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
+         AccountManager frmAccountManager;
+        try {
+            frmAccountManager = new AccountManager();
+            frmAccountManager.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+        }  
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed

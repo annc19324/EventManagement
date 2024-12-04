@@ -470,6 +470,11 @@ public class OrderManager extends javax.swing.JFrame {
         jMenu1.add(jMenuItem1);
 
         jMenuItem2.setText("Quản Lý Tài Khoản");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Quản Lý Tham Gia");
@@ -492,7 +497,7 @@ public class OrderManager extends javax.swing.JFrame {
 
         jMenu2.setText("Admin");
 
-        jMenuItem5.setText("AdminView");
+        jMenuItem5.setText("Trang Chủ");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem5ActionPerformed(evt);
@@ -753,6 +758,18 @@ public class OrderManager extends javax.swing.JFrame {
         frmAdminView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        AccountManager frmAccountManager;
+        try {
+            frmAccountManager = new AccountManager();
+            frmAccountManager.setVisible(true);
+            this.dispose();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
