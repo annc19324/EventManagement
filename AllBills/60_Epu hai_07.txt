@@ -1,0 +1,8 @@
+Hóa đơn thanh toán
+Mã hóa đơn: 60
+Họ tên: Epu hai
+ID sự kiện: 07
+Tên sự kiện: Concert7
+Ngày đặt: 2024-12-09 03:10:34.07
+Giá vé: 5.0 VNĐ
+Thanh toán: Đã thanh toán

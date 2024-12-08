@@ -59,8 +59,6 @@ public class ForgetPassword extends javax.swing.JFrame {
         lblMinimize = new javax.swing.JLabel();
         lblClose = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
@@ -75,6 +73,8 @@ public class ForgetPassword extends javax.swing.JFrame {
         txtUsername = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtNewPassword = new javax.swing.JTextField();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -121,7 +121,7 @@ public class ForgetPassword extends javax.swing.JFrame {
             .addGroup(pnlHeaderLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblHeaderTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 415, Short.MAX_VALUE)
                 .addComponent(lblMinimize, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(lblClose, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -139,39 +139,16 @@ public class ForgetPassword extends javax.swing.JFrame {
         jPanel2.setOpaque(false);
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel4.setOpaque(false);
-        jPanel4.setLayout(new java.awt.GridBagLayout());
-
-        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Quên mật khẩu");
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(5, 252, 0, 197);
-        jPanel4.add(jLabel1, gridBagConstraints);
-
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = -12;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(9, 12, 0, 12);
-        jPanel2.add(jPanel4, gridBagConstraints);
-
         jPanel5.setOpaque(false);
         jPanel5.setLayout(new java.awt.GridBagLayout());
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 85);
         jPanel2.add(jPanel5, gridBagConstraints);
 
         jPanel3.setOpaque(false);
-        jPanel3.setLayout(new java.awt.GridBagLayout());
 
         jPanel7.setOpaque(false);
 
@@ -242,7 +219,7 @@ public class ForgetPassword extends javax.swing.JFrame {
                             .addComponent(txtUsername)
                             .addComponent(txtMail)
                             .addGroup(jPanel7Layout.createSequentialGroup()
-                                .addComponent(txtEnterCode, javax.swing.GroupLayout.DEFAULT_SIZE, 207, Short.MAX_VALUE)
+                                .addComponent(txtEnterCode, javax.swing.GroupLayout.DEFAULT_SIZE, 265, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSendCode)))))
                 .addContainerGap())
@@ -274,15 +251,58 @@ public class ForgetPassword extends javax.swing.JFrame {
                     .addComponent(btnChangePassword)))
         );
 
-        jPanel3.add(jPanel7, new java.awt.GridBagConstraints());
+        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setOpaque(false);
+
+        jLabel1.setBackground(new java.awt.Color(0, 153, 153));
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("Quên mật khẩu");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(jLabel1))
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.ipadx = 304;
-        gridBagConstraints.ipady = 79;
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 258;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 12, 11, 12);
+        gridBagConstraints.insets = new java.awt.Insets(44, 136, 31, 0);
         jPanel2.add(jPanel3, gridBagConstraints);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -292,8 +312,8 @@ public class ForgetPassword extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 897, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(pnlHeader, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -302,7 +322,7 @@ public class ForgetPassword extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(pnlHeader, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 388, Short.MAX_VALUE)
                 .addContainerGap())
         );
 

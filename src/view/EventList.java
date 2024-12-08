@@ -113,6 +113,7 @@ public class EventList extends javax.swing.JFrame {
         pnlEventList2 = new javax.swing.JPanel();
         pnlbtnFunc2 = new javax.swing.JPanel();
         btnRegisterEvent = new javax.swing.JButton();
+        btnUserHome = new javax.swing.JButton();
         pnlCurrentEventList = new javax.swing.JPanel();
         txtSearch = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -370,7 +371,7 @@ public class EventList extends javax.swing.JFrame {
                 .addComponent(pnlClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(pnlPage, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                 .addComponent(pnlfooter, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -396,20 +397,40 @@ public class EventList extends javax.swing.JFrame {
             }
         });
 
+        btnUserHome.setBackground(new java.awt.Color(102, 204, 255));
+        btnUserHome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnUserHome.setText("Trở lại trang chủ");
+        btnUserHome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUserHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUserHomeMouseClicked(evt);
+            }
+        });
+        btnUserHome.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnUserHomeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout pnlbtnFunc2Layout = new javax.swing.GroupLayout(pnlbtnFunc2);
         pnlbtnFunc2.setLayout(pnlbtnFunc2Layout);
         pnlbtnFunc2Layout.setHorizontalGroup(
             pnlbtnFunc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlbtnFunc2Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlbtnFunc2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnRegisterEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnUserHome, javax.swing.GroupLayout.PREFERRED_SIZE, 268, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnRegisterEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         pnlbtnFunc2Layout.setVerticalGroup(
             pnlbtnFunc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlbtnFunc2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnRegisterEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(pnlbtnFunc2Layout.createSequentialGroup()
+                .addGroup(pnlbtnFunc2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnRegisterEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlbtnFunc2Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(btnUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
@@ -488,7 +509,7 @@ public class EventList extends javax.swing.JFrame {
             .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlCurrentEventListLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 810, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 811, Short.MAX_VALUE)
                     .addGroup(pnlCurrentEventListLayout.createSequentialGroup()
                         .addComponent(txtSearch)
                         .addGap(18, 18, 18)
@@ -561,17 +582,13 @@ public class EventList extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCheckDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(btnCheckDetail, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnCheckDetail)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(btnCheckDetail, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 13, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -954,6 +971,16 @@ public class EventList extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_lblRefreshMouseClicked
 
+    private void btnUserHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserHomeMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnUserHomeMouseClicked
+
+    private void btnUserHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUserHomeActionPerformed
+        // TODO add your handling code here:
+        new UserHome(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnUserHomeActionPerformed
+
     public void openMenu() {
         isOpenMenu = true;
         new Thread(new Runnable() {
@@ -1084,6 +1111,7 @@ public class EventList extends javax.swing.JFrame {
     private javax.swing.JButton btnCheckDetail;
     private javax.swing.JButton btnRegisterEvent;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JButton btnUserHome;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;

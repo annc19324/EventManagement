@@ -19,6 +19,7 @@ import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import util.Session;
 
 /**
  *
@@ -60,7 +61,6 @@ public class BillView extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
-        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
@@ -85,15 +85,14 @@ public class BillView extends javax.swing.JFrame {
         btnPayLater = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setUndecorated(true);
+        setBackground(java.awt.SystemColor.textHighlight);
 
-        jPanel1.setBackground(new java.awt.Color(153, 204, 255));
-        jPanel1.setLayout(new java.awt.GridBagLayout());
+        jPanel1.setBackground(java.awt.SystemColor.textHighlight);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel2.setOpaque(false);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Thanh toán hóa đơn");
 
@@ -103,7 +102,7 @@ public class BillView extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 347, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -114,51 +113,56 @@ public class BillView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.ipadx = 120;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(14, 12, 0, 12);
-        jPanel1.add(jPanel2, gridBagConstraints);
-
-        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel3.setOpaque(false);
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Mã hóa đơn: ");
 
-        lblOrderId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblOrderId.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblOrderId.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ID người dùng: ");
 
-        lblUserId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblUserId.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblUserId.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Họ tên: ");
 
-        lblFullname.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblFullname.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblFullname.setForeground(new java.awt.Color(255, 255, 255));
 
-        lblDateOrder.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblDateOrder.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblDateOrder.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Mã sự kiện: ");
 
-        lblEventId.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEventId.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblEventId.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Tên sự kiện: ");
 
-        lblEventName.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblEventName.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblEventName.setForeground(new java.awt.Color(255, 255, 255));
 
-        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Ngày đăng ký: ");
 
-        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Giá vé: ");
 
-        lblPrice.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblPrice.setFont(new java.awt.Font("Segoe UI", 2, 16)); // NOI18N
+        lblPrice.setForeground(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -225,31 +229,22 @@ public class BillView extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.ipadx = 228;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(7, 12, 0, 12);
-        jPanel1.add(jPanel3, gridBagConstraints);
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED));
         jPanel4.setOpaque(false);
 
-        btnPayNow.setBackground(new java.awt.Color(153, 204, 255));
-        btnPayNow.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnPayNow.setBackground(java.awt.SystemColor.activeCaptionBorder);
+        btnPayNow.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnPayNow.setText("thanh toán ngay");
-        btnPayNow.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPayNow.setBorder(null);
         btnPayNow.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPayNowMouseClicked(evt);
             }
         });
 
-        btnPayLater.setBackground(new java.awt.Color(153, 204, 255));
-        btnPayLater.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        btnPayLater.setBackground(java.awt.SystemColor.activeCaptionBorder);
+        btnPayLater.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         btnPayLater.setText("thanh toán tại quầy sau");
-        btnPayLater.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnPayLater.setBorder(null);
         btnPayLater.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnPayLaterMouseClicked(evt);
@@ -260,29 +255,44 @@ public class BillView extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnPayNow)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnPayLater, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnPayLater, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnPayNow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPayNow)
-                    .addComponent(btnPayLater))
+                    .addComponent(btnPayNow, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnPayLater, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(18, 12, 8, 12);
-        jPanel1.add(jPanel4, gridBagConstraints);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(7, 7, 7)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -301,115 +311,124 @@ public class BillView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPayNowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPayNowMouseClicked
-//        int orderId = Integer.parseInt(lblOrderId.getText());
-//        String fullName = lblFullname.getText();
-////        String username = order.getUsername(); 
-//        String eventId = lblEventId.getText();
-//
-//        // Tạo đường dẫn file
-//        String fileName = orderId + "_" + fullName + "_" + eventId + ".txt";
-//        String directoryPath = "D:\\A_GroupProject\\EventManagement\\src\\paidBillList";
-//
-//        // Kiểm tra và tạo thư mục nếu chưa tồn tại
-//        File directory = new File(directoryPath);
-//        if (!directory.exists()) {
-//            directory.mkdirs();  // Tạo thư mục nếu chưa tồn tại
-//        }
-//
-//        File file = new File(directoryPath, fileName); // Tạo file tại đường dẫn
-//
-//        try {
-//            // Ghi vào file
-//            try (FileWriter writer = new FileWriter(file)) {
-//                writer.write("Hóa đơn thanh toán\n");
-//                writer.write("Mã hóa đơn: " + orderId + "\n");
-////                writer.write("Người dùng: " + username + "\n");
-//                writer.write("Họ tên: " + fullName + "\n");
-//                writer.write("ID sự kiện: " + eventId + "\n");
-//                writer.write("Tên sự kiện: " + lblEventName.getText() + "\n");
-//                writer.write("Ngày đặt: " + lblDateOrder.getText() + "\n");
-//                writer.write("Giá vé: " + lblPrice.getText() + " VNĐ\n");
-//                writer.write("Thanh toán: Đã thanh toán\n");
-//            }
-//            JOptionPane.showMessageDialog(this, "File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
-//
-//            // Kiểm tra thanh toán
-//            if (orderController.payBill(orderId)) {
-//                JOptionPane.showMessageDialog(this, "Thanh toán thành công!");
-//                this.dispose();
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Thanh toán thất bại!");
-//            }
-//        } catch (IOException e) {
-//            JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
-//        } catch (SQLException ex) {
-//            Logger.getLogger(BillView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-        int orderId = Integer.parseInt(lblOrderId.getText());
-        String fullName = lblFullname.getText();
-        String eventId = lblEventId.getText();
+        try {
+            int orderId = Integer.parseInt(lblOrderId.getText());
+            boolean paid = orderController.PaidOrder(orderId); // Kiểm tra nếu đã thanh toán
+            if (!paid) {
+                boolean isUpdateBill = orderController.updatePaymentStatus(orderId, "Đã thanh toán");
+                if (isUpdateBill) {
+                    JOptionPane.showMessageDialog(this, "Thanh toán hóa đơn thành công", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                    exportToTxt(Session.getOrder());
+                    exportToExcel(Session.getOrder());
+                    this.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(this, "Không thể cập nhật trạng thái thanh toán!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Hóa đơn này đã được thanh toán!", "Thông báo", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(BillView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnPayNowMouseClicked
+    
+    public void exportToExcel(Order order) {
+        if (order == null) {
+            System.out.println("Thông tin đơn hàng rỗng!");
+            return;
+        }
+        // Lấy đường dẫn thư mục gốc của dự án
+        String projectRoot = System.getProperty("user.dir");
+        String directoryPath = projectRoot + File.separator + "AllBills";
 
-        // Tạo tên file Excel dựa trên orderId, fullName và eventId
-        String fileName = orderId + "_" + fullName + "_" + eventId + ".xlsx";
-        String parentDirectory = System.getProperty("user.dir");  // Lấy đường dẫn gốc của dự án
-        String directoryPath = parentDirectory + File.separator + "AllBills";  // Tạo thư mục AllBills ngay sau folder dotNetEventManagement
+        // Kiểm tra và tạo thư mục nếu chưa tồn tại
+        File directory = new File(directoryPath);
+        if (!directory.exists()) {
+            directory.mkdirs();
+        }
+
+        // Đặt đường dẫn và tên file Excel theo mẫu: orderId_fullname_eventId.xlsx
+        String fileName = order.getOrderId() + "_" + order.getFullName() + "_" + order.getEventId() + ".xlsx";
+        String filePath = directoryPath + File.separator + fileName;
+
+        // Tạo file Excel
+        try (FileOutputStream fileOut = new FileOutputStream(filePath); Workbook workbook = new XSSFWorkbook()) {
+
+            Sheet sheet = workbook.createSheet("Hóa đơn");
+
+            // Tạo header (mỗi lần xuất thì tạo lại)
+            Row headerRow = sheet.createRow(0);
+            headerRow.createCell(0).setCellValue("Mã hóa đơn");
+            headerRow.createCell(1).setCellValue("Tên khách hàng");
+            headerRow.createCell(2).setCellValue("Mã sự kiện");
+            headerRow.createCell(3).setCellValue("Tên sự kiện");
+            headerRow.createCell(4).setCellValue("Ngày đặt");
+            headerRow.createCell(5).setCellValue("Tổng tiền");
+
+            // Tạo dòng dữ liệu mới
+            int lastRow = sheet.getPhysicalNumberOfRows();
+            Row dataRow = sheet.createRow(lastRow);
+
+            dataRow.createCell(0).setCellValue(order.getOrderId());
+            dataRow.createCell(1).setCellValue(order.getFullName());
+            dataRow.createCell(2).setCellValue(order.getEventId());
+            dataRow.createCell(3).setCellValue(order.getEventName());
+            dataRow.createCell(4).setCellValue(order.getOrderDate().toString());
+            dataRow.createCell(5).setCellValue(order.getTotalPrice());
+
+            // Lưu file Excel
+            workbook.write(fileOut);
+            System.out.println("Hóa đơn đã được thêm vào Excel thành công!");
+
+        } catch (IOException e) {
+            System.out.println("Lỗi khi tạo hoặc lưu file Excel: " + e.getMessage());
+        }
+    }
+
+    private void exportToTxt(Order order) {
+        if (order == null) {
+            JOptionPane.showMessageDialog(this, "Thông tin đơn hàng không hợp lệ!", "Lỗi", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        int orderId = order.getOrderId();
+        String fullName = order.getFullName();
+        String eventId = order.getEventId();
+        String eventName = order.getEventName();
+        String orderDate = order.getOrderDate().toString();
+        String totalPrice = String.valueOf(order.getTotalPrice());
+
+        String fileName = orderId + "_" + fullName + "_" + eventId + ".txt";
+        String parentDirectory = System.getProperty("user.dir");
+        String directoryPath = parentDirectory + File.separator + "AllBills";
 
         File directory = new File(directoryPath);
         if (!directory.exists()) {
-            directory.mkdirs();  // Tạo thư mục nếu chưa có
+            directory.mkdirs();
         }
 
         File file = new File(directoryPath, fileName);
 
         try {
-            // Tạo workbook Excel và sheet
-            Workbook workbook = new XSSFWorkbook();
-            Sheet sheet = workbook.createSheet("Hóa đơn");
-
-            // Tạo header cho sheet
-            Row headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("Mã hóa đơn");
-            headerRow.createCell(1).setCellValue("Họ tên");
-            headerRow.createCell(2).setCellValue("ID sự kiện");
-            headerRow.createCell(3).setCellValue("Tên sự kiện");
-            headerRow.createCell(4).setCellValue("Ngày đặt");
-            headerRow.createCell(5).setCellValue("Giá vé");
-            headerRow.createCell(6).setCellValue("Thanh toán");
-
-            // Tạo row dữ liệu cho hóa đơn
-            Row dataRow = sheet.createRow(1);
-            dataRow.createCell(0).setCellValue(orderId);
-            dataRow.createCell(1).setCellValue(fullName);
-            dataRow.createCell(2).setCellValue(eventId);
-            dataRow.createCell(3).setCellValue(lblEventName.getText());
-            dataRow.createCell(4).setCellValue(lblDateOrder.getText());
-            dataRow.createCell(5).setCellValue(lblPrice.getText());
-            dataRow.createCell(6).setCellValue("Đã thanh toán");
-
-            // Ghi workbook vào file Excel
-            try (FileOutputStream fileOut = new FileOutputStream(file)) {
-                workbook.write(fileOut);
-                JOptionPane.showMessageDialog(this, "File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
+            // Ghi vào file
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write("Hóa đơn thanh toán\n");
+                writer.write("Mã hóa đơn: " + orderId + "\n");
+                writer.write("Họ tên: " + fullName + "\n");
+                writer.write("ID sự kiện: " + eventId + "\n");
+                writer.write("Tên sự kiện: " + eventName + "\n");
+                writer.write("Ngày đặt: " + orderDate + "\n");
+                writer.write("Giá vé: " + totalPrice + " VNĐ\n");
+                writer.write("Thanh toán: Đã thanh toán\n");
             }
+            JOptionPane.showMessageDialog(this, "File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
 
-            // Cập nhật trạng thái thanh toán
-            if (orderController.payBill(orderId)) {
-                JOptionPane.showMessageDialog(this, "Thanh toán thành công!");
-                this.dispose();
-            } else {
-                JOptionPane.showMessageDialog(this, "Thanh toán thất bại!");
-            }
-
-            // Đóng workbook
-            workbook.close();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Lỗi khi tạo file Excel: " + e.getMessage());
-        } catch (SQLException ex) {
-            Logger.getLogger(BillView.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
         }
-    }//GEN-LAST:event_btnPayNowMouseClicked
+    }
+
 
     private void btnPayLaterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPayLaterMouseClicked
         this.dispose();

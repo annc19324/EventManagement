@@ -54,5 +54,11 @@ public class Session {
         return registeredEvents;
     }
     
+    public static void setOrder(Order newOrder){
+        order = newOrder;
+    }
     
+    public static Order getOrder(){
+        return order;
+    }
 }

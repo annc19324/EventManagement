@@ -122,6 +122,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         btnThanhToan = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
+        btnUserHome = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 204, 255));
@@ -486,6 +487,16 @@ public class RegisteredEventView extends javax.swing.JFrame {
             }
         });
 
+        btnUserHome.setBackground(new java.awt.Color(102, 204, 255));
+        btnUserHome.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnUserHome.setText("Trang chủ");
+        btnUserHome.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnUserHome.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnUserHomeMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -493,18 +504,21 @@ public class RegisteredEventView extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                    .addComponent(btnThanhToan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnThanhToan)
-                .addGap(16, 16, 16))
+                .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(btnUserHome, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
@@ -757,13 +771,9 @@ public class RegisteredEventView extends javax.swing.JFrame {
         // Tìm đơn hàng trong cơ sở dữ liệu
         orderController = new OrderController();
         order = orderController.getOrderByUserIdAndEventId(userId, eventId);
-
+        Session.setOrder(order);
         if (order != null) {
-            if ("đã thanh toán".equalsIgnoreCase(order.getPaymentStatus())) {
-                JOptionPane.showMessageDialog(this, "sự kiện này đã được thanh toán!");
-            } else {
                 new BillView(order).setVisible(true);
-            }
         } else {
             javax.swing.JOptionPane.showMessageDialog(this, "Không tìm thấy đơn hàng cho sự kiện đã chọn! Có thể bạn đã bị admin xóa đơn hàng, vui lòng hủy sự kiện và đăng ký lại!");
         }
@@ -775,13 +785,19 @@ public class RegisteredEventView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_lblChangePasswordMouseClicked
 
-    int width = 270;
+    private void btnUserHomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnUserHomeMouseClicked
+        // TODO add your handling code here:
+        new UserHome(Session.getLoggedInUser()).setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnUserHomeMouseClicked
+
+    int width = 260;
 
     private void openMenu() {
         isOpenMenu = true;
         new Thread(() -> {
             int height1 = pnlSlideMenu.getHeight();
-            for (int i = 0; i < width; i += 10) {
+            for (int i = 0; i < width; i += 20) {
                 pnlSlideMenu.setSize(i, height1);
                 pnlContainer.setBounds(i, pnlContainer.getY(), pnlMain.getWidth() - i, pnlContainer.getHeight());
                 try {
@@ -797,7 +813,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         isOpenMenu = false;
         new Thread(() -> {
             int height1 = pnlSlideMenu.getHeight();
-            for (int i = width; i >= 0; i -= 10) {
+            for (int i = width; i >= 0; i -= 20) {
                 pnlSlideMenu.setSize(i, height1);
                 pnlContainer.setBounds(i, pnlContainer.getY(), pnlMain.getWidth() - i, pnlContainer.getHeight());
                 try {
@@ -882,6 +898,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnThanhToan;
+    private javax.swing.JButton btnUserHome;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

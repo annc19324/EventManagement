@@ -1,0 +1,8 @@
+Hóa đơn thanh toán
+Mã hóa đơn: 59
+Họ tên: Epu hai
+ID sự kiện: 06
+Tên sự kiện: Concert6
+Ngày đặt: 2024-12-09 03:10:10.693
+Giá vé: 5.0 VNĐ
+Thanh toán: Đã thanh toán

@@ -1,0 +1,8 @@
+Hóa đơn thanh toán
+Mã hóa đơn: 56
+Họ tên: Epu hai
+ID sự kiện: 03
+Tên sự kiện: 03
+Ngày đặt: 2024-12-09 02:55:48.403
+Giá vé: 3.0 VNĐ
+Thanh toán: Đã thanh toán

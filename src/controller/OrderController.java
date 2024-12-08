@@ -194,6 +194,20 @@ public class OrderController {
         }
     }
 
+    public boolean PaidOrder(int orderId) throws SQLException {
+        String query = "SELECT paymentstatus FROM orders WHERE orderid = ?";
+        try (Connection conn = dbConnect.connectSQL(); PreparedStatement ps = conn.prepareStatement(query)) {
+            ps.setInt(1, orderId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String paymentStatus = rs.getString("paymentstatus");
+                return "Đã thanh toán".equals(paymentStatus);
+            }
+        }
+        return false;
+    }
+
     public boolean isEventIdExists(String eventId) {
         String query = "SELECT 1 FROM Events WHERE EventId = ?";
         try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
@@ -232,8 +246,8 @@ public class OrderController {
     public Order getOrderByUserIdAndEventId(int userId, String eventId) {
         String query = "SELECT * FROM Orders WHERE UserId = ? AND EventId = ?";
         try (Connection connection = dbConnect.connectSQL(); PreparedStatement stmt = connection.prepareStatement(query)) {
-            stmt.setInt(1, userId); 
-            stmt.setString(2, eventId); 
+            stmt.setInt(1, userId);
+            stmt.setString(2, eventId);
             ResultSet rs = stmt.executeQuery();
 
             if (rs.next()) {
