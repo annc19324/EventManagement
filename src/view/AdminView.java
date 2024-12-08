@@ -37,7 +37,7 @@ public class AdminView extends javax.swing.JFrame {
                 dataset.addValue(item.getSo_luong_Don(), "Đơn Hàng", item.getNgay_dang_ky());
             }
         } 
-
+        //tets
         JFreeChart barChart = ChartFactory.createBarChart(
                 "Biểu đồ thống kê số lượng đơn hàng thanh toán".toUpperCase(),
                 "Thời gian", "Số lượng",
