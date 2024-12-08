@@ -6,7 +6,6 @@ package view;
 
 import controller.OrderController;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -15,10 +14,6 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import model.Order;
 import model.User;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  *
@@ -301,114 +296,51 @@ public class BillView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPayNowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPayNowMouseClicked
-//        int orderId = Integer.parseInt(lblOrderId.getText());
-//        String fullName = lblFullname.getText();
-////        String username = order.getUsername(); 
-//        String eventId = lblEventId.getText();
-//
-//        // Tạo đường dẫn file
-//        String fileName = orderId + "_" + fullName + "_" + eventId + ".txt";
-//        String directoryPath = "D:\\A_GroupProject\\EventManagement\\src\\paidBillList";
-//
-//        // Kiểm tra và tạo thư mục nếu chưa tồn tại
-//        File directory = new File(directoryPath);
-//        if (!directory.exists()) {
-//            directory.mkdirs();  // Tạo thư mục nếu chưa tồn tại
-//        }
-//
-//        File file = new File(directoryPath, fileName); // Tạo file tại đường dẫn
-//
-//        try {
-//            // Ghi vào file
-//            try (FileWriter writer = new FileWriter(file)) {
-//                writer.write("Hóa đơn thanh toán\n");
-//                writer.write("Mã hóa đơn: " + orderId + "\n");
-////                writer.write("Người dùng: " + username + "\n");
-//                writer.write("Họ tên: " + fullName + "\n");
-//                writer.write("ID sự kiện: " + eventId + "\n");
-//                writer.write("Tên sự kiện: " + lblEventName.getText() + "\n");
-//                writer.write("Ngày đặt: " + lblDateOrder.getText() + "\n");
-//                writer.write("Giá vé: " + lblPrice.getText() + " VNĐ\n");
-//                writer.write("Thanh toán: Đã thanh toán\n");
-//            }
-//            JOptionPane.showMessageDialog(this, "File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
-//
-//            // Kiểm tra thanh toán
-//            if (orderController.payBill(orderId)) {
-//                JOptionPane.showMessageDialog(this, "Thanh toán thành công!");
-//                this.dispose();
-//            } else {
-//                JOptionPane.showMessageDialog(this, "Thanh toán thất bại!");
-//            }
-//        } catch (IOException e) {
-//            JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
-//        } catch (SQLException ex) {
-//            Logger.getLogger(BillView.class.getName()).log(Level.SEVERE, null, ex);
-//        }
         int orderId = Integer.parseInt(lblOrderId.getText());
         String fullName = lblFullname.getText();
+//        String username = order.getUsername(); 
         String eventId = lblEventId.getText();
 
-        // Tạo tên file Excel dựa trên orderId, fullName và eventId
-        String fileName = orderId + "_" + fullName + "_" + eventId + ".xlsx";
-        String parentDirectory = System.getProperty("user.dir");  // Lấy đường dẫn gốc của dự án
-        String directoryPath = parentDirectory + File.separator + "AllBills";  // Tạo thư mục AllBills ngay sau folder dotNetEventManagement
+        // Tạo đường dẫn file
+        String fileName = orderId + "_" + fullName + "_" + eventId + ".txt";
+        String directoryPath = "D:\\A_GroupProject\\EventManagement\\src\\paidBillList";
 
+        // Kiểm tra và tạo thư mục nếu chưa tồn tại
         File directory = new File(directoryPath);
         if (!directory.exists()) {
-            directory.mkdirs();  // Tạo thư mục nếu chưa có
+            directory.mkdirs();  // Tạo thư mục nếu chưa tồn tại
         }
 
-        File file = new File(directoryPath, fileName);
+        File file = new File(directoryPath, fileName); // Tạo file tại đường dẫn
 
         try {
-            // Tạo workbook Excel và sheet
-            Workbook workbook = new XSSFWorkbook();
-            Sheet sheet = workbook.createSheet("Hóa đơn");
-
-            // Tạo header cho sheet
-            Row headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("Mã hóa đơn");
-            headerRow.createCell(1).setCellValue("Họ tên");
-            headerRow.createCell(2).setCellValue("ID sự kiện");
-            headerRow.createCell(3).setCellValue("Tên sự kiện");
-            headerRow.createCell(4).setCellValue("Ngày đặt");
-            headerRow.createCell(5).setCellValue("Giá vé");
-            headerRow.createCell(6).setCellValue("Thanh toán");
-
-            // Tạo row dữ liệu cho hóa đơn
-            Row dataRow = sheet.createRow(1);
-            dataRow.createCell(0).setCellValue(orderId);
-            dataRow.createCell(1).setCellValue(fullName);
-            dataRow.createCell(2).setCellValue(eventId);
-            dataRow.createCell(3).setCellValue(lblEventName.getText());
-            dataRow.createCell(4).setCellValue(lblDateOrder.getText());
-            dataRow.createCell(5).setCellValue(lblPrice.getText());
-            dataRow.createCell(6).setCellValue("Đã thanh toán");
-
-            // Ghi workbook vào file Excel
-            try (FileOutputStream fileOut = new FileOutputStream(file)) {
-                workbook.write(fileOut);
-                JOptionPane.showMessageDialog(this, "File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
+            // Ghi vào file
+            try (FileWriter writer = new FileWriter(file)) {
+                writer.write("Hóa đơn thanh toán\n");
+                writer.write("Mã hóa đơn: " + orderId + "\n");
+//                writer.write("Người dùng: " + username + "\n");
+                writer.write("Họ tên: " + fullName + "\n");
+                writer.write("ID sự kiện: " + eventId + "\n");
+                writer.write("Tên sự kiện: " + lblEventName.getText() + "\n");
+                writer.write("Ngày đặt: " + lblDateOrder.getText() + "\n");
+                writer.write("Giá vé: " + lblPrice.getText() + " VNĐ\n");
+                writer.write("Thanh toán: Đã thanh toán\n");
             }
+            JOptionPane.showMessageDialog(this, "File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
 
-            // Cập nhật trạng thái thanh toán
+            // Kiểm tra thanh toán
             if (orderController.payBill(orderId)) {
                 JOptionPane.showMessageDialog(this, "Thanh toán thành công!");
                 this.dispose();
             } else {
                 JOptionPane.showMessageDialog(this, "Thanh toán thất bại!");
             }
-
-            // Đóng workbook
-            workbook.close();
         } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Lỗi khi tạo file Excel: " + e.getMessage());
+            JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
         } catch (SQLException ex) {
             Logger.getLogger(BillView.class.getName()).log(Level.SEVERE, null, ex);
         }
+
     }//GEN-LAST:event_btnPayNowMouseClicked
 
     private void btnPayLaterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnPayLaterMouseClicked
