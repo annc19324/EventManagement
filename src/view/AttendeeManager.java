@@ -169,7 +169,7 @@ public class AttendeeManager extends javax.swing.JFrame {
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Đã Đăng Ký", "Chờ" }));
 
         btnThem.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/add_user_35.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\add_user_35.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -178,7 +178,7 @@ public class AttendeeManager extends javax.swing.JFrame {
         });
 
         btnSua.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnSua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/update-35.png"))); // NOI18N
+        btnSua.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\update-35.png")); // NOI18N
         btnSua.setText("Sửa");
         btnSua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,7 +187,7 @@ public class AttendeeManager extends javax.swing.JFrame {
         });
 
         btnXoa.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-delete-bin-35.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\icons8-delete-bin-35.png")); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

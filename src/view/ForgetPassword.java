@@ -97,7 +97,7 @@ public class ForgetPassword extends javax.swing.JFrame {
         lblHeaderTitle.setText("Let's join us for exciting events");
 
         lblMinimize.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMinimize.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bar.png"))); // NOI18N
+        lblMinimize.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\bar.png")); // NOI18N
         lblMinimize.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMinimizeMouseClicked(evt);
@@ -106,7 +106,7 @@ public class ForgetPassword extends javax.swing.JFrame {
 
         lblClose.setForeground(new java.awt.Color(204, 0, 255));
         lblClose.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/x.png"))); // NOI18N
+        lblClose.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);

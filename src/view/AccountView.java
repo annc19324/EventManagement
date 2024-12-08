@@ -139,7 +139,7 @@ public class AccountView extends javax.swing.JFrame {
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblMinimize5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMinimize5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bar.png"))); // NOI18N
+        lblMinimize5.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\bar.png")); // NOI18N
         lblMinimize5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMinimize5MouseClicked(evt);
@@ -148,14 +148,14 @@ public class AccountView extends javax.swing.JFrame {
 
         lblClose6.setForeground(new java.awt.Color(204, 0, 255));
         lblClose6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblClose6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/x.png"))); // NOI18N
+        lblClose6.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
         lblClose6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblClose6MouseClicked(evt);
             }
         });
 
-        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png"))); // NOI18N
+        lblMenu.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\menu.png")); // NOI18N
         lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMenuMouseClicked(evt);
@@ -197,7 +197,7 @@ public class AccountView extends javax.swing.JFrame {
         pnlClose.setOpaque(false);
 
         lblClose.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/x.png"))); // NOI18N
+        lblClose.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);
