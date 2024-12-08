@@ -25,6 +25,14 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem2ActionPerformed"/>
               </Events>
             </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMenuItem6">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Th&#x1ed1;ng K&#xea; Doanh Thu"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMenuItem6ActionPerformed"/>
+              </Events>
+            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMenuItem3">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Qu&#x1ea3;n l&#xfd; Ng&#x1b0;&#x1edd;i Tham Gia"/>
