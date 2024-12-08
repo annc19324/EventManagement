@@ -123,6 +123,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
         btnThanhToan = new javax.swing.JButton();
         btnCancel = new javax.swing.JButton();
         btnUserHome = new javax.swing.JButton();
+        btnEventList = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(51, 204, 255));
@@ -497,6 +498,21 @@ public class RegisteredEventView extends javax.swing.JFrame {
             }
         });
 
+        btnEventList.setBackground(new java.awt.Color(102, 204, 255));
+        btnEventList.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnEventList.setText("Trang sự kiện");
+        btnEventList.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnEventList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEventListMouseClicked(evt);
+            }
+        });
+        btnEventList.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEventListActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -506,7 +522,8 @@ public class RegisteredEventView extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
-                    .addComponent(btnUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
+                    .addComponent(btnUserHome, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(btnEventList, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -514,7 +531,9 @@ public class RegisteredEventView extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnThanhToan, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
+                .addGap(18, 18, 18)
+                .addComponent(btnEventList, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(24, 24, 24)
                 .addComponent(btnUserHome, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -791,6 +810,20 @@ public class RegisteredEventView extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnUserHomeMouseClicked
 
+    private void btnEventListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEventListMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEventListMouseClicked
+
+    private void btnEventListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEventListActionPerformed
+        try {
+            // TODO add your handling code here:
+            new EventList(Session.getLoggedInUser()).setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(RegisteredEventView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.dispose();
+    }//GEN-LAST:event_btnEventListActionPerformed
+
     int width = 260;
 
     private void openMenu() {
@@ -896,6 +929,7 @@ public class RegisteredEventView extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnEventList;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnThanhToan;
     private javax.swing.JButton btnUserHome;
