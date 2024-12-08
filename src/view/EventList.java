@@ -158,7 +158,7 @@ public class EventList extends javax.swing.JFrame {
         lblUsername.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
         lblMinimize5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblMinimize5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/bar.png"))); // NOI18N
+        lblMinimize5.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\bar.png")); // NOI18N
         lblMinimize5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMinimize5MouseClicked(evt);
@@ -167,14 +167,14 @@ public class EventList extends javax.swing.JFrame {
 
         lblClose6.setForeground(new java.awt.Color(204, 0, 255));
         lblClose6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblClose6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/x.png"))); // NOI18N
+        lblClose6.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
         lblClose6.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblClose6MouseClicked(evt);
             }
         });
 
-        lblMenu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/menu.png"))); // NOI18N
+        lblMenu.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\menu.png")); // NOI18N
         lblMenu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblMenuMouseClicked(evt);
@@ -217,7 +217,7 @@ public class EventList extends javax.swing.JFrame {
         pnlClose.setOpaque(false);
 
         lblClose.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        lblClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/x.png"))); // NOI18N
+        lblClose.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\x.png")); // NOI18N
         lblClose.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblCloseMouseClicked(evt);
@@ -447,7 +447,7 @@ public class EventList extends javax.swing.JFrame {
 
         pnlSearch_Refresh.setOpaque(false);
 
-        lblRefresh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-refresh-35.png"))); // NOI18N
+        lblRefresh.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\icons8-refresh-35.png")); // NOI18N
         lblRefresh.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lblRefreshMouseClicked(evt);
@@ -651,13 +651,6 @@ public class EventList extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
-        openMenu();
-    }//GEN-LAST:event_lblMenuMouseClicked
-
-    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
-        closeMenu();
-    }//GEN-LAST:event_lblCloseMouseClicked
 
     private void lblLogOutMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblLogOutMouseClicked
         if ((JOptionPane.showConfirmDialog(this, "bạn có chắc chắn muốn đăng xuất khỏi tài khoản này không?", "xác nhận đăng xuất", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)) == JOptionPane.YES_OPTION) {
@@ -669,16 +662,6 @@ public class EventList extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_lblLogOutMouseClicked
-
-    private void lblMinimize5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimize5MouseClicked
-        setState(JFrame.ICONIFIED);
-    }//GEN-LAST:event_lblMinimize5MouseClicked
-
-    private void lblClose6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose6MouseClicked
-        if ((JOptionPane.showConfirmDialog(this, "bạn có chắc chắn muốn thoát không?", "xác nhận thoát", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
-            System.exit(0);
-        }
-    }//GEN-LAST:event_lblClose6MouseClicked
 
     private void pnlHeaderMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnlHeaderMouseDragged
         int ox = evt.getXOnScreen();
@@ -694,27 +677,6 @@ public class EventList extends javax.swing.JFrame {
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         btnSearchMouseClicked(null);
     }//GEN-LAST:event_txtSearchActionPerformed
-
-    private void lblRefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRefreshMouseClicked
-        if (!Session.isLoggedIn()) {
-            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
-                try {
-                    new LogInView().setVisible(true);
-                    this.dispose();
-                    return;
-                } catch (SQLException ex) {
-                    Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                return;
-            }
-        }
-        try {
-            showAllEvents();
-        } catch (SQLException ex) {
-            Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }//GEN-LAST:event_lblRefreshMouseClicked
 
     private void btnRegisterEventMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnRegisterEventMouseClicked
         if (!Session.isLoggedIn()) {
@@ -952,6 +914,45 @@ public class EventList extends javax.swing.JFrame {
         new ChangePassword(Session.getLoggedInUser()).setVisible(true);
         this.dispose();
     }//GEN-LAST:event_lblChangePasswordMouseClicked
+
+    private void lblCloseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblCloseMouseClicked
+        closeMenu();
+    }//GEN-LAST:event_lblCloseMouseClicked
+
+    private void lblMenuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMenuMouseClicked
+        openMenu();
+    }//GEN-LAST:event_lblMenuMouseClicked
+
+    private void lblMinimize5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblMinimize5MouseClicked
+        setState(JFrame.ICONIFIED);
+    }//GEN-LAST:event_lblMinimize5MouseClicked
+
+    private void lblClose6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblClose6MouseClicked
+        if ((JOptionPane.showConfirmDialog(this, "bạn có chắc chắn muốn thoát không?", "xác nhận thoát", JOptionPane.OK_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_lblClose6MouseClicked
+
+    private void lblRefreshMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblRefreshMouseClicked
+        if (!Session.isLoggedIn()) {
+            if ((JOptionPane.showConfirmDialog(this, "bạn cần đăng nhập trước, hãy nhấn 'OK' để đăng nhập!", "thông báo", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE)) == (JOptionPane.OK_OPTION)) {
+                try {
+                    new LogInView().setVisible(true);
+                    this.dispose();
+                    return;
+                } catch (SQLException ex) {
+                    Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                return;
+            }
+        }
+        try {
+            showAllEvents();
+        } catch (SQLException ex) {
+            Logger.getLogger(EventList.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_lblRefreshMouseClicked
 
     public void openMenu() {
         isOpenMenu = true;

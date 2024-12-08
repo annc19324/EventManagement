@@ -363,7 +363,7 @@ public class EventManager extends javax.swing.JFrame {
 
         btnLamMoi.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnLamMoi.setForeground(new java.awt.Color(255, 0, 255));
-        btnLamMoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-refresh-35.png"))); // NOI18N
+        btnLamMoi.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\icons8-refresh-35.png")); // NOI18N
         btnLamMoi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLamMoiActionPerformed(evt);
@@ -374,7 +374,7 @@ public class EventManager extends javax.swing.JFrame {
         txtTimKiem.setForeground(new java.awt.Color(204, 204, 204));
         txtTimKiem.setText("Tìm Kiếm Theo Tên");
 
-        btnTimKiem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-google-web-search-35.png"))); // NOI18N
+        btnTimKiem.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\icons8-google-web-search-35.png")); // NOI18N
         btnTimKiem.setBorder(null);
         btnTimKiem.setIconTextGap(0);
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {

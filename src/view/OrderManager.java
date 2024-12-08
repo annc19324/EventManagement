@@ -166,7 +166,7 @@ public class OrderManager extends javax.swing.JFrame {
 
         btnXoa.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 51, 51));
-        btnXoa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/delete-45.png"))); // NOI18N
+        btnXoa.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\delete-45.png")); // NOI18N
         btnXoa.setText("Xóa");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -193,7 +193,7 @@ public class OrderManager extends javax.swing.JFrame {
 
         btnThem.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
         btnThem.setForeground(new java.awt.Color(0, 153, 0));
-        btnThem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-add-property-35.png"))); // NOI18N
+        btnThem.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\icons8-add-property-35.png")); // NOI18N
         btnThem.setText("Thêm");
         btnThem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -332,7 +332,7 @@ public class OrderManager extends javax.swing.JFrame {
             }
         });
 
-        btnLammoi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-available-updates-35.png"))); // NOI18N
+        btnLammoi.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\icons8-available-updates-35.png")); // NOI18N
         btnLammoi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnLammoiMouseClicked(evt);
@@ -361,7 +361,6 @@ public class OrderManager extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTableOderMannager);
 
         btnThanhToan.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnThanhToan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/check2.png"))); // NOI18N
         btnThanhToan.setText("Thanh Toán ");
         btnThanhToan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -370,7 +369,7 @@ public class OrderManager extends javax.swing.JFrame {
         });
 
         btnCapNhat.setFont(new java.awt.Font("Dialog", 1, 16)); // NOI18N
-        btnCapNhat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/image/icons8-update-35.png"))); // NOI18N
+        btnCapNhat.setIcon(new javax.swing.ImageIcon("D:\\A_GroupProject\\EventManagement\\src\\image\\icons8-update-35.png")); // NOI18N
         btnCapNhat.setText("Cập Nhật");
         btnCapNhat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -397,11 +396,11 @@ public class OrderManager extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThanhToan)
-                    .addComponent(btnCapNhat))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnCapNhat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnThanhToan, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
