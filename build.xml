@@ -15,7 +15,15 @@
         <pathelement path="lib/mssql-jdbc-12.8.1.jre11.jar"/>
         <pathelement path="lib/javax.mail.jar"/>
         <pathelement path="lib/activation.jar"/> 
+        <pathelement path="lib/poi-5.2.3.jar"/>
+        <pathelement path="lib/poi-ooxml-5.2.3.jar"/>
+        <pathelement path="lib/jfreechart-1.0.19.jar"/>
+        <pathelement path="lib/jcommon-1.0.23.jar"/>
     </path>
+
+    <property name="build.dir" value="build"/>
+    <property name="build.classes.dir" value="${build.dir}/classes"/>
+    <property name="src.dir" value="src"/>
 
     <target name="-pre-compile">
         <mkdir dir="${build.classes.dir}"/>
@@ -23,14 +31,14 @@
 
     <target name="-post-compile">
         <copy todir="${build.classes.dir}">
-            <fileset dir="src">
+            <fileset dir="${src.dir}">
                 <exclude name="**/*.java"/>
             </fileset>
         </copy>
     </target>
 
     <target name="compile" depends="-pre-compile">
-        <javac srcdir="src" destdir="${build.classes.dir}" classpathref="project.classpath"/>
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="project.classpath"/>
     </target>
 
     <target name="run" depends="compile">
