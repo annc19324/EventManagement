@@ -15,15 +15,15 @@
         <pathelement path="lib/mssql-jdbc-12.8.1.jre11.jar"/>
         <pathelement path="lib/javax.mail.jar"/>
         <pathelement path="lib/activation.jar"/> 
-        <pathelement path="lib/poi-5.2.3.jar"/>
-        <pathelement path="lib/poi-ooxml-5.2.3.jar"/>
+        <!-- <pathelement path="lib/poi-5.2.3.jar"/>
+        <pathelement path="lib/poi-ooxml-5.2.3.jar"/> -->
+         <pathelement path="lib/jcommon-1.0.23.jar"/>
         <pathelement path="lib/jfreechart-1.0.19.jar"/>
-        <pathelement path="lib/jcommon-1.0.23.jar"/>
     </path>
 
-    <property name="build.dir" value="build"/>
+    <!-- <property name="build.dir" value="build"/>
     <property name="build.classes.dir" value="${build.dir}/classes"/>
-    <property name="src.dir" value="src"/>
+    <property name="src.dir" value="src"/> -->
 
     <target name="-pre-compile">
         <mkdir dir="${build.classes.dir}"/>
@@ -42,7 +42,7 @@
     </target>
 
     <target name="run" depends="compile">
-        <java classname="view.TitleView" classpathref="project.classpath" fork="true"/>
+        <java classname="view.LogInView" classpathref="project.classpath" fork="true"/>
     </target>
 
     <target name="clean">
