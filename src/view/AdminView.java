@@ -35,62 +35,6 @@ public class AdminView extends javax.swing.JFrame {
     }
     private ThongKeController thongKeService = new ThongKeController();
 
-//    private void setDataToChart1(JPanel jpnItem) {
-//        // Lấy danh sách thống kê trong 7 ngày gần nhất
-//        List<ThongKeClass> listItem = thongKeService.getLast7DaysOrderStatistics();
-//
-//        // Sắp xếp lại danh sách ngày sao cho ngày gần nhất ở đầu danh sách
-//        Collections.reverse(listItem);
-//
-//        // Tạo Dataset cho biểu đồ
-//        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
-//        if (listItem != null) {
-//            for (ThongKeClass item : listItem) {
-//                dataset.addValue(item.getSo_luong_Don(), "Số Lượng Hóa Đơn", item.getNgay_dang_ky());
-//            }
-//        }
-//
-//        // Tạo biểu đồ cột
-//        JFreeChart barChart = ChartFactory.createBarChart(
-//                "Thống Kê Số Lượng Hóa Đơn Trong 7 Ngày Gần Nhất".toUpperCase(),
-//                "Ngày", "Số lượng",
-//                dataset, PlotOrientation.VERTICAL, true, true, false);
-//
-//        CategoryPlot plot = (CategoryPlot) barChart.getPlot();
-//        CategoryAxis domainAxis = plot.getDomainAxis();  // Trục ngày
-//        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();  // Trục số lượng
-//
-//        // Không xoay nhãn trên trục ngày (hoành)
-//        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // Xoay nhãn trục ngày 45 độ nếu cần
-//
-//        // Xoay số lượng (trục dọc) 90 độ
-//        rangeAxis.setLabelAngle(Math.PI / 2); // Xoay trục dọc 90 độ
-//
-//        // Thiết lập các tùy chọn hiển thị
-//        domainAxis.setMaximumCategoryLabelWidthRatio(0.8f);  // Giãn nhãn trục ngày
-//        BarRenderer renderer = (BarRenderer) plot.getRenderer();
-//        renderer.setMaximumBarWidth(0.1);  // Kích thước cột
-//        plot.setDomainGridlinesVisible(false);  // Ẩn lưới ngang (tuỳ chọn)
-//        plot.setDomainGridlinePosition(CategoryAnchor.MIDDLE); // Vị trí lưới ngang
-//        plot.getDomainAxis().setLowerMargin(0.02);  // Giảm khoảng cách cột đầu tiên
-//        plot.getDomainAxis().setUpperMargin(0.02);  // Giảm khoảng cách cột cuối cùng
-//        plot.getDomainAxis().setCategoryMargin(0.1); // Giảm khoảng cách giữa các cột
-//
-//        // Đảo ngược trục ngày (hoành) để ngày gần nhất xuất hiện ở bên phải
-//        domainAxis.setCategoryMargin(0.2); // Giảm khoảng cách giữa các cột
-//        domainAxis.setLowerMargin(0.1); // Giảm khoảng cách giữa cột đầu tiên và trục
-//
-//        // Tạo ChartPanel với kích thước cố định
-//        ChartPanel chartPanel = new ChartPanel(barChart);
-//        chartPanel.setPreferredSize(new Dimension(653, 387));  // Kích thước cố định cho ChartPanel
-//
-//        // Cập nhật giao diện
-//        jpnItem.removeAll();
-//        jpnItem.setLayout(new CardLayout());
-//        jpnItem.add(chartPanel);
-//        jpnItem.validate();
-//        jpnItem.repaint();
-//    }
     private void setDataToChart1(JPanel jpnItem) {
         // Lấy danh sách thống kê trong 7 ngày gần nhất
         List<ThongKeClass> listItem = thongKeService.getLast7DaysOrderStatistics();
@@ -120,8 +64,9 @@ public class AdminView extends javax.swing.JFrame {
         domainAxis.setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // Xoay nhãn trục ngày 45 độ nếu cần
 
         // Xoay số lượng (trục dọc) 90 độ
-        rangeAxis.setLabelAngle(Math.PI / 2); // Xoay trục dọc 90 độ
-
+//        rangeAxis.setLabelAngle(Math.PI / 2); // Xoay trục dọc 90 độ
+        rangeAxis.setLabelAngle(0); // Xoay trục dọc 90 độ
+//
         // Thiết lập các tùy chọn hiển thị
         domainAxis.setMaximumCategoryLabelWidthRatio(0.8f);  // Giãn nhãn trục ngày
         BarRenderer renderer = (BarRenderer) plot.getRenderer();

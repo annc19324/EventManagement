@@ -26,6 +26,8 @@ public class AccountManager extends javax.swing.JFrame {
 
     public AccountManager() throws SQLException {
         initComponents();
+        setLocationRelativeTo(null);
+
         userController = new UserController();
         DisPlayAccount();
         jTableUerAccount.setDefaultEditor(Object.class, null);
@@ -456,7 +458,7 @@ public class AccountManager extends javax.swing.JFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-         EventManager frmEventManager = new EventManager();
+        EventManager frmEventManager = new EventManager();
         frmEventManager.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -470,15 +472,15 @@ public class AccountManager extends javax.swing.JFrame {
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
         // TODO add your handling code here:
-         AttendeeManager frmAttendeeManager=new AttendeeManager();
+        AttendeeManager frmAttendeeManager = new AttendeeManager();
         frmAttendeeManager.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-          try {
+        try {
             // TODO add your handling code here:
-            LogInView frmLogInView=new LogInView();
+            LogInView frmLogInView = new LogInView();
             frmLogInView.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -488,14 +490,14 @@ public class AccountManager extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        AdminView frmAdminView=new AdminView();
+        AdminView frmAdminView = new AdminView();
         frmAdminView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        FrmThongKe frthongke=new FrmThongKe();
+        FrmThongKe frthongke = new FrmThongKe();
         frthongke.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed
