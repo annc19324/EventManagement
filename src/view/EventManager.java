@@ -28,6 +28,8 @@ public class EventManager extends javax.swing.JFrame {
     public EventManager() {
         initComponents();
         // Khởi tạo DefaultTableModel cho jTableEventManager
+        setLocationRelativeTo(null);
+
         String[] columnNames = {"Event ID", "Event Name", "Start Date", "End Date", "Location", "Description", "Status", "Price"};
         DefaultTableModel model = new DefaultTableModel(columnNames, 0);  // Số 0 là số dòng ban đầu
         jTableEventManager.setModel(model);
@@ -682,7 +684,7 @@ public class EventManager extends javax.swing.JFrame {
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
@@ -700,14 +702,14 @@ public class EventManager extends javax.swing.JFrame {
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        AdminView frmAdminView=new AdminView();
+        AdminView frmAdminView = new AdminView();
         frmAdminView.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        FrmThongKe frthongke=new FrmThongKe();
+        FrmThongKe frthongke = new FrmThongKe();
         frthongke.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem6ActionPerformed

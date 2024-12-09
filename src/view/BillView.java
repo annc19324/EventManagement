@@ -6,6 +6,7 @@ package view;
 
 import controller.OrderController;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -335,9 +336,10 @@ public class BillView extends javax.swing.JFrame {
 
     public void exportToExcel(Order order) {
         if (order == null) {
-            System.out.println("Thông tin đơn hàng rỗng!");
+            System.out.println("Thông tin đơn hàng rỗng!");
             return;
         }
+
         // Lấy đường dẫn thư mục gốc của dự án
         String projectRoot = System.getProperty("user.dir");
         String directoryPath = projectRoot + File.separator + "AllBills";
@@ -348,23 +350,26 @@ public class BillView extends javax.swing.JFrame {
             directory.mkdirs();
         }
 
-        // Đặt đường dẫn và tên file Excel theo mẫu: orderId_fullname_eventId.xlsx
-        String fileName = order.getOrderId() + "_" + order.getFullName() + "_" + order.getEventId() + ".xlsx";
-        String filePath = directoryPath + File.separator + fileName;
+        // Đường dẫn file Excel
+        String filePath = directoryPath + File.separator + "all_orders.xlsx";
 
-        // Tạo file Excel
-        try (FileOutputStream fileOut = new FileOutputStream(filePath); Workbook workbook = new XSSFWorkbook()) {
+        // Xử lý file Excel
+        try (Workbook workbook = (new File(filePath).exists())
+                ? new XSSFWorkbook(new FileInputStream(filePath))
+                : new XSSFWorkbook(); FileOutputStream fileOut = new FileOutputStream(filePath)) {
 
-            Sheet sheet = workbook.createSheet("Hóa đơn");
-
-            // Tạo header (mỗi lần xuất thì tạo lại)
-            Row headerRow = sheet.createRow(0);
-            headerRow.createCell(0).setCellValue("Mã hóa đơn");
-            headerRow.createCell(1).setCellValue("Tên khách hàng");
-            headerRow.createCell(2).setCellValue("Mã sự kiện");
-            headerRow.createCell(3).setCellValue("Tên sự kiện");
-            headerRow.createCell(4).setCellValue("Ngày đặt");
-            headerRow.createCell(5).setCellValue("Tổng tiền");
+            Sheet sheet = workbook.getSheet("Hóa đơn");
+            if (sheet == null) {
+                // Nếu sheet chưa tồn tại, tạo mới và thêm tiêu đề
+                sheet = workbook.createSheet("Hóa đơn");
+                Row headerRow = sheet.createRow(0);
+                headerRow.createCell(0).setCellValue("Mã hóa đơn");
+                headerRow.createCell(1).setCellValue("Tên khách hàng");
+                headerRow.createCell(2).setCellValue("Mã sự kiện");
+                headerRow.createCell(3).setCellValue("Tên sự kiện");
+                headerRow.createCell(4).setCellValue("Ngày đặt");
+                headerRow.createCell(5).setCellValue("Tổng tiền");
+            }
 
             // Tạo dòng dữ liệu mới
             int lastRow = sheet.getPhysicalNumberOfRows();
@@ -379,10 +384,10 @@ public class BillView extends javax.swing.JFrame {
 
             // Lưu file Excel
             workbook.write(fileOut);
-            System.out.println("Hóa đơn đã được thêm vào Excel thành công!");
+            System.out.println("Hóa đơn đã được thêm vào file Excel thành công!");
 
         } catch (IOException e) {
-            System.out.println("Lỗi khi tạo hoặc lưu file Excel: " + e.getMessage());
+            System.out.println("Lỗi khi xử lý file Excel: " + e.getMessage());
         }
     }
 

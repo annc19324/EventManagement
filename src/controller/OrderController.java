@@ -40,7 +40,7 @@ public class OrderController {
                 e.EventName, 
                 e.Price, 
                 GETDATE(), 
-                'Chờ'
+                ?
             FROM Attendees a
             JOIN Events e ON a.EventId = e.EventId
             JOIN Users u ON a.UserId = u.UserId
@@ -48,8 +48,9 @@ public class OrderController {
         """;
 
         try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(query)) {
-            stmt.setInt(1, userId);       // Gán UserId
-            stmt.setString(2, eventId);   // Gán EventId
+            stmt.setString(1, "Sẵn sàng");
+            stmt.setInt(2, userId);       // Gán UserId
+            stmt.setString(3, eventId);   // Gán EventId
             return stmt.executeUpdate() > 0; // Trả về true nếu thêm thành công
         } catch (SQLException e) {
             e.printStackTrace();

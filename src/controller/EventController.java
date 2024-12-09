@@ -128,7 +128,7 @@ public class EventController {
     }
 
     //luu thong tin dang ky vao bang attendee
-    public boolean registerEvent(int userId, String fullName,  String eventId, String eventName) {
+    public boolean registerEvent(int userId, String fullName, String eventId, String eventName) {
         if (isEventRegistered(userId, eventId)) {
             return false;
         }
@@ -215,15 +215,43 @@ public class EventController {
         }
         return false; // Trả về false nếu chưa đăng ký
     }
-    
+
     // huy dang ky
     public boolean cancelRegistration(int userId, String eventId) {
-        String sql = "DELETE FROM Attendees WHERE UserId = ? AND EventId = ?";
-        try (Connection conn = dbConnect.connectSQL(); PreparedStatement stmt = conn.prepareStatement(sql)) {
-            stmt.setInt(1, userId);
-            stmt.setString(2, eventId);
-            int rowsAffected = stmt.executeUpdate();
-            return rowsAffected > 0;
+        String sql1 = "DELETE FROM Attendees WHERE UserId = ? AND EventId = ?";
+        String sql2 = "DELETE FROM Orders WHERE UserId = ? AND EventId = ?";
+
+        try (Connection conn = dbConnect.connectSQL()) {
+            // Bắt đầu giao dịch (transaction)
+            conn.setAutoCommit(false);  // Tắt chế độ tự động commit
+
+            try (PreparedStatement stmt1 = conn.prepareStatement(sql1); PreparedStatement stmt2 = conn.prepareStatement(sql2)) {
+
+                // Thực hiện câu lệnh xóa từ bảng Attendees
+                stmt1.setInt(1, userId);
+                stmt1.setString(2, eventId);
+                int rowsAffected1 = stmt1.executeUpdate();
+
+                // Thực hiện câu lệnh xóa từ bảng Orders
+                stmt2.setInt(1, userId);
+                stmt2.setString(2, eventId);
+                int rowsAffected2 = stmt2.executeUpdate();
+
+                // Kiểm tra nếu cả hai câu lệnh đều xóa ít nhất một bản ghi
+                if (rowsAffected1 > 0 && rowsAffected2 > 0) {
+                    conn.commit();  // Nếu thành công, commit giao dịch
+                    return true;
+                } else {
+                    conn.rollback();  // Nếu không có bản ghi nào bị xóa, rollback giao dịch
+                    return false;
+                }
+            } catch (SQLException e) {
+                conn.rollback();  // Nếu có lỗi, rollback giao dịch
+                e.printStackTrace();
+                return false;
+            } finally {
+                conn.setAutoCommit(true);  // Đảm bảo bật lại chế độ auto commit sau khi hoàn thành
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             return false;

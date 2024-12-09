@@ -15,41 +15,17 @@ public class ThongKeController {
         dbConnect = new Connect();
     }
 
-//    public List<ThongKeClass> getListByLopHoc() {
-//        String sql = "select OrderDate,Count(*) as So_Luong from [Orders] group  by OrderDate";
-//        List<ThongKeClass> list = new ArrayList<>();
-//        try {
-//            Connection cons = dbConnect.connectSQL();
-//            PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
-//            ResultSet rs = ps.executeQuery();
-//            while (rs.next()) {
-//                ThongKeClass thongke = new ThongKeClass();
-//                thongke.setNgay_dang_ky(rs.getString("OrderDate"));
-//                thongke.setSo_luong_Don(rs.getInt("So_Luong"));
-//                list.add(thongke);
-//            }
-//            return list;
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
     public List<ThongKeClass> getListByLopHoc() {
-        // Truy vấn SQL với điều kiện lấy dữ liệu trong 7 ngày gần nhất
-        String sql = "SELECT OrderDate, COUNT(*) AS So_Luong, COUNT(DISTINCT OrderId) AS So_Luong_HoaDon "
-                + "FROM Orders "
-                + "WHERE OrderDate BETWEEN DATEADD(DAY, -7, GETDATE()) AND GETDATE() "
-                + "GROUP BY OrderDate";
+        String sql = "select OrderDate,Count(*) as So_Luong from [Orders] group  by OrderDate";
         List<ThongKeClass> list = new ArrayList<>();
         try {
             Connection cons = dbConnect.connectSQL();
-            PreparedStatement ps = cons.prepareStatement(sql);
+            PreparedStatement ps = (PreparedStatement) cons.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 ThongKeClass thongke = new ThongKeClass();
                 thongke.setNgay_dang_ky(rs.getString("OrderDate"));
                 thongke.setSo_luong_Don(rs.getInt("So_Luong"));
-                thongke.setSo_luong_HoaDon(rs.getInt("So_Luong_HoaDon"));
                 list.add(thongke);
             }
             return list;
@@ -61,7 +37,7 @@ public class ThongKeController {
 
     public List<ThongKeClass> getRevenueStatistics(int month, int year) {
         String sql = "SELECT MONTH(OrderDate) AS Month, COUNT(*) AS So_Luong, SUM(TotalPrice) AS TotalRevenue "
-                + "FROM Orders WHERE MONTH(OrderDate) = ? AND YEAR(OrderDate) = ? AND PaymentStatus = 'Đã thanh toán' "
+                + "FROM Orders WHERE MONTH(OrderDate) = ? AND YEAR(OrderDate) = ? AND PaymentStatus = N'Đã thanh toán' "
                 + "GROUP BY MONTH(OrderDate)";
         List<ThongKeClass> list = new ArrayList<>();
         try {
@@ -111,4 +87,24 @@ public class ThongKeController {
     }
 
     //
+    public List<ThongKeClass> getRevenueStatisticsForChart() {
+        String sql = "SELECT MONTH(OrderDate) AS Month, YEAR(OrderDate) AS Year, SUM(TotalPrice) AS TotalRevenue "
+                + "FROM Orders WHERE PaymentStatus = N'Đã thanh toán' "
+                + "GROUP BY MONTH(OrderDate), YEAR(OrderDate) "
+                + "ORDER BY YEAR(OrderDate), MONTH(OrderDate)";
+        List<ThongKeClass> list = new ArrayList<>();
+        try (Connection cons = dbConnect.connectSQL(); PreparedStatement ps = cons.prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                ThongKeClass thongKe = new ThongKeClass();
+                thongKe.setNgay_dang_ky("Tháng " + rs.getInt("Month") + ", Năm " + rs.getInt("Year"));
+                thongKe.setDoanhThu(rs.getDouble("TotalRevenue"));
+                list.add(thongKe);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return list;
+    }
+
 }
