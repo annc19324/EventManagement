@@ -1,9 +1,19 @@
 package model;
 
 public class ThongKeClass {
+
     private String ngay_dang_ky;  // Ngày đăng ký (hoặc tháng)
     private int so_luong_Don;    // Số lượng đơn hàng
     private double doanhThu;     // Tổng doanh thu
+    private int so_luong_HoaDon;
+
+    public int getSo_luong_HoaDon() {
+        return so_luong_HoaDon;
+    }
+
+    public void setSo_luong_HoaDon(int so_luong_HoaDon) {
+        this.so_luong_HoaDon = so_luong_HoaDon;
+    }
 
     public String getNgay_dang_ky() {
         return ngay_dang_ky;

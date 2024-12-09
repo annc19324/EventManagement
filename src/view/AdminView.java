@@ -2,8 +2,12 @@ package view;
 
 import controller.ThongKeController;
 import java.awt.CardLayout;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +19,8 @@ import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.CategoryAnchor;
 import org.jfree.chart.axis.CategoryAxis;
 import org.jfree.chart.axis.CategoryLabelPositions;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.axis.ValueAxis;
 import org.jfree.chart.plot.CategoryPlot;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.chart.renderer.category.BarRenderer;
@@ -27,39 +33,115 @@ public class AdminView extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setDataToChart1(jPanelThongKe);
     }
-    private ThongKeController thongKeService=new ThongKeController();
-    private void setDataToChart1(JPanel jpnItem) {
-        List<ThongKeClass> listItem = thongKeService.getListByLopHoc();
+    private ThongKeController thongKeService = new ThongKeController();
 
+//    private void setDataToChart1(JPanel jpnItem) {
+//        // Lấy danh sách thống kê trong 7 ngày gần nhất
+//        List<ThongKeClass> listItem = thongKeService.getLast7DaysOrderStatistics();
+//
+//        // Sắp xếp lại danh sách ngày sao cho ngày gần nhất ở đầu danh sách
+//        Collections.reverse(listItem);
+//
+//        // Tạo Dataset cho biểu đồ
+//        DefaultCategoryDataset dataset = new DefaultCategoryDataset();
+//        if (listItem != null) {
+//            for (ThongKeClass item : listItem) {
+//                dataset.addValue(item.getSo_luong_Don(), "Số Lượng Hóa Đơn", item.getNgay_dang_ky());
+//            }
+//        }
+//
+//        // Tạo biểu đồ cột
+//        JFreeChart barChart = ChartFactory.createBarChart(
+//                "Thống Kê Số Lượng Hóa Đơn Trong 7 Ngày Gần Nhất".toUpperCase(),
+//                "Ngày", "Số lượng",
+//                dataset, PlotOrientation.VERTICAL, true, true, false);
+//
+//        CategoryPlot plot = (CategoryPlot) barChart.getPlot();
+//        CategoryAxis domainAxis = plot.getDomainAxis();  // Trục ngày
+//        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();  // Trục số lượng
+//
+//        // Không xoay nhãn trên trục ngày (hoành)
+//        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // Xoay nhãn trục ngày 45 độ nếu cần
+//
+//        // Xoay số lượng (trục dọc) 90 độ
+//        rangeAxis.setLabelAngle(Math.PI / 2); // Xoay trục dọc 90 độ
+//
+//        // Thiết lập các tùy chọn hiển thị
+//        domainAxis.setMaximumCategoryLabelWidthRatio(0.8f);  // Giãn nhãn trục ngày
+//        BarRenderer renderer = (BarRenderer) plot.getRenderer();
+//        renderer.setMaximumBarWidth(0.1);  // Kích thước cột
+//        plot.setDomainGridlinesVisible(false);  // Ẩn lưới ngang (tuỳ chọn)
+//        plot.setDomainGridlinePosition(CategoryAnchor.MIDDLE); // Vị trí lưới ngang
+//        plot.getDomainAxis().setLowerMargin(0.02);  // Giảm khoảng cách cột đầu tiên
+//        plot.getDomainAxis().setUpperMargin(0.02);  // Giảm khoảng cách cột cuối cùng
+//        plot.getDomainAxis().setCategoryMargin(0.1); // Giảm khoảng cách giữa các cột
+//
+//        // Đảo ngược trục ngày (hoành) để ngày gần nhất xuất hiện ở bên phải
+//        domainAxis.setCategoryMargin(0.2); // Giảm khoảng cách giữa các cột
+//        domainAxis.setLowerMargin(0.1); // Giảm khoảng cách giữa cột đầu tiên và trục
+//
+//        // Tạo ChartPanel với kích thước cố định
+//        ChartPanel chartPanel = new ChartPanel(barChart);
+//        chartPanel.setPreferredSize(new Dimension(653, 387));  // Kích thước cố định cho ChartPanel
+//
+//        // Cập nhật giao diện
+//        jpnItem.removeAll();
+//        jpnItem.setLayout(new CardLayout());
+//        jpnItem.add(chartPanel);
+//        jpnItem.validate();
+//        jpnItem.repaint();
+//    }
+    private void setDataToChart1(JPanel jpnItem) {
+        // Lấy danh sách thống kê trong 7 ngày gần nhất
+        List<ThongKeClass> listItem = thongKeService.getLast7DaysOrderStatistics();
+
+        // Sắp xếp lại danh sách ngày sao cho ngày gần nhất ở đầu danh sách
+        Collections.reverse(listItem);  // Đảo ngược danh sách nếu dữ liệu trả về từ DB là ngược
+
+        // Tạo Dataset cho biểu đồ
         DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         if (listItem != null) {
             for (ThongKeClass item : listItem) {
-                dataset.addValue(item.getSo_luong_Don(), "Đơn Hàng", item.getNgay_dang_ky());
+                dataset.addValue(item.getSo_luong_Don(), "Số Lượng Hóa Đơn", item.getNgay_dang_ky());
             }
-        } 
-        //tets
+        }
+
+        // Tạo biểu đồ cột
         JFreeChart barChart = ChartFactory.createBarChart(
-                "Biểu đồ thống kê số lượng đơn hàng thanh toán".toUpperCase(),
-                "Thời gian", "Số lượng",
-                dataset, PlotOrientation.VERTICAL, false, true, false);
+                "Thống Kê Số Lượng Hóa Đơn Trong 7 Ngày Gần Nhất".toUpperCase(),
+                "Ngày", "Số lượng",
+                dataset, PlotOrientation.VERTICAL, true, true, false);
 
         CategoryPlot plot = (CategoryPlot) barChart.getPlot();
-        CategoryAxis domainAxis = plot.getDomainAxis();
-        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.UP_45); // Xoay nhãn 45 độ
-        domainAxis.setMaximumCategoryLabelWidthRatio(0.8f); // Giãn khoảng cách nhãn
+        CategoryAxis domainAxis = plot.getDomainAxis();  // Trục ngày
+        NumberAxis rangeAxis = (NumberAxis) plot.getRangeAxis();  // Trục số lượng
+
+        // Không xoay nhãn trên trục ngày (hoành)
+        domainAxis.setCategoryLabelPositions(CategoryLabelPositions.STANDARD); // Xoay nhãn trục ngày 45 độ nếu cần
+
+        // Xoay số lượng (trục dọc) 90 độ
+        rangeAxis.setLabelAngle(Math.PI / 2); // Xoay trục dọc 90 độ
+
+        // Thiết lập các tùy chọn hiển thị
+        domainAxis.setMaximumCategoryLabelWidthRatio(0.8f);  // Giãn nhãn trục ngày
         BarRenderer renderer = (BarRenderer) plot.getRenderer();
-        renderer.setMaximumBarWidth(0.1); // Kích thước cột (giá trị từ 0.0 đến 1.0)
-        // Điều chỉnh khoảng cách giữa các cột
-        plot.setDomainGridlinesVisible(false); // Ẩn lưới ngang (tuỳ chọn)
-        plot.setDomainGridlinePosition(CategoryAnchor.MIDDLE);
-        plot.getDomainAxis().setLowerMargin(0.02); // Giảm khoảng cách cột đầu tiên
-        plot.getDomainAxis().setUpperMargin(0.02); // Giảm khoảng cách cột cuối cùng
-        plot.getDomainAxis().setCategoryMargin(0.1); // Giảm khoảng cách giữa các cột (giá trị càng nhỏ, cột càng sát nhau)
+        renderer.setMaximumBarWidth(0.1);  // Kích thước cột
+        plot.setDomainGridlinesVisible(false);  // Ẩn lưới ngang (tuỳ chọn)
+        plot.setDomainGridlinePosition(CategoryAnchor.MIDDLE); // Vị trí lưới ngang
+        plot.getDomainAxis().setLowerMargin(0.05);  // Giảm khoảng cách cột đầu tiên
+        plot.getDomainAxis().setUpperMargin(0.05);  // Giảm khoảng cách cột cuối cùng
+        plot.getDomainAxis().setCategoryMargin(0.1); // Giảm khoảng cách giữa các cột
+
+        // Điều chỉnh trục ngày
+        domainAxis.setCategoryMargin(0.1); // Giảm khoảng cách giữa các cột
+//        domainAxis.setLowerMargin(0.1); // Giảm khoảng cách giữa cột đầu tiên và trục
+//        domainAxis.setUpperMargin(0.1); // Giảm khoảng cách giữa cột cuối cùng và trục
 
         // Tạo ChartPanel với kích thước cố định
         ChartPanel chartPanel = new ChartPanel(barChart);
-        chartPanel.setPreferredSize(new Dimension(653, 387)); // Kích thước cố định cho ChartPanel
+        chartPanel.setPreferredSize(new Dimension(653, 387));  // Kích thước cố định cho ChartPanel
 
+        // Cập nhật giao diện
         jpnItem.removeAll();
         jpnItem.setLayout(new CardLayout());
         jpnItem.add(chartPanel);
@@ -104,14 +186,14 @@ public class AdminView extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 643, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -174,17 +256,17 @@ public class AdminView extends javax.swing.JFrame {
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
+                .addContainerGap(50, Short.MAX_VALUE)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelThongKeLayout = new javax.swing.GroupLayout(jPanelThongKe);
@@ -195,7 +277,7 @@ public class AdminView extends javax.swing.JFrame {
         );
         jPanelThongKeLayout.setVerticalGroup(
             jPanelThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jMenu1.setText("Trang Chủ");
@@ -261,21 +343,20 @@ public class AdminView extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanelThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanelThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(40, 40, 40)
-                        .addComponent(jPanelThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanelThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -304,9 +385,9 @@ public class AdminView extends javax.swing.JFrame {
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-       OrderManager frmOrderManager=new OrderManager();
-       frmOrderManager.setVisible(true);
-       this.dispose();
+        OrderManager frmOrderManager = new OrderManager();
+        frmOrderManager.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
@@ -318,24 +399,24 @@ public class AdminView extends javax.swing.JFrame {
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
-        } 
+        }
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         try {
             // TODO add your handling code here:
-            LogInView frmLogInView=new LogInView();
+            LogInView frmLogInView = new LogInView();
             frmLogInView.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        AttendeeManager frmAttendeeManager=new AttendeeManager();
+        AttendeeManager frmAttendeeManager = new AttendeeManager();
         frmAttendeeManager.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -349,20 +430,20 @@ public class AdminView extends javax.swing.JFrame {
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(AdminView.class.getName()).log(Level.SEVERE, null, ex);
-        }  
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
         // TODO add your handling code here:
-        AttendeeManager frmAttendeeManager=new AttendeeManager();
+        AttendeeManager frmAttendeeManager = new AttendeeManager();
         frmAttendeeManager.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-         try {
-            LogInView frmLogInView=new LogInView();
+        try {
+            LogInView frmLogInView = new LogInView();
             frmLogInView.setVisible(true);
             this.dispose();
         } catch (SQLException ex) {
@@ -372,7 +453,7 @@ public class AdminView extends javax.swing.JFrame {
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         // TODO add your handling code here:
-        FrmThongKe frthongke=new FrmThongKe();
+        FrmThongKe frthongke = new FrmThongKe();
         frthongke.setVisible(true);
         this.dispose();
 

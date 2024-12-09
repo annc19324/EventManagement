@@ -52,8 +52,16 @@
         </copy>
     </target>
 
-    <target name="compile" depends="-pre-compile">
+    <!-- <target name="compile" depends="-pre-compile">
         <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="project.classpath"/>
+    </target> -->
+    <target name="compile" depends="-pre-compile">
+        <javac srcdir="${src.dir}" destdir="${build.classes.dir}" classpathref="project.classpath">
+            <!-- them cau hinh de xu ly chu thich (neu can) -->
+            <compilerarg value="-processorpath"/>
+            <compilerarg value="lib/lombok.jar"/> <!-- neu su dung Lombok hoac bat ki thu vien nao yeu cau annotation processor -->
+            <compilerarg value="-Xlint:all"/> <!--canh bao khi bien dich -->
+        </javac>
     </target>
 
     <target name="run" depends="compile">
@@ -63,6 +71,9 @@
     <target name="clean">
         <delete dir="${build.dir}"/>
     </target>
+
+
+
 
     <import file="nbproject/build-impl.xml"/>
 

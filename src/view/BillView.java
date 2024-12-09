@@ -332,7 +332,7 @@ public class BillView extends javax.swing.JFrame {
             Logger.getLogger(BillView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_btnPayNowMouseClicked
-    
+
     public void exportToExcel(Order order) {
         if (order == null) {
             System.out.println("Thông tin đơn hàng rỗng!");
@@ -422,8 +422,7 @@ public class BillView extends javax.swing.JFrame {
                 writer.write("Giá vé: " + totalPrice + " VNĐ\n");
                 writer.write("Thanh toán: Đã thanh toán\n");
             }
-            JOptionPane.showMessageDialog(this, "File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
-
+            System.out.println("File hóa đơn đã được lưu tại: " + file.getAbsolutePath());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(this, "Lỗi khi lưu file: " + e.getMessage());
         }
