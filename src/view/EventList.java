@@ -1033,11 +1033,13 @@ public class EventList extends javax.swing.JFrame {
 
     // hien thi bang
     private void showAllEvents() throws SQLException {
-        //lay ds su kien trong controller
+        // Lấy danh sách sự kiện từ controller
         List<Event> eList = eventController.getAllEvent();
         DefaultTableModel model = (DefaultTableModel) tblEventList.getModel();
-        //reset hang
+        // Reset các hàng trong bảng
         model.setRowCount(0);
+
+        // Sử dụng Timer để hiển thị dữ liệu dần dần
         Timer timer = new Timer(100, new ActionListener() {
             private int index = 0;
 
@@ -1045,23 +1047,27 @@ public class EventList extends javax.swing.JFrame {
             public void actionPerformed(ActionEvent e) {
                 if (index < eList.size()) {
                     Event event = eList.get(index);
-                    Object[] rowData = {
-                        event.getEventId(),
-                        event.getEventName(),
-                        event.getStartDate(),
-                        event.getEndDate(),
-                        event.getLocation(),
-                        event.getDescription(),
-                        event.getStatus(),
-                        event.getPrice()
-                    };
-                    model.addRow(rowData);
+                    // Kiểm tra trạng thái, bỏ qua sự kiện có trạng thái "hết hạn"
+                    if (!"Hết Hạn".equalsIgnoreCase(event.getStatus())) {
+                        Object[] rowData = {
+                            event.getEventId(),
+                            event.getEventName(),
+                            event.getStartDate(),
+                            event.getEndDate(),
+                            event.getLocation(),
+                            event.getDescription(),
+                            event.getStatus(),
+                            event.getPrice()
+                        };
+                        model.addRow(rowData);
+                    }
                     index++;
                 } else {
                     ((Timer) e.getSource()).stop();
                 }
             }
         });
+
         // Bắt đầu Timer
         timer.start();
     }
