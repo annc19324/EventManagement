@@ -2,25 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/AccountManager.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/RegisteredEventView.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/model/Order.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/AccountView.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/LogInView.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/ForgetPassword.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/AdminView.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/TitleView.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/ChangePassword.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/BillView.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/EventManager.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/EventList.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/HelpView.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/OrderManager.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/AttendeeManager.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/FrmThongKe.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/UserHome.java</file>
-            <file>file:/D:/A_GroupProject/EventManagement/src/view/SignUpView.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>
